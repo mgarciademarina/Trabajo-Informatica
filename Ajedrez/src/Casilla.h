@@ -12,7 +12,7 @@ public:
 	
 	//Métodos (sobrecarga de operadores)
 	Casilla operator +(Casilla);
-	Casilla operator +(float);
+	Casilla operator +(float); //suma numero a fila
 	Casilla operator -(Casilla);
 	Casilla operator *(float);
 	float operator *(Casilla);
