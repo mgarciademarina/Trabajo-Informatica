@@ -17,7 +17,6 @@ public:
 	Casilla operator *(float);
 	float operator *(Casilla);
 	
-	Casilla unitario(); //devuelve v unitario
 	float argumento();
 	float modulo();
 
