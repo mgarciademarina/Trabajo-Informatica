@@ -6,6 +6,19 @@ public:
 	int columna;
 	
 public:
-	//Métodos (sobrecarga de operadores)
+	//Constr-Destr
+	Casilla(int x=0, int y=0);
+	~Casilla();
+	
+	//MÃ©todos (sobrecarga de operadores)
+	Casilla operator +(Casilla);
+	Casilla operator +(float);
+	Casilla operator -(Casilla);
+	Casilla operator *(float);
+	float operator *(Casilla);
+	
+	Casilla unitario(); //devuelve v unitario
+	float argumento();
+	float modulo();
 
 };
