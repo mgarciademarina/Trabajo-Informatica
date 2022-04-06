@@ -2,8 +2,8 @@
 
 class Casilla {
 public:
-	int fila;
-	int columna;
+	int f; //fila (1,2...8)
+	int c; //columna (a,b,c...h en tablero, pero numeralizado en código)
 	
 public:
 	//Constr-Destr
