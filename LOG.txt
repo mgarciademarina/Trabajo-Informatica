@@ -6,5 +6,5 @@ Los cambios más recientes al principio, para que tengan  más visibilidad.
 
 -------------------------------
 
-
+(06/04 V) Casilla declaraciones-> constructor, destructor, operadores (+,-,*,arg,mod,unit)
 (29/03 V) He subido librerías ETSIDI a carpetas bin y lib.
