@@ -1,4 +1,5 @@
 #pragma once
+#include "freeglut.h"
 
 class Casilla {
 public:

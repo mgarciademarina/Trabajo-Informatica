@@ -11,4 +11,5 @@ public:
 
 	//Métodos lógicos
 	void setPosInit();
+	void checkMove(); //método para determinar si un movimiento es válido o no
 };
