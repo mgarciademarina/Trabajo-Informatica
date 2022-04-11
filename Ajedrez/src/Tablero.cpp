@@ -79,6 +79,8 @@ Casilla Tablero::getCasillaDestino(int x, int y) { //Devuelve la casilla de dest
 	return destino;
 }
 
-bool Tablero::checkMove(int fo, int co, int fd, int cd) {
-	return false;
+int Tablero::getColor(Casilla cas){
+	return tab[cas.f][cas.c].color;
 }
+
+

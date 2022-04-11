@@ -3,7 +3,7 @@
 #include <cmath>
 
 class Tablero {
-public:
+private:
 	Pieza tab[8][8];
 
 public:
@@ -14,6 +14,7 @@ public:
 	void setPosInit();
 	Casilla getCasillaOrigen(int x, int y); //Casilla de origen de la pieza
 	Casilla getCasillaDestino(int x, int y); //Casilla de destino de la pieza
-	bool checkMove(int fo, int co, int fd, int cd); //Determinar si un movimiento es válido o no
+	int getColor(Casilla c);
 	
+	friend class Ajedrez;
 };

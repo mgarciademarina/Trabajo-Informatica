@@ -2,7 +2,7 @@
 #include "freeglut.h"
 
 class Casilla {
-public:
+private:
 	int f; //fila (1,2...8)
 	int c; //columna (a,b,c...h en tablero, pero numeralizado en código)
 	
@@ -21,4 +21,7 @@ public:
 	float argumento();
 	float modulo();
 
+	friend class Pieza;
+	friend class Tablero;
+	friend class Ajedrez;
 };
