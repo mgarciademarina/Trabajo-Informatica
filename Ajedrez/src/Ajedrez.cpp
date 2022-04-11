@@ -15,9 +15,24 @@ void Ajedrez::inicializa() {
 
 }
 
-void Ajedrez::jugada(int button, int state, int x, int y) {
+int Ajedrez::jugada(int button, int state, int x, int y) {
 	//Implementa una jugada con los clics del ratón
-	
+	if (origen.f == -10 && origen.c == -10) {
+		origen = getCasilla(x, y);
+		if (!validarTurno(tablero.getColor(origen))) {
+			cout << "Casilla no válida!" << endl;
+			origen.f = origen.c = -10;
+			return 0;
+		}
+		cout << origen.f << " " << origen.c << endl;
+	}
+	else if (origen.f != -10 && origen.c != -10 && destino.f == -10 && destino.c == -10) {
+		destino = getCasilla(x, y);
+		//Lamada a función que valida el movmiento
+		//Actualizar tablero si la jugada es válida
+		//Hacer turno++ al final de la jugada
+		cout << destino.f << " " << destino.c << endl;
+	}
 	
 	
 }
@@ -28,16 +43,9 @@ bool Ajedrez::validarTurno(int color){
 	else { return false; }
 }
 
-Casilla Ajedrez::getCasillaOrigen(int x, int y) { //Devuelve la casilla de origen en función de las coordenadas x,y del ratón
-	Casilla origen;
-	origen.c = floor((x - 125) / 69);
-	origen.f = 7 - floor((y - 25) / 69);
-	return origen;
-}
-
-Casilla Ajedrez::getCasillaDestino(int x, int y) { //Devuelve la casilla de destino en función de las coordenadas x,y del ratón
-	Casilla destino;
-	destino.c = floor((x - 125) / 69);
-	destino.f = 7 - floor((y - 25) / 69);
-	return destino;
+Casilla Ajedrez::getCasilla(int x, int y) { //Devuelve la casilla en función de las coordenadas x,y del ratón
+	Casilla casilla;
+	casilla.c = floor((x - 125) / 69);
+	casilla.f = 7 - floor((y - 25) / 69);
+	return casilla;
 }

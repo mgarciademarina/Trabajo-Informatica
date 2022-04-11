@@ -9,6 +9,7 @@ private:
 public:
 	//Constr-Destr
 	Casilla(int x=-1, int y=-1);
+	Casilla(const Casilla& cas);
 	~Casilla();
 	
 	//Métodos (sobrecarga de operadores)

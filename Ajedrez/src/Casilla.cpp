@@ -7,6 +7,11 @@ Casilla::Casilla(int x, int y){
   c = y; //columna
 }
 
+Casilla::Casilla(const Casilla& cas){
+	f = cas.f;
+	c = cas.c;
+}
+
 Casilla::~Casilla(){
 }
 
