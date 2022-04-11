@@ -14,5 +14,7 @@ public:
 
 	//Métodos lógicos
 	void jugada(int button, int state, int x, int y);
+	Casilla getCasillaOrigen(int x, int y); //Casilla de origen de la pieza
+	Casilla getCasillaDestino(int x, int y); //Casilla de destino de la pieza
 	bool validarTurno(int color);
 };
