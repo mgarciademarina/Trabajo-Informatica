@@ -18,6 +18,7 @@ public:
 	Casilla operator -(Casilla);
 	Casilla operator *(float);
 	float operator *(Casilla);
+	friend bool operator ==(Casilla cas1, Casilla cas2);
 	
 	float argumento();
 	float modulo();

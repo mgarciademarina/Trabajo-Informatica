@@ -55,3 +55,12 @@ float Casilla::argumento(){
 float Casilla::modulo(){
   return sqrt((float)(f*f+c*c));
 }
+
+bool operator==(Casilla cas1, Casilla cas2){
+	if (cas1.f == cas2.f && cas1.c == cas2.c) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}

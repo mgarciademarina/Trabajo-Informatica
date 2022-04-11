@@ -12,10 +12,16 @@ private:
 	color_t color;
 
 public:
+	Pieza();
+	Pieza(pieza_t p, color_t c, Casilla cas): pieza(p), color(c), casilla(cas){}
+	Pieza(const Pieza& p);
+	~Pieza();
+
 	//Métodos gráficos
 	void dibuja(int flag);
 
 	//Métodos lógicos
+	bool validarMov(Casilla cd);
 	
 	friend class Tablero;
 };

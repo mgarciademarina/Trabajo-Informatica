@@ -5,7 +5,12 @@ Poned fecha en la que hayáis hecho X y vuestra inicial.
 Los cambios más recientes al principio, para que tengan  más visibilidad.
 
 -------------------------------
-(11/04 R) setPosInit() de tablero, inicializa() de Ajedrez, dibuja() a falta de las texturas, jugada() de Ajedrez, getCasilla() de Ajedrez que devuelve la casilla según la posición donde se clique con el ratón, método validarTurno(), método getColor() de Tablero para saber el color de la pieza de la casilla clicada y poder validar el turno
+(11/04 R) Sobrecaraga operador == para Casilla
+(11/04 R) Tablero -> declaraciones y definiciones básicas
+(11/04 R) Ajedrez -> declaraciones y definiciones básicas
+(11/04 R) Métodos dibuja() a falta de las texturas
+(11/04 R) Pieza -> Constrcutores, destructores y declaraciones
+(11/04 R) Implementación de la interacción por ratón en el main
 (06/04 V) Casilla declaraciones y definiciones-> constructor, destructor, operadores (+,-,*,arg,mod)
 (29/03 V) He subido librerías ETSIDI a carpetas bin y lib.
 

@@ -16,31 +16,58 @@ void Ajedrez::inicializa() {
 }
 
 int Ajedrez::jugada(int button, int state, int x, int y) {
-	//Implementa una jugada con los clics del ratón
-	if (origen.f == -10 && origen.c == -10) {
+	//Get Origen si el origen no está guardado ya, se dan valores por defecto de -10 para origen y destino
+	if (origen.f == HOME && origen.c == HOME) {
+
 		origen = getCasilla(x, y);
-		if (!validarTurno(tablero.getColor(origen))) {
-			cout << "Casilla no válida!" << endl;
-			origen.f = origen.c = -10;
+
+		if (!validarTurno(tablero.getColor(origen), origen)) { //Si no es el turno o se pulsa una casilla vacía
+			
+			cout << "Casilla no valida!" << endl;
+			origen.f = origen.c = HOME;
 			return 0;
 		}
-		cout << origen.f << " " << origen.c << endl;
+
+		cout <<"Origen " << origen.f << " " << origen.c << endl;//Test
 	}
-	else if (origen.f != -10 && origen.c != -10 && destino.f == -10 && destino.c == -10) {
+	else if (origen.f != HOME && origen.c != HOME && destino.f == HOME && destino.c == HOME) {//Si ya está guarado el origen
+		
 		destino = getCasilla(x, y);
-		//Lamada a función que valida el movmiento
-		//Actualizar tablero si la jugada es válida
-		//Hacer turno++ al final de la jugada
-		cout << destino.f << " " << destino.c << endl;
+		
+		if (destino == origen) {
+			
+			origen.f = origen.c = destino.f = destino.c = HOME; //Borra el origen si se pulsa la misma casilla
+			cout << "Origen borrado" << endl;//Test
+			return 0;
+
+		}else if (!tablero.validarMov(origen, destino)) {//Si el movimiento no es válido borra el destino
+			
+			cout << "Destino no valido!" << endl;
+			destino.f = destino.c = HOME;
+			return 0;
+
+		}
+		else {
+
+			cout << "Destino " << destino.f << " " << destino.c << endl;//Test
+			tablero.actualiza(origen, destino);
+			tablero.print(cout);//Test
+			turno++;
+			origen.f = origen.c = destino.f = destino.c = HOME;
+
+		}
+		//Poner las casillas origen y destino a -10 una vez finalizada la jugada
+		
 	}
-	
-	
+	return 0;
 }
 
-bool Ajedrez::validarTurno(int color){
+bool Ajedrez::validarTurno(int color, Casilla co){
+	
 	if (turno % 2 == 0 && color == 0) { return true; }
 	else if (turno % 2 != 0 && color == 1) { return true; }
 	else { return false; }
+	
 }
 
 Casilla Ajedrez::getCasilla(int x, int y) { //Devuelve la casilla en función de las coordenadas x,y del ratón

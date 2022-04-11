@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "Tablero.h"
 using namespace std;
 
@@ -69,4 +70,34 @@ int Tablero::getColor(Casilla cas){
 	return tab[cas.f][cas.c].color;
 }
 
+bool Tablero::validarMov(Casilla co, Casilla cd){
+	
+	return tab[co.f][co.c].validarMov(cd);
+}
+
+void Tablero::actualiza(Casilla co, Casilla cd) {
+	//Hay dos posibilidades: movimiento a casilla vacía o comer pieza
+	//Conviene borrar la casilla de origen (NO_PIEZA y NO_COLOR) y sobreescribir los datos en la de destino
+	tab[cd.f][cd.c].pieza = tab[co.f][co.c].pieza;
+	tab[cd.f][cd.c].color = tab[co.f][co.c].color;
+	tab[co.f][co.c].color = NO_COLOR;
+	tab[co.f][co.c].pieza = NO_PIEZA;
+	
+}
+
+string Tablero::to_string() {
+	stringstream str;
+	for (int i = 7; i >= 0; i--) {
+		for (int j = 0; j < 8; j++) {
+			str << tab[i][j].pieza << " " << tab[i][j].color << "|";
+		}
+		str << endl;
+	}
+	return str.str();
+}
+
+ostream& Tablero::print(ostream& o){
+	o << to_string();
+	return o;
+}
 
