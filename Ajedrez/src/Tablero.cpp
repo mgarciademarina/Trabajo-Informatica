@@ -55,6 +55,7 @@ void Tablero::dibuja() {
 		aux++;
 	}
 
+	//Dibuja el fondo marrón
 	glColor3ub(160, 64, 0);
 	glBegin(GL_POLYGON);
 	glVertex3f(-0.5, -0.5, -0.5f);
@@ -62,4 +63,22 @@ void Tablero::dibuja() {
 	glVertex3f(8.5, 8.5, -0.5f);
 	glVertex3f(8.5, -0.5, -0.5f);
 	glEnd();
+}
+
+Casilla Tablero::getCasillaOrigen(int x, int y) { //Devuelve la casilla de origen en función de las coordenadas x,y del ratón
+	Casilla origen;
+	origen.c = floor((x - 125) / 69);
+	origen.f = 7 - floor((y - 25) / 69);
+	return origen;
+}
+
+Casilla Tablero::getCasillaDestino(int x, int y) { //Devuelve la casilla de destino en función de las coordenadas x,y del ratón
+	Casilla destino;
+	destino.c = floor((x - 125) / 69);
+	destino.f = 7 - floor((y - 25) / 69);
+	return destino;
+}
+
+bool Tablero::checkMove(int fo, int co, int fd, int cd) {
+	return false;
 }

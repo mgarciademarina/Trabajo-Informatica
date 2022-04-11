@@ -80,5 +80,8 @@
     <ClCompile Include="src\Rey.cpp">
       <Filter>Archivos de encabezado\Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="src\TestUnitarios.cpp">
+      <Filter>Archivos de encabezado\Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

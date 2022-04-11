@@ -14,3 +14,9 @@ void Ajedrez::inicializa() {
 	tablero.setPosInit();
 
 }
+
+void Ajedrez::jugada(int button, int state, int x, int y) {
+	//Implementa una jugada
+		
+	
+}

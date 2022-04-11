@@ -1,5 +1,6 @@
 #pragma once
 #include "Pieza.h"
+#include <cmath>
 
 class Tablero {
 public:
@@ -11,5 +12,8 @@ public:
 
 	//Métodos lógicos
 	void setPosInit();
-	void checkMove(); //método para determinar si un movimiento es válido o no
+	Casilla getCasillaOrigen(int x, int y); //Casilla de origen de la pieza
+	Casilla getCasillaDestino(int x, int y); //Casilla de destino de la pieza
+	bool checkMove(int fo, int co, int fd, int cd); //Determinar si un movimiento es válido o no
+	
 };

@@ -8,7 +8,7 @@ public:
 	
 public:
 	//Constr-Destr
-	Casilla(int x=0, int y=0);
+	Casilla(int x=-1, int y=-1);
 	~Casilla();
 	
 	//Métodos (sobrecarga de operadores)

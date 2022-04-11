@@ -7,6 +7,7 @@ Ajedrez ajedrez;
 void OnDraw(void); 
 void OnTimer(int value); 
 void OnKeyboardDown(unsigned char key, int x, int y); 	
+void OnMouseDown(int button, int state, int x, int y);
 
 int main(int argc, char* argv[])
 {
@@ -28,6 +29,7 @@ int main(int argc, char* argv[])
 	glutDisplayFunc(OnDraw);
 	glutTimerFunc(25, OnTimer, 0);
 	glutKeyboardFunc(OnKeyboardDown);
+	glutMouseFunc(OnMouseDown);
 
 	ajedrez.inicializa();
 
@@ -57,6 +59,11 @@ void OnKeyboardDown(unsigned char key, int x_t, int y_t)
 	
 
 	glutPostRedisplay();
+}
+
+void OnMouseDown(int button, int state, int x, int y) {
+	ajedrez.jugada(button, state, x, y);
+
 }
 
 void OnTimer(int value)

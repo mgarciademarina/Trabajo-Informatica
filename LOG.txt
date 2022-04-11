@@ -8,4 +8,4 @@ Los cambios más recientes al principio, para que tengan  más visibilidad.
 
 (06/04 V) Casilla declaraciones y definiciones-> constructor, destructor, operadores (+,-,*,arg,mod)
 (29/03 V) He subido librerías ETSIDI a carpetas bin y lib.
-(11/04 R) Método setPosInit de tablero, método inicializa de Ajedrez, métodos dibuja
+(11/04 R) Método setPosInit de tablero, método inicializa de Ajedrez, métodos dibuja, método jugada() de Ajedrez, métodos getCasillaOrigen() y getCasillaDestino() de tablero
