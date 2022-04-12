@@ -7,37 +7,18 @@ void Tablero::setPosInit() {
 	for (int i = 0; i < 8; i++) {
 		for (int j = 0; j < 8; j++) {
 			//Asignación de color
-			if (i == 1 || i == 0) {
-				tab[i][j].color = BLANCO;
-			}else if (i == 6 || i == 7) {
-				tab[i][j].color = NEGRO;
-			}
-			else {
-				tab[i][j].color = NO_COLOR;
-			}
+			if (i == 1 || i == 0) { tab[i][j].color = BLANCO;}
+			else if (i == 6 || i == 7) {tab[i][j].color = NEGRO;}
+			else {tab[i][j].color = NO_COLOR;}
 			
 			//Asiganción de tipo
-			if (i == 1 || i == 6) {
-				tab[i][j].pieza = PEON;
-			}
-			else if ((i == 0 || i == 7) && (j == 0 || j == 7)) {
-				tab[i][j].pieza = TORRE;
-			}
-			else if ((i == 0 || i == 7) && (j == 1 || j == 6)) {
-				tab[i][j].pieza = CABALLO;
-			}
-			else if ((i == 0 || i == 7) && (j == 2 || j == 5)) {
-				tab[i][j].pieza = ALFIL;
-			}
-			else if ((i == 0 || i == 7) && j == 4) {
-				tab[i][j].pieza = REY;
-			}
-			else if ((i == 0 || i == 7) && j == 3) {
-				tab[i][j].pieza = REINA;
-			}
-			else {
-				tab[i][j].pieza = NO_PIEZA;
-			}
+			if (i == 1 || i == 6) { tab[i][j].pieza = PEON; }
+			else if ((i == 0 || i == 7) && (j == 0 || j == 7)) { tab[i][j].pieza = TORRE; }
+			else if ((i == 0 || i == 7) && (j == 1 || j == 6)) { tab[i][j].pieza = CABALLO; }
+			else if ((i == 0 || i == 7) && (j == 2 || j == 5)) { tab[i][j].pieza = ALFIL; }
+			else if ((i == 0 || i == 7) && j == 4) { tab[i][j].pieza = REY; }
+			else if ((i == 0 || i == 7) && j == 3) {tab[i][j].pieza = REINA;}
+			else {tab[i][j].pieza = NO_PIEZA;}
 
 			//Asignación de casilla
 			tab[i][j].casilla.f = i;
