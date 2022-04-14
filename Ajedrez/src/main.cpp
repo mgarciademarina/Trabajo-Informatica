@@ -3,7 +3,6 @@
 
 Ajedrez ajedrez;
 
-
 void OnDraw(void); 
 void OnTimer(int value); 
 void OnKeyboardDown(unsigned char key, int x, int y); 	

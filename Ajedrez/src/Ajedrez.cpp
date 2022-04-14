@@ -21,7 +21,7 @@ int Ajedrez::jugada(int button, int state, int x, int y) {
 
 		origen = getCasilla(x, y);
 
-		if (!validarTurno(tablero.getColor(origen), origen)) { //Si no es el turno o se pulsa una casilla vacía
+		if (!validarTurno(tablero.getColor(origen))) { //Si no es el turno o se pulsa una casilla vacía
 			
 			cout << "Casilla no valida!" << endl;
 			origen.f = origen.c = HOME;
@@ -62,7 +62,7 @@ int Ajedrez::jugada(int button, int state, int x, int y) {
 	return 0;
 }
 
-bool Ajedrez::validarTurno(int color, Casilla co){
+bool Ajedrez::validarTurno(int color){
 	
 	if (turno % 2 == 0 && color == 0) { return true; }
 	else if (turno % 2 != 0 && color == 1) { return true; }
