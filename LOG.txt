@@ -5,6 +5,7 @@ Poned fecha en la que hayáis hecho X y vuestra inicial.
 Los cambios más recientes al principio, para que tengan  más visibilidad.
 
 -------------------------------
+(14/04 R) PNGs en el código
 (11/04 R) Sobrecaraga operador == para Casilla
 (11/04 R) Tablero -> declaraciones y definiciones básicas
 (11/04 R) Ajedrez -> declaraciones y definiciones básicas
