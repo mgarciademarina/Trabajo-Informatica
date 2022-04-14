@@ -2,6 +2,22 @@
   Ajedrez.cpp
 C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Ajedrez.cpp(75,19): warning C4244: '=': conversión de 'double' a 'int'; posible pérdida de datos
 C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Ajedrez.cpp(76,16): warning C4244: '=': conversión de 'double' a 'int'; posible pérdida de datos
+  Alfil.cpp
+  Caballo.cpp
+  Peon.cpp
+  Pieza.cpp
+C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Pieza.cpp(58,51): warning C4244: 'argumento': conversión de 'int' a 'GLfloat'; posible pérdida de datos
+C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Pieza.cpp(58,40): warning C4244: 'argumento': conversión de 'int' a 'GLfloat'; posible pérdida de datos
+C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Pieza.cpp(59,54): warning C4244: 'argumento': conversión de 'int' a 'GLfloat'; posible pérdida de datos
+C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Pieza.cpp(59,40): warning C4244: 'argumento': conversión de 'int' a 'GLfloat'; posible pérdida de datos
+C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Pieza.cpp(60,58): warning C4244: 'argumento': conversión de 'int' a 'GLfloat'; posible pérdida de datos
+C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Pieza.cpp(60,43): warning C4244: 'argumento': conversión de 'int' a 'GLfloat'; posible pérdida de datos
+C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Pieza.cpp(61,55): warning C4244: 'argumento': conversión de 'int' a 'GLfloat'; posible pérdida de datos
+C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Pieza.cpp(61,43): warning C4244: 'argumento': conversión de 'int' a 'GLfloat'; posible pérdida de datos
+  Reina.cpp
+  Rey.cpp
+  Tablero.cpp
+  Torre.cpp
   main.cpp
   Generando código...
   Pang.vcxproj -> C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\bin\Ajedrez.exe
