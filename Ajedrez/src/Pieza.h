@@ -18,11 +18,11 @@ public:
 	Pieza(const Pieza& p);
 	~Pieza();
 
-	//MÈtodos gr·ficos
+	//M√©todos gr√°ficos
 	void dibuja(int flag);
 
-	//MÈtodos lÛgicos
-	bool validarMov(Casilla cd);
+	//M√©todos l√≥gicos
+	bool validarMov(Casilla cd, Casilla co); //A√±ado la casilla de origen del movimiento pq la necesito para los calculos.
 	
 	friend class Tablero;
 };
