@@ -70,22 +70,22 @@ bool Pieza::validarMov(Casilla cd, Casilla co) {
 	/*bool R;
 	switch (pieza) {
 	case PEON:
-		R=Peon::Mov(Casilla cd, Casilla co);
+		R=Peon::Mov(cd,  co);
 		break;
 	case TORRE:
-		R=Torre::Mov(Casilla cd, Casilla co);
+		R=Torre::Mov( cd,  co);
 		break;
 	case CABALLO:
-		R=Caballo::Mov(Casilla cd, Casilla co);
+		R=Caballo::Mov( cd, co);
 			break;
 	case ALFIL:
-		R=Alfil::Mov(Casilla cd, Casilla co);
+		R=Alfil::Mov( cd,  co);
 		break;
 	case REINA:
-		R=Reina::Mov(Casilla cd, Casilla co);
+		R=Reina::Mov(cd,  co);
 		break;
 	case REY:
-		R=Rey::Mov(Casilla cd, Casilla co);
+		R=Rey::Mov( cd, co);
 		break;
 	}
 	Return R;
