@@ -5,6 +5,7 @@ Poned fecha en la que hayáis hecho X y vuestra inicial.
 Los cambios más recientes al principio, para que tengan  más visibilidad.
 
 -------------------------------
+(15/04 P) Metodos para comprovar el movimiento en Torre, Alfil, Caballo, Rey y Reina
 (14/04 R) PNGs en el código
 (11/04 R) Sobrecaraga operador == para Casilla
 (11/04 R) Tablero -> declaraciones y definiciones básicas
