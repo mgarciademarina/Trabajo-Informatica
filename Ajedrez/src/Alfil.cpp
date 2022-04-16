@@ -1,6 +1,8 @@
 #include "Alfil.h"
+#include <math.h>
 bool Alfil::Mov(Casilla cd, Casilla co)
 {
-	if (((cd.f - co.f) == (cd.c - co.c)) && ((cd.f - co.f) != 0)) {	return true;}
+	if ((abs(cd.f - co.f) == abs(cd.c - co.c))) {return true;}
 	else { return false; }
 }
+
