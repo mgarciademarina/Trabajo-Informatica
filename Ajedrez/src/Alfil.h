@@ -2,6 +2,7 @@
 #include "Pieza.h"
 
 class Alfil : public Pieza{
+public:
 	static bool Mov(Casilla cd, Casilla co);
   
 };
