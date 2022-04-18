@@ -1,0 +1,74 @@
+bool Ajedrez::jaque(Casilla cd, Casilla co) {
+	int i = 0;
+	if (tab[cd.c][cd.f].pieza == PEON && abs(cd.c - co.c) == 1) {
+		i++;
+	}
+	if (tab[cd.c][cd.f].pieza == TORRE) {
+		if (abs(cd.c - co.c) == 0) {
+			do {
+				if (cd.f - co.f > 0) {
+					cd.f++;
+				}
+				else if (cd.f - co.f < 0) {
+					cd.f--;
+				}
+				if (tab[cd.c][cd.f] == tab[co.c][co.f]) {
+					i++;
+				}
+			} while (tab[cd.c][cd.f] == NO_PIEZA);
+		}
+		else if (abs(cd.f - co.f) == 0) {
+			do {
+				if (cd.c - co.c > 0) {
+					cd.c++;
+				}
+				else if (cd.f - co.f < 0) {
+					cd.c--;
+				}
+				if (tab[cd.c][cd.f] == tab[co.c][co.f]) {
+					i++;
+				}
+			} while (tab[cd.c][cd.f] == NO_PIEZA);
+		}
+	}
+	if (tab[cd.c][cd.f].pieza == ALFIL) {
+		if (cd.f - co.f < 0) {
+			do {
+				if (cd.c - co.c > 0) {
+					cd.c--;
+					cd.f++;
+				}
+				else if (cd.c - co.f < 0) {
+					cd.c++;
+					cd.f++;
+				}
+				if (tab[cd.c][cd.f] == tab[co.c][co.f]) {
+					i++;
+				}
+			} while (tab[cd.c][cd.f] == NO_PIEZA);
+		}
+		else if (cd.f - co.f > 0) {
+			do {
+				if (cd.c - co.c > 0) {
+					cd.c--;
+					cd.f--;
+				}
+				else if (cd.c - co.c < 0) {
+					cd.c++;
+					cd.f--;
+				}
+				if (tab[cd.c][cd.f] == tab[co.c][co.f]) {
+					i++;
+				}
+			} while (tab[cd.c][cd.f] == NO_PIEZA);
+		}
+	}
+	if (i > 0) {
+		cout << "JAQUE" << endl;
+		return true;
+	}
+	else {
+		return false;
+	}
+
+}
