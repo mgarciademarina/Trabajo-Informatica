@@ -3,6 +3,20 @@
 #include "Tablero.h"
 using namespace std;
 
+Tablero::Tablero() {
+	tab = new Pieza * [n];
+	for (int i = 0; i < n; i++) {
+		tab[i] = new Pieza[n];
+	}
+}
+
+Tablero::~Tablero() {
+	for (int i = 0; i < n; i++) {
+		delete[] tab[i];
+	}
+	delete[] tab;
+}
+
 void Tablero::setPosInit() {
 	for (int i = 0; i < 8; i++) {
 		for (int j = 0; j < 8; j++) {
@@ -62,7 +76,8 @@ bool Tablero::validarMov(Casilla co, Casilla cd){
 			R = Peon::Mov(cd, co, tab[co.f][co.c].color);
 			break;
 		case TORRE:
-			R = Torre::Mov(cd, co);
+			cout << "Validar Mov Torre" << endl;
+			R = Torre::Mov(cd, co, tab);
 			break;
 		case CABALLO:
 			R = Caballo::Mov(cd, co); //Como el caballo puede saltar ya está completo

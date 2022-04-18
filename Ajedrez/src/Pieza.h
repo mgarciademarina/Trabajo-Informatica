@@ -28,4 +28,5 @@ public:
 	void dibuja(int flag);
 	
 	friend class Tablero;
+	friend class Torre;
 };

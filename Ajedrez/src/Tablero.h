@@ -8,9 +8,14 @@ using namespace std;
 
 class Tablero {
 private:
-	Pieza tab[8][8];
+	const int n = 8;
+	Pieza** tab;
+	//Pieza tab[8][8];
 
 public:
+	Tablero();
+	~Tablero();
+
 	//Métodos gráficos
 	void dibuja();
 
