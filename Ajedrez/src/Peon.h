@@ -3,6 +3,6 @@
 
 class Peon : public Pieza{
   public:
-	static bool Mov(Casilla cd, Casilla co);
-	static bool Comer(Casilla cd, Casilla co);
+	static bool Mov(Casilla cd, Casilla co, color_t color);
+	static bool Comer(Casilla cd, Casilla co, color_t color);
 };
