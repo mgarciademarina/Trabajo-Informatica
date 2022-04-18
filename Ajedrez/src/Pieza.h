@@ -22,7 +22,7 @@ public:
 	void dibuja(int flag);
 
 	//Métodos lógicos
-	bool validarMov(Casilla cd, Casilla co); //Añado la casilla de origen del movimiento pq la necesito para los calculos.
+	bool validarMov(Casilla cd);
 	
 	friend class Tablero;
 };
