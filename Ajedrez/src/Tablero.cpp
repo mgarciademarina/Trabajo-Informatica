@@ -56,7 +56,28 @@ bool Tablero::validarMov(Casilla co, Casilla cd){
 		return false;
 	}
 	else {
-		return tab[co.f][co.c].validarMov(cd);
+		bool R = false;
+		switch (tab[co.f][co.c].pieza) {
+		case PEON:
+			R = Peon::Mov(cd, co, tab[co.f][co.c].color);
+			break;
+		case TORRE:
+			R = Torre::Mov(cd, co);
+			break;
+		case CABALLO:
+			R = Caballo::Mov(cd, co); //Como el caballo puede saltar ya está completo
+			break;
+		case ALFIL:
+			R = Alfil::Mov(cd, co);
+			break;
+		case REINA:
+			R = Reina::Mov(cd, co);
+			break;
+		case REY:
+			R = Rey::Mov(cd, co);
+			break;
+		}
+		return R;
 	}
 }
 

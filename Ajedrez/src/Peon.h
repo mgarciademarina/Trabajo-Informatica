@@ -1,8 +1,8 @@
 #pragma once
 #include "Pieza.h"
 
-class Peon : public Pieza{
+class Peon{
   public:
-	static bool Mov(Casilla cd, Casilla co, color_t color);
-	static bool Comer(Casilla cd, Casilla co, color_t color);
+	static bool Mov(Casilla cd, Casilla co, int color);
+	static bool Comer(Casilla cd, Casilla co, int color);
 };

@@ -51,7 +51,6 @@ int Ajedrez::jugada(int button, int state, int x, int y) {
 
 			cout << "Destino " << destino.f << " " << destino.c << endl;//Test
 			tablero.actualiza(origen, destino);
-			tablero.print(cout);//Test
 			turno++;
 			origen.f = origen.c = destino.f = destino.c = HOME;
 

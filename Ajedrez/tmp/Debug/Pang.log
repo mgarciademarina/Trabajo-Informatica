@@ -4,13 +4,7 @@ C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTR
 C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Ajedrez.cpp(76,16): warning C4244: '=': conversión de 'double' a 'int'; posible pérdida de datos
   Alfil.cpp
   Caballo.cpp
-  Casilla.cpp
-C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Casilla.cpp(28,13): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Casilla.cpp(42,13): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Casilla.cpp(43,13): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Casilla.cpp(48,18): warning C4244: 'return': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Casilla.cpp(52,15): warning C4244: 'return': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Casilla.cpp(56,14): warning C4244: 'return': conversión de 'double' a 'float'; posible pérdida de datos
+  main.cpp
   Peon.cpp
   Pieza.cpp
 C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Pieza.cpp(58,51): warning C4244: 'argumento': conversión de 'int' a 'GLfloat'; posible pérdida de datos
@@ -25,6 +19,7 @@ C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTR
   Rey.cpp
   Tablero.cpp
   Torre.cpp
-  main.cpp
   Generando código...
+C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Peon.cpp(35): warning C4715: 'Peon::Comer': no todas las rutas de acceso de control devuelven un valor
+C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Peon.cpp(19): warning C4715: 'Peon::Mov': no todas las rutas de acceso de control devuelven un valor
   Pang.vcxproj -> C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\bin\Ajedrez.exe

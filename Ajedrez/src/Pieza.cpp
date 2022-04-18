@@ -65,29 +65,3 @@ void Pieza::dibuja(int flag) {
 
 }
 
-bool Pieza::validarMov(Casilla cd) {
-	
-	bool R=false;
-	switch (pieza) {
-	case PEON:
-		R=Peon::Mov(cd,  casilla, color);
-		break;
-	case TORRE:
-		R=Torre::Mov( cd,  casilla);
-		break;
-	case CABALLO:
-		R=Caballo::Mov( cd, casilla);
-			break;
-	case ALFIL:
-		R=Alfil::Mov( cd,  casilla);
-		break;
-	case REINA:
-		R=Reina::Mov(cd,  casilla);
-		break;
-	case REY:
-		R=Rey::Mov( cd, casilla);
-		break;
-	}
-	return R;
-}
-

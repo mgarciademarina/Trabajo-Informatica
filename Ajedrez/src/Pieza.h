@@ -1,5 +1,11 @@
 #pragma once
 #include "Casilla.h"
+#include "Peon.h"
+#include "Torre.h"
+#include "Caballo.h"
+#include "Alfil.h"
+#include "Reina.h"
+#include "Rey.h"
 #include "freeglut.h"
 #include "ETSIDI.h"
 
@@ -20,9 +26,6 @@ public:
 
 	//Métodos gráficos
 	void dibuja(int flag);
-
-	//Métodos lógicos
-	bool validarMov(Casilla cd);
 	
 	friend class Tablero;
 };
