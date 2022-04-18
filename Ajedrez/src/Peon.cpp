@@ -1,15 +1,35 @@
 #include "Peon.h"
 #include <math.h>
-bool Peon::Mov(Casilla cd, Casilla co)
+bool Peon::Mov(Casilla cd, Casilla co, color_t color)
 {
-	if ((cd.c=co.c)&&(((cd.f-co.f)==1)||((cd.f =4 )))){ return true; } //Para blanco (pieza.color == BLANCO) &&
-	else if ((cd.c = co.c) && (((co.f - cd.f) == 1) || ((cd.f = 5)))) { return true; } //Para negro (pieza.color == NEGRO) &&
+	if(cd.c=co.c)
+	{
+		if (color == BLANCO) {
+			if (((cd.f - co.f) == 1) || ((cd.f == 4) && (co.f == 2))) { return true; }
+			else { return false; }
+		}
+		else if (color == NEGRO)
+		{
+			if (((cd.f - co.f) == -1) || ((cd.f == 5)&&(co.f==7))) { return true; }
+			else { return false; }
+		}
+	}
 	else { return false; }
 }
-bool Peon::Comer(Casilla cd, Casilla co)
+bool Peon::Comer(Casilla cd, Casilla co, color_t color)
 {
-	return true; // Necesito saber si hay una pieza de otro color 
-	/* if ((pieza.color == BLANCO) && (abs(cd.c - co.c) == 1) && (((cd.f-co.f)==1)||((cd.f =4 )))) { return true; }
-	else if ((pieza.color == NEGRO)&&(abs(cd.c-co.c)==1)&&(((co.f - cd.f) == 1) || ((cd.f = 5)))){return true;}
-	else { return false; }*/
+	if (abs(cd.c - co.c)==1)
+	{
+		if (color == BLANCO) {
+			if (((cd.f - co.f) == 1) || ((cd.f = 4))) { return true; }
+			else { return false; }
+		}
+		else if (color == NEGRO)
+		{
+			if (((co.f - cd.f) == 1) || ((cd.f = 5))) { return true; }
+			else { return false; }
+		}
+	}
+	else { return false; }
 }
+
