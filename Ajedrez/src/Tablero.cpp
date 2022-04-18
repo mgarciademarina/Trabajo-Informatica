@@ -6,12 +6,12 @@ using namespace std;
 void Tablero::setPosInit() {
 	for (int i = 0; i < 8; i++) {
 		for (int j = 0; j < 8; j++) {
-			//Asignaci髇 de color
+			//Asignaci贸n de color
 			if (i == 1 || i == 0) { tab[i][j].color = BLANCO;}
 			else if (i == 6 || i == 7) {tab[i][j].color = NEGRO;}
 			else {tab[i][j].color = NO_COLOR;}
 			
-			//Asiganci髇 de tipo
+			//Asiganci贸n de tipo
 			if (i == 1 || i == 6) { tab[i][j].pieza = PEON; }
 			else if ((i == 0 || i == 7) && (j == 0 || j == 7)) { tab[i][j].pieza = TORRE; }
 			else if ((i == 0 || i == 7) && (j == 1 || j == 6)) { tab[i][j].pieza = CABALLO; }
@@ -20,7 +20,7 @@ void Tablero::setPosInit() {
 			else if ((i == 0 || i == 7) && j == 3) {tab[i][j].pieza = REINA;}
 			else {tab[i][j].pieza = NO_PIEZA;}
 
-			//Asignaci髇 de casilla
+			//Asignaci贸n de casilla
 			tab[i][j].casilla.f = i;
 			tab[i][j].casilla.c = j;
 		}
@@ -37,7 +37,7 @@ void Tablero::dibuja() {
 		aux++;
 	}
 
-	//Dibuja el fondo marr髇
+	//Dibuja el fondo marr贸n
 	glColor3ub(160, 64, 0);
 	glBegin(GL_POLYGON);
 	glVertex3f(-0.5, -0.5, -0.5f);
@@ -56,12 +56,12 @@ bool Tablero::validarMov(Casilla co, Casilla cd){
 		return false;
 	}
 	else {
-		return tab[co.f][co.c].validarMov(cd, co);
+		return tab[co.f][co.c].validarMov(cd);
 	}
 }
 
 void Tablero::actualiza(Casilla co, Casilla cd) {
-	//Hay dos posibilidades: movimiento a casilla vac韆 o comer pieza
+	//Hay dos posibilidades: movimiento a casilla vac铆a o comer pieza
 	//Conviene borrar la casilla de origen (NO_PIEZA y NO_COLOR) y sobreescribir los datos en la de destino
 	tab[cd.f][cd.c].pieza = tab[co.f][co.c].pieza;
 	tab[cd.f][cd.c].color = tab[co.f][co.c].color;
