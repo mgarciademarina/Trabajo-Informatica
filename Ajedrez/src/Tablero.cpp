@@ -52,8 +52,12 @@ int Tablero::getColor(Casilla cas){
 }
 
 bool Tablero::validarMov(Casilla co, Casilla cd){
-	
-	return tab[co.f][co.c].validarMov(cd);
+	if (tab[co.f][co.c].color == tab[cd.f][cd.c].color) {
+		return false;
+	}
+	else {
+		return tab[co.f][co.c].validarMov(cd, co);
+	}
 }
 
 void Tablero::actualiza(Casilla co, Casilla cd) {
