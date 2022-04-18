@@ -5,6 +5,7 @@ Poned fecha en la que hayáis hecho X y vuestra inicial.
 Los cambios más recientes al principio, para que tengan  más visibilidad.
 
 -------------------------------
+(18/04 R) Comprobación de que en la casilla de destino no hay un apieza del mismo color que en la casilla de origen en el método validarMov(co, cd) de tablero.cpp y declaración de la función jaque para checkear el jaque en el OnTimer
 (16/04 P) Métodos para comprovar movimiento y comer en Peón y corrección de errores en los mobimientos de Caballo, Reina y Alfíl.
 (15/04 P) Metodos para comprovar el movimiento en Torre, Alfil, Caballo, Rey y Reina
 (14/04 R) PNGs en el código
