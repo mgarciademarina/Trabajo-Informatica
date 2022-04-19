@@ -9,7 +9,7 @@ bool Torre::Mov(Casilla cd, Casilla co, Pieza** tab){
 		case true:
 			for (int i = cd.c; i != co.c; i--) {
 				
-				if (tab[co.f][i].pieza != NO_PIEZA) {
+				if (tab[co.f][i].pieza != NO_PIEZA && i != cd.c ) {
 					
 					return false;
 				}
@@ -17,7 +17,7 @@ bool Torre::Mov(Casilla cd, Casilla co, Pieza** tab){
 			break;
 		case false:
 			for (int i = cd.c; i != co.c; i++) {
-				if (tab[co.f][i].pieza != NO_PIEZA) {
+				if (tab[co.f][i].pieza != NO_PIEZA && i != cd.c) {
 					return false;
 				}
 			}
@@ -26,20 +26,17 @@ bool Torre::Mov(Casilla cd, Casilla co, Pieza** tab){
 		return true;
 	}
 	else if (cd.c == co.c) {
-		cout << "Entrooooo" << endl;
 		switch (cd.f > co.f) {
 		case true:
 			for (int i = cd.f; i != co.f; i--) {
-				cout << co.f << " " << i<< endl;
-				if (tab[i][co.c].pieza != NO_PIEZA) {
-					cout << "piezaaaa" << endl;
+				if (tab[i][co.c].pieza != NO_PIEZA && i != cd.f) {
 					return false;
 				}
 			}
 			break;
 		case false:
 			for (int i = cd.f; i != co.f; i++) {
-				if (tab[i][co.c].pieza != NO_PIEZA) {
+				if (tab[i][co.c].pieza != NO_PIEZA && i != cd.f) {
 					return false;
 				}
 			}
