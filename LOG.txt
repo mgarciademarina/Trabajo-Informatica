@@ -5,6 +5,7 @@ Poned fecha en la que hayáis hecho X y vuestra inicial.
 Los cambios más recientes al principio, para que tengan  más visibilidad.
 
 -------------------------------
+(19/04 R) Movimiento robusto de torre y caballo
 (18/04 D) Intento de código para la función jaque
 (18/04 P) Los peones ya seven de que color son para moverse bien.
 (18/04 R) Comprobación de que en la casilla de destino no hay un apieza del mismo color que en la casilla de origen en el método validarMov(co, cd) de tablero.cpp y declaración de la función jaque para checkear el jaque en el OnTimer
