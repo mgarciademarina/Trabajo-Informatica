@@ -3,5 +3,5 @@
 
 class Reina{
  public:
-  static bool Mov(Casilla cd, Casilla co);
+  static bool Mov(Casilla cd, Casilla co, Pieza** tab);
 };

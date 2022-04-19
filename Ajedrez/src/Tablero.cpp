@@ -85,7 +85,7 @@ bool Tablero::validarMov(Casilla co, Casilla cd){
 			R = Alfil::Mov(cd, co, tab); //Completo
 			break;
 		case REINA:
-			R = Reina::Mov(cd, co);
+			R = Reina::Mov(cd, co, tab); //Completo
 			break;
 		case REY:
 			R = Rey::Mov(cd, co, tab); //Completo a falta del enroque 

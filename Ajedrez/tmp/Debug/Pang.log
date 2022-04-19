@@ -1,27 +1,8 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: El directorio intermedio (tmp\Debug\) contiene archivos compartidos de otro proyecto (Pang.vcxproj). Esto puede dar lugar a un comportamiento incorrecto de limpieza y recompilación.
-  Ajedrez.cpp
-C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Ajedrez.cpp(74,19): warning C4244: '=': conversión de 'double' a 'int'; posible pérdida de datos
-C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Ajedrez.cpp(75,16): warning C4244: '=': conversión de 'double' a 'int'; posible pérdida de datos
-  Alfil.cpp
-  Caballo.cpp
-  Peon.cpp
-  Pieza.cpp
-C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Pieza.cpp(58,51): warning C4244: 'argumento': conversión de 'int' a 'GLfloat'; posible pérdida de datos
-C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Pieza.cpp(58,40): warning C4244: 'argumento': conversión de 'int' a 'GLfloat'; posible pérdida de datos
-C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Pieza.cpp(59,54): warning C4244: 'argumento': conversión de 'int' a 'GLfloat'; posible pérdida de datos
-C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Pieza.cpp(59,40): warning C4244: 'argumento': conversión de 'int' a 'GLfloat'; posible pérdida de datos
-C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Pieza.cpp(60,58): warning C4244: 'argumento': conversión de 'int' a 'GLfloat'; posible pérdida de datos
-C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Pieza.cpp(60,43): warning C4244: 'argumento': conversión de 'int' a 'GLfloat'; posible pérdida de datos
-C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Pieza.cpp(61,55): warning C4244: 'argumento': conversión de 'int' a 'GLfloat'; posible pérdida de datos
-C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Pieza.cpp(61,43): warning C4244: 'argumento': conversión de 'int' a 'GLfloat'; posible pérdida de datos
-  Reina.cpp
-  Rey.cpp
-  Tablero.cpp
-  Torre.cpp
-C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Torre.cpp(8,24): warning C4144: '>': expresión relacional como expresión switch
-C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Torre.cpp(29,24): warning C4144: '>': expresión relacional como expresión switch
   main.cpp
+  Reina.cpp
+C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Reina.cpp(48,25): warning C4144: '>': expresión relacional como expresión switch
+C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Reina.cpp(68,25): warning C4144: '>': expresión relacional como expresión switch
+  Rey.cpp
   Generando código...
-C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Peon.cpp(19): warning C4715: 'Peon::Mov': no todas las rutas de acceso de control devuelven un valor
-C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\src\Peon.cpp(35): warning C4715: 'Peon::Comer': no todas las rutas de acceso de control devuelven un valor
   Pang.vcxproj -> C:\Users\rafar\Desktop\UNIVERSIDAD\TERCERO\2º CUATRIMESTRE\INFORMÁTICA INDUSTRIAL Y COMUNICACIONES\Trabajo-Informatica\Ajedrez\bin\Ajedrez.exe
