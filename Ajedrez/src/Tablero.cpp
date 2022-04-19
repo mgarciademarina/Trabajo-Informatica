@@ -76,7 +76,6 @@ bool Tablero::validarMov(Casilla co, Casilla cd){
 			R = Peon::Mov(cd, co, tab[co.f][co.c].color);
 			break;
 		case TORRE:
-			cout << "Validar Mov Torre" << endl;
 			R = Torre::Mov(cd, co, tab);
 			break;
 		case CABALLO:
