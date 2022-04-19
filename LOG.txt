@@ -5,6 +5,7 @@ Poned fecha en la que hayáis hecho X y vuestra inicial.
 Los cambios más recientes al principio, para que tengan  más visibilidad.
 
 -------------------------------
+(19/04 R) Movimiento robusto de la Reina
 (19/04 R) Movimiento robusto de Alfil
 (19/04 D) Modificado la función jaque
 (19/04 R) Movimiento robusto de torre y caballo
