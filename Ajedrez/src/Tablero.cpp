@@ -76,19 +76,19 @@ bool Tablero::validarMov(Casilla co, Casilla cd){
 			R = Peon::Mov(cd, co, tab[co.f][co.c].color);
 			break;
 		case TORRE:
-			R = Torre::Mov(cd, co, tab);
+			R = Torre::Mov(cd, co, tab); //Completo
 			break;
 		case CABALLO:
 			R = Caballo::Mov(cd, co); //Como el caballo puede saltar ya está completo
 			break;
 		case ALFIL:
-			R = Alfil::Mov(cd, co);
+			R = Alfil::Mov(cd, co, tab); //Completo
 			break;
 		case REINA:
 			R = Reina::Mov(cd, co);
 			break;
 		case REY:
-			R = Rey::Mov(cd, co);
+			R = Rey::Mov(cd, co, tab); //Completo a falta del enroque 
 			break;
 		}
 		return R;

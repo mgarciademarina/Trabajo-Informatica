@@ -29,7 +29,7 @@ public:
 	
 	friend class Tablero;
 	friend class Torre;
-	friend class Rey;
 	friend class Reina;
 	friend class Peon;
+	friend class Alfil;
 };
