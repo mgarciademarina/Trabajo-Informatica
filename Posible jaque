@@ -1,74 +1,84 @@
-bool Ajedrez::jaque(Casilla cd, Casilla co) {
+bool Pieza::jaque(Pieza tu, Pieza rey) {
 	int i = 0;
-	if (tab[cd.c][cd.f].pieza == PEON && abs(cd.c - co.c) == 1) {
-		i++;
-	}
-	if (tab[cd.c][cd.f].pieza == TORRE) {
-		if (abs(cd.c - co.c) == 0) {
-			do {
-				if (cd.f - co.f > 0) {
-					cd.f++;
-				}
-				else if (cd.f - co.f < 0) {
-					cd.f--;
-				}
-				if (tab[cd.c][cd.f] == tab[co.c][co.f]) {
-					i++;
-				}
-			} while (tab[cd.c][cd.f] == NO_PIEZA);
+	Pieza aux = tu;
+	if (tu.pieza == PEON){
+		if (tu.color == NEGRO && (abs(tu.casilla.c - rey.casilla.c) == 1 && tu.casilla.f - rey.casilla.f == 1)) {
+			i++;
 		}
-		else if (abs(cd.f - co.f) == 0) {
-			do {
-				if (cd.c - co.c > 0) {
-					cd.c++;
-				}
-				else if (cd.f - co.f < 0) {
-					cd.c--;
-				}
-				if (tab[cd.c][cd.f] == tab[co.c][co.f]) {
-					i++;
-				}
-			} while (tab[cd.c][cd.f] == NO_PIEZA);
+		if (tu.color == BLANCO && (abs(tu.casilla.c - rey.casilla.c) == 1 && tu.casilla.f - rey.casilla.f == -1)) {
+			i++;
 		}
 	}
-	if (tab[cd.c][cd.f].pieza == ALFIL) {
-		if (cd.f - co.f < 0) {
-			do {
-				if (cd.c - co.c > 0) {
-					cd.c--;
-					cd.f++;
-				}
-				else if (cd.c - co.f < 0) {
-					cd.c++;
-					cd.f++;
-				}
-				if (tab[cd.c][cd.f] == tab[co.c][co.f]) {
-					i++;
-				}
-			} while (tab[cd.c][cd.f] == NO_PIEZA);
+	if (tu.pieza == REY) {
+		if ((abs(tu.casilla.c - rey.casilla.c) == 1 || tu.casilla.c - rey.casilla.c==0) && (abs(tu.casilla.f - rey.casilla.f) == 1 || tu.casilla.f - rey.casilla.f == 0)) {
+			i++;
 		}
-		else if (cd.f - co.f > 0) {
+	}
+	if (tu.pieza == TORRE || tu.pieza == REINA) {
+		if (tu.casilla.c - rey.casilla.c == 0) {
 			do {
-				if (cd.c - co.c > 0) {
-					cd.c--;
-					cd.f--;
+				if (tu.casilla.f - rey.casilla.f > 0) {
+					aux.casilla.f--;
 				}
-				else if (cd.c - co.c < 0) {
-					cd.c++;
-					cd.f--;
+				else if (tu.casilla.f - rey.casilla.f < 0) {
+					aux.casilla.f++;
 				}
-				if (tab[cd.c][cd.f] == tab[co.c][co.f]) {
+				if (aux.casilla.f == rey.casilla.f) {
 					i++;
 				}
-			} while (tab[cd.c][cd.f] == NO_PIEZA);
+			} while (aux.pieza == NO_PIEZA);
+		}
+		else if (tu.casilla.f - rey.casilla.f == 0) {
+			do {
+				if (tu.casilla.c - rey.casilla.c > 0) {
+					aux.casilla.c--;
+				}
+				else if (tu.casilla.c - rey.casilla.c > 0) {
+					aux.casilla.c++;
+				}
+				if (aux.casilla.c == rey.casilla.c) {
+					i++;
+				}
+			} while (aux.pieza == NO_PIEZA);
+		}
+	}
+	if (tu.pieza == ALFIL || tu.pieza == REINA) {
+		if (tu.casilla.f - rey.casilla.f < 0) {
+			do {
+				if (tu.casilla.c - rey.casilla.c > 0) {
+					aux.casilla.c--;
+					aux.casilla.f++;
+				}
+				else if (tu.casilla.c - rey.casilla.c < 0) {
+					aux.casilla.c++;
+					aux.casilla.f++;
+				}
+				if (aux.casilla == rey.casilla) {
+					i++;
+				}
+			} while (aux.pieza == NO_PIEZA && (aux.casilla.f != rey.casilla.f && aux.casilla.c != rey.casilla.c));
+		}
+		else if (tu.casilla.f - rey.casilla.f > 0) {
+			do {
+				if (tu.casilla.c - rey.casilla.c > 0) {
+					aux.casilla.c--;
+					aux.casilla.f--;
+				}
+				else if (tu.casilla.c - rey.casilla.c < 0) {
+					aux.casilla.c++;
+					aux.casilla.f--;
+				}
+				if (aux.casilla == rey.casilla) {
+					i++;
+				}
+			} while (aux.pieza == NO_PIEZA && (aux.casilla.f != rey.casilla.f && aux.casilla.c != rey.casilla.c));
 		}
 	}
 	if (i > 0) {
-		cout << "JAQUE" << endl;
 		return true;
 	}
 	else {
 		return false;
-	}
 
+	}
 }
