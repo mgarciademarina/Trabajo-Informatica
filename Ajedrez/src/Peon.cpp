@@ -3,7 +3,7 @@
 
 bool Peon::Mov(Casilla cd, Casilla co, int color){
 
-	if(cd.c=co.c)
+	if(cd.c==co.c)
 	{
 		if (color == 0) {
 			if (((cd.f - co.f) == 1) || ((cd.f == 4) && (co.f == 2))) { return true; }
