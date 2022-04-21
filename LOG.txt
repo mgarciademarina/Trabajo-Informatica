@@ -5,6 +5,7 @@ Poned fecha en la que hayáis hecho X y vuestra inicial.
 Los cambios más recientes al principio, para que tengan  más visibilidad.
 
 -------------------------------
+(22/04 V) Solucionado error en Peon::Comer. El peón ya come correctamente.
 (21/04 R) Modificaciones para mostrar casillas posibles una vez selsccionado el origen
 (21/04 D) Terminado jaque
 (20/04 V) Solucionado pequeño fallo de sintaxis en el movimiento del peón
@@ -13,7 +14,7 @@ Los cambios más recientes al principio, para que tengan  más visibilidad.
 (19/04 D) Modificado la función jaque
 (19/04 R) Movimiento robusto de torre y caballo
 (18/04 D) Intento de código para la función jaque
-(18/04 P) Los peones ya seven de que color son para moverse bien.
+(18/04 P) Los peones ya se ven de que color son para moverse bien.
 (18/04 R) Comprobación de que en la casilla de destino no hay un apieza del mismo color que en la casilla de origen en el método validarMov(co, cd) de tablero.cpp y declaración de la función jaque para checkear el jaque en el OnTimer
 (16/04 P) Métodos para comprovar movimiento y comer en Peón y corrección de errores en los mobimientos de Caballo, Reina y Alfíl.
 (15/04 P) Metodos para comprovar el movimiento en Torre, Alfil, Caballo, Rey y Reina
