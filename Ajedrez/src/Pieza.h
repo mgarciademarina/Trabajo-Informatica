@@ -25,7 +25,7 @@ public:
 	~Pieza();
 
 	//Métodos gráficos
-	void dibuja(int flag);
+	void dibuja(int flag, int auxmov);
 	
 	friend class Tablero;
 	friend class Torre;

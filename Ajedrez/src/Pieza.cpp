@@ -14,7 +14,7 @@ Pieza::~Pieza(){
 
 }
 
-void Pieza::dibuja(int flag) {
+void Pieza::dibuja(int flag, int auxmov) {
 	glEnable(GL_TEXTURE_2D);
 
 	switch (pieza) {
@@ -49,11 +49,18 @@ void Pieza::dibuja(int flag) {
 
 	glDisable(GL_LIGHTING);
 	glBegin(GL_POLYGON);
-	if (flag % 2 == 0) {
+	if (flag % 2 == 0 && auxmov == 0) {
 		glColor3ub(160, 64, 0);
 	}
-	else {
+	else if (flag % 2 != 0 && auxmov == 0) {
 		glColor3ub(255, 255, 255);
+	}
+	else if (flag % 2 == 0 && auxmov == 1) {
+		glColor3ub(66, 99, 20);
+		//Pinta el fondo de la casilla de otro color si la pieza seleccionada puede moverse a esa posición
+	}
+	else if (flag % 2 != 0 && auxmov == 1) {
+		glColor3ub(131, 169, 79);
 	}
 	glTexCoord2d(1, 1); glVertex3f(casilla.c, casilla.f, 0.0f);
 	glTexCoord2d(1, 0); glVertex3f(casilla.c, casilla.f + 1, 0.0f);

@@ -8,6 +8,12 @@ Tablero::Tablero() {
 	for (int i = 0; i < n; i++) {
 		tab[i] = new Pieza[n];
 	}
+
+	//Matriz de posibles movimientos
+	pmov = new int* [n];
+	for (int i = 0; i < n; i++) {
+		pmov[i] = new int[n];
+	}
 }
 
 Tablero::~Tablero() {
@@ -15,6 +21,12 @@ Tablero::~Tablero() {
 		delete[] tab[i];
 	}
 	delete[] tab;
+
+	//Matriz de posibles movimientos
+	for (int i = 0; i < n; i++) {
+		delete[] pmov[i];
+	}
+	delete[] pmov;
 }
 
 void Tablero::setPosInit() {
@@ -45,7 +57,7 @@ void Tablero::dibuja() {
 	int aux = 0; //Variable auxiliar para pintar el color de fondo de la casilla
 	for (int i = 0; i < 8; i++) {
 		for (int j = 0; j < 8; j++) {
-			tab[i][j].dibuja(aux);//Llama al dibuja de pieza
+			tab[i][j].dibuja(aux, pmov[i][j]);//Llama al dibuja de pieza
 			aux++;
 		}
 		aux++;
@@ -105,6 +117,24 @@ void Tablero::actualiza(Casilla co, Casilla cd) {
 	tab[co.f][co.c].color = NO_COLOR;
 	tab[co.f][co.c].pieza = NO_PIEZA;
 	
+}
+
+void Tablero::posiblesMov(Casilla co) {
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			if (validarMov(co, tab[i][j].casilla)) {
+					pmov[i][j] = 1;
+			}
+		}
+	}
+}
+
+void Tablero::setMovInit() {
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			pmov[i][j] = 0;
+		}
+	}
 }
 
 string Tablero::to_string() {

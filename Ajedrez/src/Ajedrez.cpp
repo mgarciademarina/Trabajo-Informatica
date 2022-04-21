@@ -12,7 +12,7 @@ void Ajedrez::dibuja() {
 
 void Ajedrez::inicializa() {
 	tablero.setPosInit();
-
+	tablero.setMovInit();
 }
 
 int Ajedrez::jugada(int button, int state, int x, int y) {
@@ -27,7 +27,7 @@ int Ajedrez::jugada(int button, int state, int x, int y) {
 			origen.f = origen.c = HOME;
 			return 0;
 		}
-
+		tablero.posiblesMov(origen);
 		cout <<"Origen " << origen.f << " " << origen.c << endl;//Test
 	}
 	else if (origen.f != HOME && origen.c != HOME && destino.f == HOME && destino.c == HOME) {//Si ya está guarado el origen
@@ -37,6 +37,7 @@ int Ajedrez::jugada(int button, int state, int x, int y) {
 		if (destino == origen) {
 			
 			origen.f = origen.c = destino.f = destino.c = HOME; //Borra el origen si se pulsa la misma casilla
+			tablero.setMovInit(); //Resetea la matriz de posibles movimientos
 			cout << "Origen borrado" << endl;//Test
 			return 0;
 
@@ -53,6 +54,7 @@ int Ajedrez::jugada(int button, int state, int x, int y) {
 			tablero.actualiza(origen, destino);
 			turno++;
 			origen.f = origen.c = destino.f = destino.c = HOME;
+			tablero.setMovInit();
 
 		}
 		//Poner las casillas origen y destino a -10 una vez finalizada la jugada
