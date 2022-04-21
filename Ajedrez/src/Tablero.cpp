@@ -73,7 +73,9 @@ bool Tablero::validarMov(Casilla co, Casilla cd){
 		bool R = false;
 		switch (tab[co.f][co.c].pieza) {
 		case PEON:
-			R = Peon::Mov(cd, co, tab[co.f][co.c].color);
+			if (((tab[co.f][co.c].color == BLANCO)&&(tab[cd.f][cd.c].color == NEGRO))||((tab[co.f][co.c].color == NEGRO)&&(tab[cd.f][cd.c].color == BLANCO)))
+			{ R=Peon::Comer(cd, co, tab[co.f][co.c].color);} //Si hay una Pieza de Negro en el destino de un peon blanco o al reves se llama al metodo que comprueva el movimiento de mover
+			else {R = Peon::Mov(cd, co, tab[co.f][co.c].color);}
 			break;
 		case TORRE:
 			R = Torre::Mov(cd, co, tab); //Completo
