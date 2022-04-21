@@ -159,12 +159,12 @@ bool Tablero::jaque() {
 		for (j = 0; j < 8; j++) {
 			if (tab[i][j].pieza == REY) {
 				if (tab[i][j].color == NEGRO) {
-					rn.c = i;
-					rn.f = j;
+					rn.f = i;
+					rn.c = j;
 				}
 				else if (tab[i][j].color == BLANCO) {
-					rb.c = i;
-					rb.f = j;
+					rb.f = i;
+					rb.c = j;
 				}
 			}
 		}
@@ -173,15 +173,15 @@ bool Tablero::jaque() {
 		for (j = 0; j < 8; j++) {
 			if (tab[i][j].pieza !=NO_PIEZA ) {
 				if (tab[i][j].color == NEGRO) {
-					t.c = i;
-					t.f = j;
+					t.f = i;
+					t.c = j;
 					if (checkjaque(t, rb)) {
 						jaque++;
 					}
 				}
 				else if (tab[i][j].color == BLANCO) {
-					t.c = i;
-					t.f = j;
+					t.f = i;
+					t.c = j;
 					if (checkjaque(t, rn)) {
 						jaque++;
 					}
@@ -200,20 +200,20 @@ bool Tablero::checkjaque(Casilla tu, Casilla rey) {
 	int i = 0;
 	Casilla aux;
 	aux = tu;
-	if (tab[tu.c][tu.f].pieza == PEON) {
-		if (tab[tu.c][tu.f].color == NEGRO && (abs(tu.c - rey.c) == 1 && tu.f - rey.f == 1)) {
+	if (tab[tu.f][tu.c].pieza == PEON) {
+		if (tab[tu.f][tu.c].color == NEGRO && (abs(tu.c - rey.c) == 1 && tu.f - rey.f == 1)) {
 			i++;
 		}
-		if (tab[tu.c][tu.f].color == BLANCO && (abs(tu.c - rey.c) == 1 && tu.f - rey.f == -1)) {
+		if (tab[tu.f][tu.c].color == BLANCO && (abs(tu.c - rey.c) == 1 && tu.f - rey.f == -1)) {
 			i++;
 		}
 	}
-	if (tab[tu.c][tu.f].pieza == REY) {
+	if (tab[tu.f][tu.c].pieza == REY) {
 		if ((abs(tu.c - rey.c) == 1 || tu.c - rey.c == 0) && (abs(tu.f - rey.f) == 1 || tu.f - rey.f == 0)) {
 			i++;
 		}
 	}
-	if (tab[tu.c][tu.f].pieza == TORRE || tab[tu.c][tu.f].pieza == REINA) {
+	if (tab[tu.f][tu.c].pieza == TORRE || tab[tu.f][tu.c].pieza == REINA) {
 		if (tu.c - rey.c == 0) {
 			do {
 				if (tu.f - rey.f > 0) {
@@ -225,7 +225,7 @@ bool Tablero::checkjaque(Casilla tu, Casilla rey) {
 				if (aux.f == rey.f) {
 					i++;
 				}
-			} while (tab[aux.c][aux.f].pieza == NO_PIEZA);
+			} while (tab[aux.f][aux.c].pieza == NO_PIEZA);
 		}
 		else if (tu.f - rey.f == 0) {
 			do {
@@ -238,10 +238,10 @@ bool Tablero::checkjaque(Casilla tu, Casilla rey) {
 				if (aux.c == rey.c) {
 					i++;
 				}
-			} while (tab[aux.c][aux.f].pieza == NO_PIEZA);
+			} while (tab[aux.f][aux.c].pieza == NO_PIEZA);
 		}
 	}
-	if (tab[tu.c][tu.f].pieza == ALFIL || tab[tu.c][tu.f].pieza == REINA) {
+	if (tab[tu.f][tu.c].pieza == ALFIL || tab[tu.f][tu.c].pieza == REINA) {
 		if (tu.f - rey.f < 0) {
 			do {
 				if (tu.c - rey.c > 0) {
@@ -255,7 +255,7 @@ bool Tablero::checkjaque(Casilla tu, Casilla rey) {
 				if (aux == rey) {
 					i++;
 				}
-			} while (tab[aux.c][aux.f].pieza == NO_PIEZA && (aux.f != rey.f && aux.c != rey.c));
+			} while (tab[aux.f][aux.c].pieza == NO_PIEZA && (aux.f != rey.f && aux.c != rey.c));
 		}
 		else if (tu.f - rey.f > 0) {
 			do {
@@ -270,7 +270,15 @@ bool Tablero::checkjaque(Casilla tu, Casilla rey) {
 				if (aux == rey) {
 					i++;
 				}
-			} while (tab[aux.c][aux.f].pieza == NO_PIEZA && (aux.f != rey.f && aux.c != rey.c));
+			} while (tab[aux.f][aux.c].pieza == NO_PIEZA && (aux.f != rey.f && aux.c != rey.c));
+		}
+	}
+	if (tab[tu.f][tu.c].pieza == CABALLO) {
+		if (abs(tu.c - rey.c) == 2 && abs(tu.f - rey.f) == 1) {
+			i++;
+		}
+		if (abs(tu.c - rey.c) == 1 && abs(tu.f - rey.f) == 2) {
+			i++;
 		}
 	}
 	if (i > 0) {
