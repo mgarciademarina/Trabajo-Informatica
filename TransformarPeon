@@ -1,0 +1,34 @@
+void Peon::Transfor(Casilla cd, Casilla co, color_t color, Tablero tab)
+{
+	int num;
+	if ((cd.f == 7) &&( color==BLANCO)) {
+		cout << "Seleccione una pieza:" << endl;
+		cin >> num;
+		switch (num) {
+		case 1: tab[cd.f][cd.c].pieza_t = CABALLO;
+		break;
+		case 2: tab[cd.f][cd.c].pieza_t = ALFIL;
+			break;
+		case 3: tab[cd.f][cd.c].pieza_t = TORRE;
+			break;
+		case 4: tab[cd.f][cd.c].pieza_t = REINA;
+			break;	
+	}
+	if ((cd.f == 0) && (color == NEGRO)) {
+		cout << "Seleccione una pieza:" << endl;
+		cin >> num;
+		switch (num) {
+		case 1: tab[cd.f][cd.c].pieza_t = CABALLO;
+			break;
+		case 2: tab[cd.f][cd.c].pieza_t = ALFIL;
+			break;
+		case 3: tab[cd.f][cd.c].pieza_t = TORRE;
+			break;
+		case 4: tab[cd.f][cd.c].pieza_t = REINA;
+			break;
+		}
+	}
+}
+
+//Modificar en Peon.h
+static void Transfor(Casilla cd, Casilla co, color_t color, Tablero tab)
