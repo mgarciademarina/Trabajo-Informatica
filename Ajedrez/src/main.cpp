@@ -54,7 +54,7 @@ void OnDraw(void)
 }
 void OnKeyboardDown(unsigned char key, int x_t, int y_t)
 {
-	//poner aqui el código de teclado
+	//poner aqui el cÃ³digo de teclado
 	
 
 	glutPostRedisplay();
@@ -69,8 +69,10 @@ void OnMouseDown(int button, int state, int x, int y) {
 
 void OnTimer(int value)
 {
-	//poner aqui el código de animacion
-	
+	//poner aqui el cÃ³digo de animacion
+	if (ajedrez.jaque()) {
+		cout << "Jaque" << endl;
+	}
 
 	//no borrar estas lineas
 	glutTimerFunc(25, OnTimer, 0);
