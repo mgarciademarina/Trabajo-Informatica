@@ -232,7 +232,7 @@ bool Tablero::checkjaque(Casilla tu, Casilla rey) {
 				if (tu.c - rey.c > 0) {
 					aux.c--;
 				}
-				else if (tu.c - rey.c > 0) {
+				else if (tu.c - rey.c < 0) {
 					aux.c++;
 				}
 				if (aux.c == rey.c) {
