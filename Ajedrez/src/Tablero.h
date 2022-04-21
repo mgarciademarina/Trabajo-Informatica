@@ -16,17 +16,18 @@ public:
 	Tablero();
 	~Tablero();
 
-	//MÈtodos gr·ficos
+	//M√©todos gr√°ficos
 	void dibuja();
 
-	//MÈtodos lÛgicos
+	//M√©todos l√≥gicos
 	void setPosInit();
 	int getColor(Casilla c);
-	bool validarMov(Casilla co, Casilla cd);//MÈtodo para validar movimiento, dentro llama al mÈtodo validar movimiento de la pieza de la casilla de origen
+	bool validarMov(Casilla co, Casilla cd);//M√©todo para validar movimiento, dentro llama al m√©todo validar movimiento de la pieza de la casilla de origen
 	void actualiza(Casilla co, Casilla cd);//Actualiza la matriz del tablero
+        bool checkjaque(Casilla tu, Casilla rey);
+	bool jaque();
 
-
-	//Otros mÈtodos
+	//Otros m√©todos
 	string to_string();
 	ostream& print(ostream& o);
 	
