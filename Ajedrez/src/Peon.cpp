@@ -6,12 +6,12 @@ bool Peon::Mov(Casilla cd, Casilla co, int color){
 	if(cd.c==co.c)
 	{
 		if (color == 0) {
-			if (((cd.f - co.f) == 1) || ((cd.f == 4) && (co.f == 2))) { return true; }
+			if (((cd.f - co.f) == 1) || ((cd.f == 3) && (co.f == 1))) { return true; }
 			else { return false; }
 		}
 		else if (color == 1)
 		{
-			if (((cd.f - co.f) == -1) || ((cd.f == 5)&&(co.f==7))) { return true; }
+			if (((cd.f - co.f) == -1) || ((cd.f == 4)&&(co.f==6))) { return true; }
 			else { return false; }
 		}
 	}
