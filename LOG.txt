@@ -5,6 +5,7 @@ Poned fecha en la que hayáis hecho X y vuestra inicial.
 Los cambios más recientes al principio, para que tengan  más visibilidad.
 
 -------------------------------
+(21/04 D) Terminado jaque
 (20/04 V) Solucionado pequeño fallo de sintaxis en el movimiento del peón
 (19/04 R) Movimiento robusto de la Reina
 (19/04 R) Movimiento robusto de Alfil
