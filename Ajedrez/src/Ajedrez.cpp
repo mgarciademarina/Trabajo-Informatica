@@ -16,12 +16,12 @@ void Ajedrez::inicializa() {
 }
 
 int Ajedrez::jugada(int button, int state, int x, int y) {
-	//Get Origen si el origen no est· guardado ya, se dan valores por defecto de -10 para origen y destino
+	//Get Origen si el origen no est√° guardado ya, se dan valores por defecto de -10 para origen y destino
 	if (origen.f == HOME && origen.c == HOME) {
 
 		origen = getCasilla(x, y);
 
-		if (!validarTurno(tablero.getColor(origen))) { //Si no es el turno o se pulsa una casilla vacÌa
+		if (!validarTurno(tablero.getColor(origen))) { //Si no es el turno o se pulsa una casilla vac√≠a
 			
 			cout << "Casilla no valida!" << endl;
 			origen.f = origen.c = HOME;
@@ -30,7 +30,7 @@ int Ajedrez::jugada(int button, int state, int x, int y) {
 
 		cout <<"Origen " << origen.f << " " << origen.c << endl;//Test
 	}
-	else if (origen.f != HOME && origen.c != HOME && destino.f == HOME && destino.c == HOME) {//Si ya est· guarado el origen
+	else if (origen.f != HOME && origen.c != HOME && destino.f == HOME && destino.c == HOME) {//Si ya est√° guarado el origen
 		
 		destino = getCasilla(x, y);
 		
@@ -40,7 +40,7 @@ int Ajedrez::jugada(int button, int state, int x, int y) {
 			cout << "Origen borrado" << endl;//Test
 			return 0;
 
-		}else if (!tablero.validarMov(origen, destino)) {//Si el movimiento no es v·lido borra el destino
+		}else if (!tablero.validarMov(origen, destino)) {//Si el movimiento no es v√°lido borra el destino
 			
 			cout << "Destino no valido!" << endl;
 			destino.f = destino.c = HOME;
@@ -69,14 +69,17 @@ bool Ajedrez::validarTurno(int color){
 	
 }
 
-Casilla Ajedrez::getCasilla(int x, int y) { //Devuelve la casilla en funciÛn de las coordenadas x,y del ratÛn
+Casilla Ajedrez::getCasilla(int x, int y) { //Devuelve la casilla en funci√≥n de las coordenadas x,y del rat√≥n
 	Casilla casilla;
 	casilla.c = floor((x - 125) / 69);
 	casilla.f = 7 - floor((y - 25) / 69);
 	return casilla;
 }
-
-bool Ajedrez::jaque(){
-
-	return false;
+bool Ajedrez::jaque() {
+	if (tablero.jaque()) {
+		return true;
+	}
+	else {
+		return false;
+	}
 }
