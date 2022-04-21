@@ -22,12 +22,12 @@ bool Peon::Comer(Casilla cd, Casilla co, int color)
 	if (abs(cd.c - co.c)==1)
 	{
 		if (color == 0) {
-			if (((cd.f - co.f) == 1) || ((cd.f == 4))) { return true; }
+			if ((cd.f - co.f) == 1) { return true; } //antes --> || cd.f==4, no tenia mucho sentido
 			else { return false; }
 		}
 		else if (color == 1)
 		{
-			if (((co.f - cd.f) == 1) || ((cd.f == 5))) { return true; }
+			if ((co.f - cd.f) == 1) { return true; }
 			else { return false; }
 		}
 	}
