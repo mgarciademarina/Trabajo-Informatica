@@ -152,39 +152,31 @@ ostream& Tablero::print(ostream& o){
 	o << to_string();
 	return o;
 }
+
 bool Tablero::jaque() {
 	int i, j, jaque = 0;
-	Casilla t, rb, rn;
+	Casilla rb, rn;
+
 	for (i = 0; i < 8; i++) {
 		for (j = 0; j < 8; j++) {
-			if (tab[i][j].pieza == REY) {
-				if (tab[i][j].color == NEGRO) {
-					rn.f = i;
-					rn.c = j;
-				}
-				else if (tab[i][j].color == BLANCO) {
-					rb.f = i;
-					rb.c = j;
-				}
+			if (tab[i][j].pieza == REY && tab[i][j].color == NEGRO) {
+				rn = tab[i][j].casilla;
+			}
+			else if (tab[i][j].pieza == REY && tab[i][j].color == BLANCO) {
+				rb = tab[i][j].casilla;
 			}
 		}
 	}
 	for (i = 0; i < 8; i++) {
 		for (j = 0; j < 8; j++) {
-			if (tab[i][j].pieza !=NO_PIEZA ) {
-				if (tab[i][j].color == NEGRO) {
-					t.f = i;
-					t.c = j;
-					if (checkjaque(t, rb)) {
+			if (tab[i][j].pieza !=NO_PIEZA && tab[i][j].color == NEGRO) {
+					if (validarMov(tab[i][j].casilla, rb)) {
 						jaque++;
 					}
-				}
-				else if (tab[i][j].color == BLANCO) {
-					t.f = i;
-					t.c = j;
-					if (checkjaque(t, rn)) {
-						jaque++;
-					}
+			}
+			else if (tab[i][j].color == BLANCO) {
+				if (validarMov(tab[i][j].casilla, rn)) {
+					jaque++;
 				}
 			}
 		}
@@ -196,95 +188,4 @@ bool Tablero::jaque() {
 		return false;
 	}
 }
-bool Tablero::checkjaque(Casilla tu, Casilla rey) {
-	int i = 0;
-	Casilla aux;
-	aux = tu;
-	if (tab[tu.f][tu.c].pieza == PEON) {
-		if (tab[tu.f][tu.c].color == NEGRO && (abs(tu.c - rey.c) == 1 && tu.f - rey.f == 1)) {
-			i++;
-		}
-		if (tab[tu.f][tu.c].color == BLANCO && (abs(tu.c - rey.c) == 1 && tu.f - rey.f == -1)) {
-			i++;
-		}
-	}
-	if (tab[tu.f][tu.c].pieza == REY) {
-		if ((abs(tu.c - rey.c) == 1 || tu.c - rey.c == 0) && (abs(tu.f - rey.f) == 1 || tu.f - rey.f == 0)) {
-			i++;
-		}
-	}
-	if (tab[tu.f][tu.c].pieza == TORRE || tab[tu.f][tu.c].pieza == REINA) {
-		if (tu.c - rey.c == 0) {
-			do {
-				if (tu.f - rey.f > 0) {
-					aux.f--;
-				}
-				else if (tu.f - rey.f < 0) {
-					aux.f++;
-				}
-				if (aux.f == rey.f) {
-					i++;
-				}
-			} while (tab[aux.f][aux.c].pieza == NO_PIEZA);
-		}
-		else if (tu.f - rey.f == 0) {
-			do {
-				if (tu.c - rey.c > 0) {
-					aux.c--;
-				}
-				else if (tu.c - rey.c < 0) {
-					aux.c++;
-				}
-				if (aux.c == rey.c) {
-					i++;
-				}
-			} while (tab[aux.f][aux.c].pieza == NO_PIEZA);
-		}
-	}
-	if (tab[tu.f][tu.c].pieza == ALFIL || tab[tu.f][tu.c].pieza == REINA) {
-		if (tu.f - rey.f < 0) {
-			do {
-				if (tu.c - rey.c > 0) {
-					aux.c--;
-					aux.f++;
-				}
-				else if (tu.c - rey.c < 0) {
-					aux.c++;
-					aux.f++;
-				}
-				if (aux == rey) {
-					i++;
-				}
-			} while (tab[aux.f][aux.c].pieza == NO_PIEZA && (aux.f != rey.f && aux.c != rey.c));
-		}
-		else if (tu.f - rey.f > 0) {
-			do {
-				if (tu.c - rey.c > 0) {
-					aux.c--;
-					aux.f--;
-				}
-				else if (tu.c - rey.c < 0) {
-					aux.c++;
-					aux.f--;
-				}
-				if (aux == rey) {
-					i++;
-				}
-			} while (tab[aux.f][aux.c].pieza == NO_PIEZA && (aux.f != rey.f && aux.c != rey.c));
-		}
-	}
-	if (tab[tu.f][tu.c].pieza == CABALLO) {
-		if (abs(tu.c - rey.c) == 2 && abs(tu.f - rey.f) == 1) {
-			i++;
-		}
-		if (abs(tu.c - rey.c) == 1 && abs(tu.f - rey.f) == 2) {
-			i++;
-		}
-	}
-	if (i > 0) {
-		return true;
-	}
-	else {
-		return false;
-	}
-}
+

@@ -26,7 +26,6 @@ public:
 	int getColor(Casilla c);
 	bool validarMov(Casilla co, Casilla cd);//Método para validar movimiento, dentro llama al método validar movimiento de la pieza de la casilla de origen
 	void actualiza(Casilla co, Casilla cd);//Actualiza la matriz del tablero
-    bool checkjaque(Casilla tu, Casilla rey);
 	bool jaque();
 
 	//Otros métodos

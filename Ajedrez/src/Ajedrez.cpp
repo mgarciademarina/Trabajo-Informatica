@@ -77,6 +77,7 @@ Casilla Ajedrez::getCasilla(int x, int y) { //Devuelve la casilla en función de
 	casilla.f = 7 - floor((y - 25) / 69);
 	return casilla;
 }
+
 bool Ajedrez::jaque() {
 	if (tablero.jaque()) {
 		return true;
