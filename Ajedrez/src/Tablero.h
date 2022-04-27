@@ -18,7 +18,7 @@ public:
 
 	//Métodos gráficos
 	void dibuja();
-	void posiblesMov(Casilla co);
+	int posiblesMov(Casilla co);
 	void setMovInit();
 
 	//Métodos lógicos
@@ -27,7 +27,8 @@ public:
 	int validarEnroque(Casilla co, Casilla cd);
 	bool validarMov(Casilla co, Casilla cd);//Método para validar movimiento, dentro llama al método validar movimiento de la pieza de la casilla de origen
 	void actualiza(Casilla co, Casilla cd);//Actualiza la matriz del tablero
-	bool jaque();
+	int jaque(); //Devuelve 0 si hay jaque, 1 si hay jaque mate y -1 si no hay nada
+	bool jaqueMate(Casilla rn, Casilla rb); //Comprueba el jaque mate
 
 	//Otros métodos
 	string to_string();

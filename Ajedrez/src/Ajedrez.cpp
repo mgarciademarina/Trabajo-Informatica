@@ -96,11 +96,6 @@ Casilla Ajedrez::getCasilla(int x, int y) { //Devuelve la casilla en función de
 	return casilla;
 }
 
-bool Ajedrez::jaque() {
-	if (tablero.jaque()) {
-		return true;
-	}
-	else {
-		return false;
-	}
+int Ajedrez::jaque() {
+	return tablero.jaque();
 }

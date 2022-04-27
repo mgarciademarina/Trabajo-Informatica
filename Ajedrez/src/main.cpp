@@ -70,8 +70,11 @@ void OnMouseDown(int button, int state, int x, int y) {
 void OnTimer(int value)
 {
 	//poner aqui el código de animacion
-	if (ajedrez.jaque()) {
+	if (ajedrez.jaque() == 0) {
 		cout << "Jaque" << endl;
+	}
+	else if (ajedrez.jaque() == 1) {
+		cout << "Jaque Mate" << endl;
 	}
 
 	//no borrar estas lineas

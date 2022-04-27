@@ -128,23 +128,26 @@ void Tablero::actualiza(Casilla co, Casilla cd) {
 	//Hay dos posibilidades: movimiento a casilla vacía o comer pieza
 	//Conviene borrar la casilla de origen (NO_PIEZA y NO_COLOR) y sobreescribir los datos en la de destino
 	tab[cd.f][cd.c].pieza = tab[co.f][co.c].pieza;
-	tab[cd.f][cd.c].color = tab[co.f][co.c].color;
-	
-	tab[cd.f][cd.c].moved = 1;
+tab[cd.f][cd.c].color = tab[co.f][co.c].color;
 
-	tab[co.f][co.c].color = NO_COLOR;
-	tab[co.f][co.c].pieza = NO_PIEZA;
-	
+tab[cd.f][cd.c].moved = 1;
+
+tab[co.f][co.c].color = NO_COLOR;
+tab[co.f][co.c].pieza = NO_PIEZA;
+
 }
 
-void Tablero::posiblesMov(Casilla co) {
+int Tablero::posiblesMov(Casilla co) {
+	int sum = 0;
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
 			if (validarMov(co, tab[i][j].casilla)) {
-					pmov[i][j] = 1;
+				pmov[i][j] = 1;
+				sum++;
 			}
 		}
 	}
+	return sum;
 }
 
 void Tablero::setMovInit() {
@@ -166,16 +169,17 @@ string Tablero::to_string() {
 	return str.str();
 }
 
-ostream& Tablero::print(ostream& o){
+ostream& Tablero::print(ostream& o) {
 	o << to_string();
 	return o;
 }
 
-bool Tablero::jaque() {
+int Tablero::jaque() {
 	int i, j, jaque = 0;
+	int R = -1; //-1 no hay jaque, 0 hay jaque, 1 jaque mate
 	Casilla rb, rn;
 
-	for (i = 0; i < 8; i++) {
+	for (i = 0; i < 8; i++) { //Buscar los reyes
 		for (j = 0; j < 8; j++) {
 			if (tab[i][j].pieza == REY && tab[i][j].color == NEGRO) {
 				rn = tab[i][j].casilla;
@@ -185,12 +189,13 @@ bool Tablero::jaque() {
 			}
 		}
 	}
-	for (i = 0; i < 8; i++) {
-		for (j = 0; j < 8; j++) {
-			if (tab[i][j].pieza !=NO_PIEZA && tab[i][j].color == NEGRO) {
-					if (validarMov(tab[i][j].casilla, rb)) {
-						jaque++;
-					}
+
+	for (i = 0; i < n; i++) {
+		for (j = 0; j < n; j++) {
+			if (tab[i][j].pieza != NO_PIEZA && tab[i][j].color == NEGRO) {
+				if (validarMov(tab[i][j].casilla, rb)) {
+					jaque++;
+				}
 			}
 			else if (tab[i][j].color == BLANCO) {
 				if (validarMov(tab[i][j].casilla, rn)) {
@@ -199,11 +204,68 @@ bool Tablero::jaque() {
 			}
 		}
 	}
-	if (jaque > 0) {
-		return true;
+	/*if (jaque > 0) {
+		R = 0;
+	}*/
+	if (jaque == 0) {
+		return R; //Si no hay jaque no busco jaque mate
 	}
-	else {
-		return false;
+	else if (jaque > 0 && !jaqueMate(rn,rb)) {
+		R = 0;
 	}
+	else if (jaque > 0 && jaqueMate(rn,rb)) {
+		R = 1;
+	}
+	return R;
+}
+
+
+bool Tablero::jaqueMate(Casilla rn, Casilla rb) {
+	int sumMovRey = 0; //total de posibles mov de rey
+	int sumMovColorContr = 0;
+	setMovInit();
+
+	//Comprobar jaque Mate rey negro
+	sumMovRey = posiblesMov(rn);
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			if (tab[i][j].color == BLANCO) {
+				for (int k = 0; k < n; k++) {
+					for (int h = 0; h < n; h++) {
+						if (validarMov(tab[i][j].casilla, tab[k][h].casilla) && (tab[i][j].casilla != tab[k][h].casilla) && (pmov[k][h] == 1)) {
+							sumMovColorContr++;
+							pmov[k][h] == 0;
+						}
+					}
+				}
+			}
+		}
+	}
+	setMovInit();
+	if (sumMovRey <= sumMovColorContr) { return true; }
+	//Reseteo de valores
+	sumMovRey = 0;
+	sumMovColorContr = 0;
+
+	//Comprobar jaque Mate rey blanco
+	sumMovRey = posiblesMov(rb);
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			if (tab[i][j].color == NEGRO) {
+				for (int k = 0; k < n; k++) {
+					for (int h = 0; h < n; h++) {
+						if (validarMov(tab[i][j].casilla, tab[k][h].casilla) && (tab[i][j].casilla != tab[k][h].casilla) && (pmov[k][h] == 1)) {
+							sumMovColorContr++;
+							pmov[k][h] == 0;
+						}
+					}
+				}
+			}
+		}
+	}
+	setMovInit();
+	if (sumMovRey <= sumMovColorContr) { return true; }
+
+	return false;
 }
 
