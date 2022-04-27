@@ -48,6 +48,24 @@ int Ajedrez::jugada(int button, int state, int x, int y) {
 			return 0;
 
 		}
+		
+		else if ((tablero.validarEnroque(origen, destino)!=0) && tablero.validarMov(origen, destino)) {		//Si se dan condiciones de enroque y no hay piezas en medio 
+
+			if (tablero.validarEnroque(origen, destino) > 0) {		//ENROQUE LARGO	
+				tablero.actualiza(origen, { origen.f, origen.c - 2 });
+				tablero.actualiza(destino, { destino.f, destino.c + 3 });
+			}
+
+			else if (tablero.validarEnroque(origen, destino) < 0) {		//ENROQUE CORTO
+				tablero.actualiza(origen, { origen.f, origen.c + 2 });
+				tablero.actualiza(destino, { destino.f, destino.c - 2 });
+			}
+			turno++;
+			origen.f = origen.c = destino.f = destino.c = HOME;
+			tablero.setMovInit();
+			return 0;
+
+		}
 		else {
 
 			cout << "Destino " << destino.f << " " << destino.c << endl;//Test
