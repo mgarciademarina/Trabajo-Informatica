@@ -5,6 +5,11 @@ Poned fecha en la que hayáis hecho X y vuestra inicial.
 Los cambios más recientes al principio, para que tengan  más visibilidad.
 
 -------------------------------
+(27/04 V) Implementado Enroque: 
+  - Añadido atributo bool Pieza.moved que indica si la pieza se ha movido o no, y modificados constructores
+  - Añadido método Tablero.validarEnroque -> 0 si no se puede, 1 enroque largo, -1 enroque corto
+  - Modificados métodos Tablero.validarMov (usando Torre::Mov) y Tablero.actualiza para actualizar variable moved
+  - Modificado Ajedrez.jugada para implementar el enroque
 (24/04 R) Modificación del jaque para utilizar el validarMov()
 (22/04 V) Solucionado error en Peon::Mover, el peón ya se mueve correctamente (pudiendo recorrer dos casillas al inicio).
 (22/04 V) Solucionado error en Peon::Comer. El peón ya come correctamente.
