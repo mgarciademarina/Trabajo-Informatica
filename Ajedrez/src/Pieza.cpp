@@ -1,13 +1,14 @@
 #include "Pieza.h"
 
 Pieza::Pieza() {
-
+	moved = 0;
 }
 
 Pieza::Pieza(const Pieza& p){
 	pieza = p.pieza;
 	color = p.color;
 	casilla = p.casilla;
+	moved = p.moved;
 }
 
 Pieza::~Pieza(){
@@ -57,7 +58,7 @@ void Pieza::dibuja(int flag, int auxmov) {
 	}
 	else if (flag % 2 == 0 && auxmov == 1) {
 		glColor3ub(66, 99, 20);
-		//Pinta el fondo de la casilla de otro color si la pieza seleccionada puede moverse a esa posición
+		//Pinta el fondo de la casilla de otro color si la pieza seleccionada puede moverse a esa posiciÃ³n
 	}
 	else if (flag % 2 != 0 && auxmov == 1) {
 		glColor3ub(131, 169, 79);
