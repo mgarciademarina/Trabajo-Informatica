@@ -64,3 +64,7 @@ bool operator==(Casilla cas1, Casilla cas2){
 		return false;
 	}
 }
+
+bool operator != (Casilla cas1, Casilla cas2) {
+	return (!(cas1 == cas2));
+}

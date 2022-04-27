@@ -21,6 +21,7 @@ public:
 	Casilla operator *(float);
 	float operator *(Casilla);
 	friend bool operator ==(Casilla cas1, Casilla cas2);
+	friend bool operator != (Casilla cas1, Casilla cas2);
 	
 	float argumento();
 	float modulo();
