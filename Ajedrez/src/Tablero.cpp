@@ -77,7 +77,22 @@ int Tablero::getColor(Casilla cas){
 	return tab[cas.f][cas.c].color;
 }
 
+
+int Tablero::validarEnroque(Casilla co, Casilla cd) {
+
+	if ((tab[co.f][co.c].moved != 0) || (tab[cd.f][cd.c].moved != 0)) return 0;	//evalua si las piezas se han movido
+	else if ((tab[co.f][co.c].pieza != REY) || (tab[cd.f][cd.c].pieza != TORRE))  return 0;	//evalua si es rey y torre
+	else if (tab[co.f][co.c].color != tab[cd.f][cd.c].color) return 0;	//evalua si son del mismo color
+
+	else if (co.c > cd.c) return 1; //enroque largo
+	else return -1;	//enroque corto
+
+}
+
 bool Tablero::validarMov(Casilla co, Casilla cd){
+	
+	if (validarEnroque(co, cd) != 0) return Torre::Mov(cd, co, tab);
+	
 	if (tab[co.f][co.c].color == tab[cd.f][cd.c].color) {
 		return false;
 	}
@@ -114,6 +129,9 @@ void Tablero::actualiza(Casilla co, Casilla cd) {
 	//Conviene borrar la casilla de origen (NO_PIEZA y NO_COLOR) y sobreescribir los datos en la de destino
 	tab[cd.f][cd.c].pieza = tab[co.f][co.c].pieza;
 	tab[cd.f][cd.c].color = tab[co.f][co.c].color;
+	
+	tab[cd.f][cd.c].moved = 1;
+
 	tab[co.f][co.c].color = NO_COLOR;
 	tab[co.f][co.c].pieza = NO_PIEZA;
 	
