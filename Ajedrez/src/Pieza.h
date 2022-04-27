@@ -17,10 +17,11 @@ private:
 	Casilla casilla;
 	pieza_t pieza;
 	color_t color;
+	bool moved; //indica si la pieza se ha movido durante la partida o no
 
 public:
 	Pieza();
-	Pieza(pieza_t p, color_t c, Casilla cas): pieza(p), color(c), casilla(cas){}
+	Pieza(pieza_t p, color_t c, Casilla cas, bool _mov): pieza(p), color(c), casilla(cas), moved(_mov){}
 	Pieza(const Pieza& p);
 	~Pieza();
 
