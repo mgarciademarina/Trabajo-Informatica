@@ -24,6 +24,7 @@ public:
 	//Métodos lógicos
 	void setPosInit();
 	int getColor(Casilla c);
+	int validarEnroque(Casilla co, Casilla cd);
 	bool validarMov(Casilla co, Casilla cd);//Método para validar movimiento, dentro llama al método validar movimiento de la pieza de la casilla de origen
 	void actualiza(Casilla co, Casilla cd);//Actualiza la matriz del tablero
 	bool jaque();
