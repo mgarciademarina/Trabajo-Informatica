@@ -108,19 +108,6 @@ int Tablero::Trayectoria(Casilla ori, Casilla des, Casilla prot) {
 	int i = 0, j = 0;
 	Casilla aux;
 	aux = ori;
-	if (tab[ori.f][ori.c].pieza == PEON) {
-		if (tab[ori.f][ori.c].color == NEGRO && (abs(ori.c - des.c) == 1 && ori.f - des.f == 1)) {
-			i++;
-		}
-		if (tab[ori.f][ori.c].color == BLANCO && (abs(ori.c - des.c) == 1 && ori.f - des.f == -1)) {
-			i++;
-		}
-	}
-	if (tab[ori.f][ori.c].pieza == REY) {
-		if ((abs(ori.c - des.c) == 1 || ori.c - des.c == 0) && (abs(ori.f - des.f) == 1 || ori.f - des.f == 0)) {
-			i++;
-		}
-	}
 	if (tab[ori.f][ori.c].pieza == TORRE || tab[ori.f][ori.c].pieza == REINA) {
 		if (ori.c - des.c == 0) {
 			do {
