@@ -85,19 +85,19 @@ int Tablero::jaque() {
 	cout << jaque2 << "/" << comer2 << "/" << mover2 << "/" << proteger2 <<  endl;
   //para comprobar como funciona
 	if (jaque1 > 0) {
-		if (comer1 == 0 && mover1 == 0 && proteger1 == 0) {
-			return 3;//jaque mate al blanco
-		}
+		if (comer1 == 0 && mover1 == 0 && (proteger1 == 0 || tab[EnemigoN.f][EnemigoN.c].pieza == REY || tab[EnemigoN.f][EnemigoN.c].pieza == CABALLO || tab[EnemigoN.f][EnemigoN.c].pieza == PEON)) {
+			return 3;
+		}//si se cumplen todos o no se cumple proteger (bloquear la trayectoria) pero la pieza no puede ser bloqueada, jaquemate
 		else {
-			return 1;//jaque al blanco
-		}
+			return 1;
+		}//si solo se cumple jaque, jaque 
 	}
 	if (jaque2 > 0) {
-		if (comer2 == 0 && mover2 == 0 && proteger2 == 0) {
-			return 4;//jaque mate al negro
+		if (comer2 == 0 && mover2 == 0 && (proteger2 == 0 || tab[EnemigoB.f][EnemigoB.c].pieza == REY || tab[EnemigoB.f][EnemigoB.c].pieza == CABALLO || tab[EnemigoB.f][EnemigoB.c].pieza == PEON)) {
+			return 4;
 		}
 		else {
-			return 2;//jaque al negro
+			return 2;
 		}
 	}
 	else {
