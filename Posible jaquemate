@@ -1,5 +1,5 @@
 int Tablero::jaque() {
-	int k, i, j, jaque1 = 0, jaque2 = 0, comer1 = 0, comer2 = 0, proteger1 = 0, proteger2 = 0, mover1 = 0, mover2 = 0;
+	int a, b, i, j, jaque1 = 0, jaque2 = 0, comer1 = 0, comer2 = 0, proteger1 = 0, proteger2 = 0, mover1 = 0, mover2 = 0;
 	Casilla rb, rn, EnemigoB, EnemigoN;
 	for (i = 0; i < 8; i++) {
 		for (j = 0; j < 8; j++) {
@@ -39,7 +39,17 @@ int Tablero::jaque() {
 					}//para saber si una pieza amiga puede bloquear la trayectoria de la pieza que amenaza
 				}
 				if (validarMov(rn, tab[i][j].casilla) && (Trayectoria(EnemigoB, tab[i][j].casilla, NULL) == 0)) {
+					posibles = tab[i][j].casilla;
 					mover2++;
+					for (a = 0; a < 8; a++) {
+						for (b = 0; b < 8; b++) {
+							if (tab[a][b].color == BLANCO && tab[a][b].pieza != REY) {
+								if (validarMov(tab[a][b].casilla, posibles)) {
+									mover2--;
+								}
+							}
+						}
+					}//para saber si una pieza enemiga impide que el rey se ponga a salvo
 				}//para saber si el rey se puede apartar de la trayectoria de la pieza que amenaza
 			}
 		}
@@ -56,7 +66,17 @@ int Tablero::jaque() {
 					}
 				}
 				if (validarMov(rb, tab[i][j].casilla) && (Trayectoria(EnemigoN, tab[i][j].casilla, NULL) == 0)) {
+					posibles = tab[i][j].casilla;
 					mover1++;
+					for (a = 0; a < 8; a++) {
+						for (b = 0; b < 8; b++) {
+							if (tab[a][b].color == NEGRO && tab[a][b].pieza != REY) {
+								if (validarMov(tab[a][b].casilla, posibles)) {
+									mover1--;
+								}
+							}
+						}
+					}
 				}
 			}
 		}
