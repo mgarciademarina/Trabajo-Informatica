@@ -1,0 +1,199 @@
+int Tablero::jaque() {
+	int k, i, j, jaque1 = 0, jaque2 = 0, comer1 = 0, comer2 = 0, proteger1 = 0, proteger2 = 0, mover1 = 0, mover2 = 0;
+	Casilla rb, rn, EnemigoB, EnemigoN;
+	for (i = 0; i < 8; i++) {
+		for (j = 0; j < 8; j++) {
+			if (tab[i][j].pieza == REY && tab[i][j].color == NEGRO) {
+				rn = tab[i][j].casilla;
+			}
+			else if (tab[i][j].pieza == REY && tab[i][j].color == BLANCO) {
+				rb = tab[i][j].casilla;
+			}
+		}
+	}//para saber donde están los reyes
+	for (i = 0; i < 8; i++) {
+		for (j = 0; j < 8; j++) {
+			if (tab[i][j].pieza != NO_PIEZA && tab[i][j].color == NEGRO) {
+				if (validarMov(tab[i][j].casilla, rb)) {
+					EnemigoN = tab[i][j].casilla;
+					jaque1++;
+				}
+			}
+			else if (tab[i][j].pieza != NO_PIEZA && tab[i][j].color == BLANCO) {
+				if (validarMov(tab[i][j].casilla, rn)) {
+					EnemigoB = tab[i][j].casilla;
+					jaque2++;
+				}
+			}
+		}
+	}/para saber si hay jaque
+	if (jaque2 > 0) {
+		for (i = 0; i < 8; i++) {
+			for (j = 0; j < 8; j++) {
+				if (tab[i][j].pieza != NO_PIEZA && tab[i][j].color == NEGRO) {
+					if (validarMov(tab[i][j].casilla, EnemigoB)){
+						comer2++;
+					}//para saber si una pieza amiga puede comer a la pieza que amenaza
+					if (tab[i][j].casilla!=rn && Trayectoria(EnemigoB, rn, tab[i][j].casilla) == 2) {
+						proteger2++;
+					}//para saber si una pieza amiga puede bloquear la trayectoria de la pieza que amenaza
+				}
+				if (validarMov(rn, tab[i][j].casilla) && (Trayectoria(EnemigoB, tab[i][j].casilla, NULL) == 0)) {
+					mover2++;
+				}//para saber si el rey se puede apartar de la trayectoria de la pieza que amenaza
+			}
+		}
+	}
+	if (jaque1 > 0) {
+		for (i = 0; i < 8; i++) {
+			for (j = 0; j < 8; j++) {
+				if (tab[i][j].pieza != NO_PIEZA && tab[i][j].color == BLANCO) {
+					if (validarMov(tab[i][j].casilla, EnemigoN)) {
+						comer1++;
+					}
+					if (tab[i][j].casilla!=rb && Trayectoria(EnemigoN, rb, tab[i][j].casilla) == 2) {
+						proteger1++;
+					}
+				}
+				if (validarMov(rb, tab[i][j].casilla) && (Trayectoria(EnemigoN, tab[i][j].casilla, NULL) == 0)) {
+					mover1++;
+				}
+			}
+		}
+	}
+	cout << jaque1 << "/" << comer1 << "/" << mover1 << "/" << proteger1 <<  endl;
+	cout << jaque2 << "/" << comer2 << "/" << mover2 << "/" << proteger2 <<  endl;
+  //para comprobar como funciona
+	if (jaque1 > 0) {
+		if (comer1 == 0 && mover1 == 0 && proteger1 == 0) {
+			return 3;//jaque mate al blanco
+		}
+		else {
+			return 1;//jaque al blanco
+		}
+	}
+	if (jaque2 > 0) {
+		if (comer2 == 0 && mover2 == 0 && proteger2 == 0) {
+			return 4;//jaque mate al negro
+		}
+		else {
+			return 2;//jaque al negro
+		}
+	}
+	else {
+		return 0;
+	}
+}
+int Tablero::Trayectoria(Casilla ori, Casilla des, Casilla prot) {
+	int i = 0, j = 0;
+	Casilla aux;
+	aux = ori;
+	if (tab[ori.f][ori.c].pieza == PEON) {
+		if (tab[ori.f][ori.c].color == NEGRO && (abs(ori.c - des.c) == 1 && ori.f - des.f == 1)) {
+			i++;
+		}
+		if (tab[ori.f][ori.c].color == BLANCO && (abs(ori.c - des.c) == 1 && ori.f - des.f == -1)) {
+			i++;
+		}
+	}
+	if (tab[ori.f][ori.c].pieza == REY) {
+		if ((abs(ori.c - des.c) == 1 || ori.c - des.c == 0) && (abs(ori.f - des.f) == 1 || ori.f - des.f == 0)) {
+			i++;
+		}
+	}
+	if (tab[ori.f][ori.c].pieza == TORRE || tab[ori.f][ori.c].pieza == REINA) {
+		if (ori.c - des.c == 0) {
+			do {
+				if (ori.f - des.f > 0) {
+					aux.f--;
+					if (validarMov(prot, aux)) {
+						j++;
+					}
+				}
+				else if (ori.f - des.f < 0) {
+					aux.f++;
+					if (validarMov(prot, aux)) {
+						j++;
+					}
+				}
+				if (aux.f == des.f) {
+					i++;
+				}
+			} while ((aux.f != des.f));
+		}
+		else if (ori.f - des.f == 0) {
+			do {
+				if (ori.c - des.c > 0) {
+					aux.c--;
+					if (validarMov(prot, aux)) {
+						j++;
+					}
+				}
+				else if (ori.c - des.c < 0) {
+					aux.c++;
+					if (validarMov(prot, aux)) {
+						j++;
+					}
+				}
+				if (aux.c == des.c) {
+					i++;
+				}
+			} while ((aux.c != des.c));
+		}
+	}
+	if (tab[ori.f][ori.c].pieza == ALFIL || tab[ori.f][ori.c].pieza == REINA) {
+		if (ori.f - des.f < 0) {
+			do {
+				if (ori.c - des.c > 0) {
+					aux.c--;
+					aux.f++;
+					if (validarMov(prot, aux)) {
+						j++;
+					}
+				}
+				else if (ori.c - des.c < 0) {
+					aux.c++;
+					aux.f++;
+					if (validarMov(prot, aux)) {
+						j++;
+					}
+				}
+				if (tab[aux.f][aux.c].casilla == des) {
+					i++;
+				}
+			} while ((aux.c != des.c && aux.f != des.f));
+		}
+		else if (ori.f - des.f > 0) {
+			do {
+				if (ori.c - des.c > 0) {
+					aux.c--;
+					aux.f--;
+					if (validarMov(prot, aux)) {
+						j++;
+					}
+				}
+				else if (ori.c - des.c < 0) {
+					aux.c++;
+					aux.f--;
+					if (validarMov(prot, aux)) {
+						j++;
+					}
+				}
+				if (aux == des) {
+					i++;
+				}
+			} while ((aux.c != des.c && aux.f != des.f));
+		}
+	}
+	if (i > 0) {
+		if (j > 0) {
+			return 2;
+		}
+		else {
+			return 1;
+		}
+	}
+	else {
+		return 0;
+	}
+}
