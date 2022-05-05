@@ -37,10 +37,10 @@ int Tablero::jaque() {
 							for (a = 0; a < 8; a++) {
 								for (b = 0; b < 8; b++) {
 									if (tab[a][b].pieza != NO_PIEZA && tab[a][b].color == BLANCO) {
-										tab[a][b].color = NEGRO;//me da error con la función Trayectoria, por lo que hago esto para que funcione el validarMov
+										tab[a][b].color = NEGRO;//no me funciona con la función Trayectoria, por lo que hago esto para que funcione el validarMov
 										if (validarMov(tab[a][b].casilla, EnemigoB)) {
 											comer2--;//si la pieza que puede comer a la enemiga es el rey y la posicion en la que acabaría está amenazada
-											//por otra pieza, no se conyempla como que lo puede comer
+											//por otra pieza, no se contempla como que lo puede comer
 										}
 										tab[a][b].color = BLANCO;
 									}
@@ -49,7 +49,7 @@ int Tablero::jaque() {
 						}
 					}
 					if (tab[i][j].casilla != rn && Trayectoria(EnemigoB, rn, tab[i][j].casilla) == 2) {
-						proteger2++;//significa que una pieza alidad puede interponerse en el camino
+						proteger2++;//significa que una pieza aliada puede interponerse en el camino
 					}
 				}
 				if (validarMov(rn, tab[i][j].casilla) && (Trayectoria(EnemigoB, tab[i][j].casilla, NULL) == 0)) {
@@ -125,18 +125,18 @@ int Tablero::jaque() {
 		if (comer1 == 0 && mover1 == 0 && (proteger1 == 0 || tab[EnemigoN.f][EnemigoN.c].pieza == REY || tab[EnemigoN.f][EnemigoN.c].pieza == CABALLO || tab[EnemigoN.f][EnemigoN.c].pieza == PEON)) {
 			return 3;
 		}//si se cumple todo o solo no se cumple proteger pero la pieza es una que no tiene casillas de por medio (peón y rey) o salta (caballo)
-		//Jaque mate al negro
+		//Jaque mate al blanco
 		else {
 			return 1;
-		}//si solo se cumple el jaque, Jaque al negro
+		}//si solo se cumple el jaque, Jaque al blanco
 	}
 	if (jaque2 > 0) {
 		if (comer2 == 0 && mover2 == 0 && (proteger2 == 0 || tab[EnemigoB.f][EnemigoB.c].pieza == REY || tab[EnemigoB.f][EnemigoB.c].pieza == CABALLO || tab[EnemigoB.f][EnemigoB.c].pieza == PEON)) {
 			return 4;
-		}//Jaque mate al blanco
+		}//Jaque mate al negro
 		else {
 			return 2;
-		}//Jaque al blanco
+		}//Jaque al negro
 	}
 	else {
 		return 0;
@@ -159,13 +159,13 @@ int Tablero::Trayectoria(Casilla ori, Casilla des, Casilla prot) {
 			do {
 				if (ori.f - des.f > 0) {
 					aux.f--;
-					if (validarMov(prot, aux) && prot!=NULL) {
+					if (validarMov(prot, aux)) {
 						j++;
 					}
 				}
 				else if (ori.f - des.f < 0) {
 					aux.f++;
-					if (validarMov(prot, aux) && prot!=NULL) {
+					if (validarMov(prot, aux)) {
 						j++;
 					}
 				}
