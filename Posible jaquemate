@@ -119,7 +119,8 @@ int Tablero::jaque() {
 		}
 	}
 	cout << jaque1 << "/" << comer1 << "/" << mover1 << "/" << proteger1 << endl;
-	cout << jaque2 << "/" << comer2 << "/" << mover2 << "/" << proteger2 << endl;
+	cout << jaque2 << "/" << comer2 << "/" << mover2 << "/" << proteger2 << endl;//para ver como van variando las variables y si coinciden con lo que está pasando
+	//en el tablero
 	if (jaque1 > 0) {
 		if (comer1 == 0 && mover1 == 0 && (proteger1 == 0 || tab[EnemigoN.f][EnemigoN.c].pieza == REY || tab[EnemigoN.f][EnemigoN.c].pieza == CABALLO || tab[EnemigoN.f][EnemigoN.c].pieza == PEON)) {
 			return 3;
