@@ -9,7 +9,7 @@ int Tablero::jaque() {
 			else if (tab[i][j].pieza == REY && tab[i][j].color == BLANCO) {
 				rb = tab[i][j].casilla;
 			}
-		}
+		}//Obtener la posición de los reyes
 	}
 	for (i = 0; i < 8; i++) {
 		for (j = 0; j < 8; j++) {
@@ -25,34 +25,46 @@ int Tablero::jaque() {
 					jaque2++;
 				}
 			}
-		}
+		}//Obtener si algún rey está en jaque
 	}
 	if (jaque2 > 0) {
 		for (i = 0; i < 8; i++) {
 			for (j = 0; j < 8; j++) {
 				if (tab[i][j].pieza != NO_PIEZA && tab[i][j].color == NEGRO) {
 					if (validarMov(tab[i][j].casilla, EnemigoB)) {
-						comer2++;
+						comer2++;//significa que una pieza aliada se puede comer a la pieza enemiga
+						if (tab[i][j].casilla == rn) {
+							for (a = 0; a < 8; a++) {
+								for (b = 0; b < 8; b++) {
+									if (tab[a][b].pieza != NO_PIEZA && tab[a][b].color == BLANCO) {
+										tab[a][b].color = NEGRO;//me da error con la función Trayectoria, por lo que hago esto para que funcione el validarMov
+										if (validarMov(tab[a][b].casilla, EnemigoB)) {
+											comer2--;//si la pieza que puede comer a la enemiga es el rey y la posicion en la que acabaría está amenazada
+											//por otra pieza, no se conyempla como que lo puede comer
+										}
+										tab[a][b].color = BLANCO;
+									}
+								}
+							}
+						}
 					}
 					if (tab[i][j].casilla != rn && Trayectoria(EnemigoB, rn, tab[i][j].casilla) == 2) {
-						proteger2++;
+						proteger2++;//significa que una pieza alidad puede interponerse en el camino
 					}
 				}
 				if (validarMov(rn, tab[i][j].casilla) && (Trayectoria(EnemigoB, tab[i][j].casilla, NULL) == 0)) {
-					posibles = tab[i][j].casilla;
-					mover2++;
+					posibles = tab[i][j].casilla;//casilla supuestamente libre
+					mover2++;//significa que el rey se puede mover a una casilla fuera del jaque
 					for (a = 0; a < 8; a++) {
 						for (b = 0; b < 8; b++) {
 							if (tab[a][b].color == BLANCO && tab[a][b].pieza != REY) {
-								if (tab[a][b].pieza == PEON) {
+								if (tab[a][b].pieza == PEON) {//aparte ya que el peón come diagonalmente
 									if (Trayectoria(tab[a][b].casilla, posibles, NULL) == 1) {
-										mover2--;
+										mover2--;//si la casilla libre está amenazada por una pieza enemiga, no se considera movimiento posible 
 									}
 								}
-								else {
-									if (validarMov(tab[a][b].casilla, posibles)) {
-										mover2--;
-									}
+								else if (validarMov(tab[a][b].casilla, posibles)) {//lo mismo, para el resto de piezas
+									mover2--;
 								}
 							}
 						}
@@ -67,8 +79,21 @@ int Tablero::jaque() {
 				if (tab[i][j].pieza != NO_PIEZA && tab[i][j].color == BLANCO) {
 					if (validarMov(tab[i][j].casilla, EnemigoN)) {
 						comer1++;
+						if (tab[i][j].casilla == rb) {
+							for (a = 0; a < 8; a++) {
+								for (b = 0; b < 8; b++) {
+									if (tab[a][b].pieza != NO_PIEZA && tab[a][b].color == NEGRO) {
+										tab[a][b].color = BLANCO;
+										if (validarMov(tab[a][b].casilla, EnemigoN)) {
+											comer1--;
+										}
+										tab[a][b].color = NEGRO;
+									}
+								}
+							}
+						}
 					}
-					if (tab[i][j].casilla!=rb && Trayectoria(EnemigoN, rb, tab[i][j].casilla) == 2) {
+					if (tab[i][j].casilla != rb && Trayectoria(EnemigoN, rb, tab[i][j].casilla) == 2) {
 						proteger1++;
 					}
 				}
@@ -77,16 +102,14 @@ int Tablero::jaque() {
 					mover1++;
 					for (a = 0; a < 8; a++) {
 						for (b = 0; b < 8; b++) {
-							if (tab[a][b].color == NEGRO && tab[a][b].pieza != REY) {
-								if (tab[a][b].pieza == PEON){
+							if (tab[a][b].color == NEGRO  && tab[a][b].pieza != REY) {
+								if (tab[a][b].pieza == PEON) {
 									if (Trayectoria(tab[a][b].casilla, posibles, NULL) == 1) {
 										mover1--;
 									}
 								}
-								else {
-									if (validarMov(tab[a][b].casilla, posibles)) {
-										mover1--;
-									}
+								else if (validarMov(tab[a][b].casilla, posibles)) {
+									mover1--;
 								}
 							}
 						}
@@ -95,23 +118,24 @@ int Tablero::jaque() {
 			}
 		}
 	}
-	cout << jaque1 << "/" << comer1 << "/" << mover1 << "/" << proteger1 <<  endl;
-	cout << jaque2 << "/" << comer2 << "/" << mover2 << "/" << proteger2 <<  endl;
+	cout << jaque1 << "/" << comer1 << "/" << mover1 << "/" << proteger1 << endl;
+	cout << jaque2 << "/" << comer2 << "/" << mover2 << "/" << proteger2 << endl;
 	if (jaque1 > 0) {
 		if (comer1 == 0 && mover1 == 0 && (proteger1 == 0 || tab[EnemigoN.f][EnemigoN.c].pieza == REY || tab[EnemigoN.f][EnemigoN.c].pieza == CABALLO || tab[EnemigoN.f][EnemigoN.c].pieza == PEON)) {
 			return 3;
-		}
+		}//si se cumple todo o solo no se cumple proteger pero la pieza es una que no tiene casillas de por medio (peón y rey) o salta (caballo)
+		//Jaque mate al negro
 		else {
 			return 1;
-		}
+		}//si solo se cumple el jaque, Jaque al negro
 	}
 	if (jaque2 > 0) {
 		if (comer2 == 0 && mover2 == 0 && (proteger2 == 0 || tab[EnemigoB.f][EnemigoB.c].pieza == REY || tab[EnemigoB.f][EnemigoB.c].pieza == CABALLO || tab[EnemigoB.f][EnemigoB.c].pieza == PEON)) {
 			return 4;
-		}
+		}//Jaque mate al blanco
 		else {
 			return 2;
-		}
+		}//Jaque al blanco
 	}
 	else {
 		return 0;
@@ -134,13 +158,13 @@ int Tablero::Trayectoria(Casilla ori, Casilla des, Casilla prot) {
 			do {
 				if (ori.f - des.f > 0) {
 					aux.f--;
-					if (validarMov(prot, aux)) {
+					if (validarMov(prot, aux) && prot!=NULL) {
 						j++;
 					}
 				}
 				else if (ori.f - des.f < 0) {
 					aux.f++;
-					if (validarMov(prot, aux)) {
+					if (validarMov(prot, aux) && prot!=NULL) {
 						j++;
 					}
 				}
