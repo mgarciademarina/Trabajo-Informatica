@@ -45,6 +45,9 @@
     <ClInclude Include="src\Rey.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="src\CoordinadorAjedrez.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Ajedrez.cpp">
@@ -81,6 +84,9 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="src\TestUnitarios.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoordinadorAjedrez.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

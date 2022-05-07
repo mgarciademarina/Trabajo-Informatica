@@ -1,7 +1,7 @@
 #include "freeglut.h"
-#include "Ajedrez.h"
+#include "CoordinadorAjedrez.h"
 
-Ajedrez ajedrez;
+CoordinadorAjedrez miajedrez;
 
 void OnDraw(void); 
 void OnTimer(int value); 
@@ -29,9 +29,6 @@ int main(int argc, char* argv[])
 	glutTimerFunc(25, OnTimer, 0);
 	glutKeyboardFunc(OnKeyboardDown);
 	glutMouseFunc(OnMouseDown);
-
-	ajedrez.inicializa();
-
 	
 	glutMainLoop();
 
@@ -47,22 +44,23 @@ void OnDraw(void)
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	ajedrez.dibuja();
+	miajedrez.dibuja();
 
 	//no borrar esta linea ni poner nada despues
 	glutSwapBuffers();
 }
+
 void OnKeyboardDown(unsigned char key, int x_t, int y_t)
 {
 	//poner aqui el código de teclado
-	
+	miajedrez.tecla(key);
 
 	glutPostRedisplay();
 }
 
 void OnMouseDown(int button, int state, int x, int y) {
 	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && x>=125 && x<= 677 && y>= 25 && y <= 577) {
-		ajedrez.jugada(button, state, x, y);
+		miajedrez.jugada(button, state, x, y);
 	}
 	
 }
@@ -70,12 +68,14 @@ void OnMouseDown(int button, int state, int x, int y) {
 void OnTimer(int value)
 {
 	//poner aqui el código de animacion
-	if (ajedrez.jaque() == 1 || ajedrez.jaque() == 2) {
+	
+	miajedrez.jaque();
+	/*if (ajedrez.jaque() == 1 || ajedrez.jaque() == 2) {
 		cout << "Jaque" << endl;
 	}
 	else if (ajedrez.jaque() == 3 || ajedrez.jaque() == 4) {
 		cout << "Jaque Mate" << endl;
-	}
+	}*/
 
 	//no borrar estas lineas
 	glutTimerFunc(25, OnTimer, 0);
