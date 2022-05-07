@@ -1,6 +1,6 @@
 int Tablero::jaque() {
 	int a, b, i, j, jaque1 = 0, jaque2 = 0, comer1 = 0, comer2 = 0, proteger1 = 0, proteger2 = 0, mover1 = 0, mover2 = 0;
-	Casilla rb, rn, EnemigoB, EnemigoN, posibles, auxi;
+	Casilla rb, rn, EnemigoB, EnemigoN, posibles;
 	for (i = 0; i < 8; i++) {
 		for (j = 0; j < 8; j++) {
 			if (tab[i][j].pieza == REY && tab[i][j].color == NEGRO) {
@@ -163,7 +163,7 @@ int Tablero::jaque() {
 	}
 }
 int Tablero::Trayectoria(Casilla ori, Casilla des, Casilla prot) {
-	int i = 0, j = 0, k = 0;
+	int i = 0, j = 0, k = 0, l = 0;
 	Casilla aux;
 	aux = ori;
 	if (ori != des) {
@@ -180,7 +180,9 @@ int Tablero::Trayectoria(Casilla ori, Casilla des, Casilla prot) {
 						i++;
 					}
 					if (prot == des) {
-						k = 0;
+						if (tab[aux.f][aux.c].pieza != NO_PIEZA) {
+							l++;
+						}//para ver si hay una pieza más entre el enmigo, el que puede comer pero está bloqueando y el rey
 					}
 					else {
 						if (validarMov(prot, aux)) {
@@ -194,7 +196,7 @@ int Tablero::Trayectoria(Casilla ori, Casilla des, Casilla prot) {
 						}//si en la casilla hay una pieza, que termine el do-while, pero si esa pieza es el rey opuesto, seguir para ver si la casilla
 						//a la que quiere ir el rey seguiría amenazada por la pieza
 					}
-				} while ((aux.f != des.f) && k == 0);
+				} while ((aux.f != des.f) && k == 0 && l<=1);
 			}
 			else if (ori.f == des.f) {
 				do {
@@ -208,7 +210,9 @@ int Tablero::Trayectoria(Casilla ori, Casilla des, Casilla prot) {
 						i++;
 					}
 					if (prot == des) {
-						k = 0;
+						if (tab[aux.f][aux.c].pieza != NO_PIEZA) {
+							l++;
+						}
 					}
 					else {
 						if (validarMov(prot, aux)) {
@@ -222,7 +226,7 @@ int Tablero::Trayectoria(Casilla ori, Casilla des, Casilla prot) {
 						}//si en la casilla hay una pieza, que termine el do-while, pero si esa pieza es el rey opuesto, seguir para ver si la casilla
 						//a la que quiere ir el rey seguiría amenazada por la pieza
 					}
-				} while ((aux.c != des.c) && k == 0);
+				} while ((aux.c != des.c) && k == 0 && l<=1);
 			}
 		}
 		if (tab[ori.f][ori.c].pieza == ALFIL || tab[ori.f][ori.c].pieza == REINA) {
@@ -240,7 +244,9 @@ int Tablero::Trayectoria(Casilla ori, Casilla des, Casilla prot) {
 						i++;
 					}
 					if (prot == des) {
-						k = 0;
+						if (tab[aux.f][aux.c].pieza != NO_PIEZA) {
+							l++;
+						}
 					}
 					else {
 						if (validarMov(prot, aux)) {
@@ -254,7 +260,7 @@ int Tablero::Trayectoria(Casilla ori, Casilla des, Casilla prot) {
 						}//si en la casilla hay una pieza, que termine el do-while, pero si esa pieza es el rey opuesto, seguir para ver si la casilla
 						//a la que quiere ir el rey seguiría amenazada por la pieza
 					}
-				} while ((aux.c != des.c && aux.f != des.f) && k == 0);
+				} while ((aux.c != des.c && aux.f != des.f) && k == 0 && l<=1);
 			}
 			else if (ori.f - des.f > 0) {
 				do {
@@ -270,7 +276,9 @@ int Tablero::Trayectoria(Casilla ori, Casilla des, Casilla prot) {
 						i++;
 					}
 					if (prot == des) {
-						k = 0;
+						if (tab[aux.f][aux.c].pieza != NO_PIEZA) {
+							l++;
+						}
 					}
 					else {
 						if (validarMov(prot, aux)) {
@@ -284,7 +292,7 @@ int Tablero::Trayectoria(Casilla ori, Casilla des, Casilla prot) {
 						}//si en la casilla hay una pieza, que termine el do-while, pero si esa pieza es el rey opuesto, seguir para ver si la casilla
 						//a la que quiere ir el rey seguiría amenazada por la pieza
 					}
-				} while ((aux.c != des.c && aux.f != des.f) && k == 0);
+					} while ((aux.c != des.c && aux.f != des.f) && k == 0 && l <= 1);
 			}
 		}
 	}
