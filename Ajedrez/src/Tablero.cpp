@@ -175,11 +175,9 @@ ostream& Tablero::print(ostream& o) {
 }
 
 int Tablero::jaque() {
-	int i, j, jaque = 0;
-	int R = -1; //-1 no hay jaque, 0 hay jaque, 1 jaque mate
-	Casilla rb, rn;
-
-	for (i = 0; i < 8; i++) { //Buscar los reyes
+	int a, b, i, j, jaque1 = 0, jaque2 = 0, comer1 = 0, comer2 = 0, proteger1 = 0, proteger2 = 0, mover1 = 0, mover2 = 0;
+	Casilla rb, rn, EnemigoB, EnemigoN, posibles;
+	for (i = 0; i < 8; i++) {
 		for (j = 0; j < 8; j++) {
 			if (tab[i][j].pieza == REY && tab[i][j].color == NEGRO) {
 				rn = tab[i][j].casilla;
@@ -187,85 +185,304 @@ int Tablero::jaque() {
 			else if (tab[i][j].pieza == REY && tab[i][j].color == BLANCO) {
 				rb = tab[i][j].casilla;
 			}
-		}
+		}//Obtener la posición de los reyes
 	}
-
-	for (i = 0; i < n; i++) {
-		for (j = 0; j < n; j++) {
+	for (i = 0; i < 8; i++) {
+		for (j = 0; j < 8; j++) {
 			if (tab[i][j].pieza != NO_PIEZA && tab[i][j].color == NEGRO) {
 				if (validarMov(tab[i][j].casilla, rb)) {
-					jaque++;
+					EnemigoN = tab[i][j].casilla;
+					jaque1++;
 				}
 			}
-			else if (tab[i][j].color == BLANCO) {
+			else if (tab[i][j].pieza != NO_PIEZA && tab[i][j].color == BLANCO) {
 				if (validarMov(tab[i][j].casilla, rn)) {
-					jaque++;
+					EnemigoB = tab[i][j].casilla;
+					jaque2++;
 				}
 			}
-		}
+		}//Saber si algún rey está en jaque
 	}
-	/*if (jaque > 0) {
-		R = 0;
-	}*/
-	if (jaque == 0) {
-		return R; //Si no hay jaque no busco jaque mate
-	}
-	else if (jaque > 0 && !jaqueMate(rn,rb)) {
-		R = 0;
-	}
-	else if (jaque > 0 && jaqueMate(rn,rb)) {
-		R = 1;
-	}
-	return R;
-}
-
-
-bool Tablero::jaqueMate(Casilla rn, Casilla rb) {
-	int sumMovRey = 0; //total de posibles mov de rey
-	int sumMovColorContr = 0;
-	setMovInit();
-
-	//Comprobar jaque Mate rey negro
-	sumMovRey = posiblesMov(rn);
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < n; j++) {
-			if (tab[i][j].color == BLANCO) {
-				for (int k = 0; k < n; k++) {
-					for (int h = 0; h < n; h++) {
-						if (validarMov(tab[i][j].casilla, tab[k][h].casilla) && (tab[i][j].casilla != tab[k][h].casilla) && (pmov[k][h] == 1)) {
-							sumMovColorContr++;
-							pmov[k][h] == 0;
+	if (jaque2 > 0) {
+		for (i = 0; i < 8; i++) {
+			for (j = 0; j < 8; j++) {
+				if (tab[i][j].color == NEGRO && tab[i][j].casilla != rn) {
+					if (validarMov(tab[i][j].casilla, EnemigoB)) {
+						comer2++;//significa que una pieza aliada se puede comer a la pieza enemiga
+						for (a = 0; a < 8; a++) {
+							for (b = 0; b < 8; b++) {
+								if (tab[a][b].color == BLANCO && validarMov(tab[a][b].casilla, tab[i][j].casilla)) {
+									if (Trayectoria(tab[a][b].casilla, rn, rn) == 1) {
+										comer2--;
+									}//si la pieza que puede comer a la enemiga está bloqueando la trayectoria de otra pieza enemiga que
+									//causaría otro jaque, no cuenta como movimiento posible
+								}
+							}
+						}
+					}
+					if (Trayectoria(EnemigoB, rn, tab[i][j].casilla) == 2) {
+						proteger2++;//significa que una pieza aliada puede interponerse en el camino
+					}
+				}
+				if (validarMov(rn, tab[i][j].casilla) && Trayectoria(EnemigoB, tab[i][j].casilla, NULL) == 0) {//si el rey puede ir y el enemigo no
+					posibles = tab[i][j].casilla;
+					mover2++;//significa que el rey se puede mover a una casilla no amenzada, ya sea porque esté libre o pueda comer una pieza enemiga
+					for (a = 0; a < 8; a++) {
+						for (b = 0; b < 8; b++) {
+							if (mover2 > 0) {//para evitar valores negativos que afecten al conteo
+								if (tab[a][b].color == BLANCO && tab[a][b].casilla != EnemigoB) {
+									if (tab[posibles.f][posibles.c].pieza == NO_PIEZA) {//si la casilla era una casilla libre
+										if (tab[a][b].pieza == PEON) {
+											if ((abs(b - posibles.c) == 1 && a - posibles.f == -1)) {
+												mover2--;
+											}//si está amenazada por un peón enemigo, no cuenta como movimiento posible
+										}
+										else if (validarMov(tab[a][b].casilla, posibles)) {
+											mover2--;
+										}//si está amenazada por pieza enemiga, no cuenta como movimiento posible
+									}
+									else if (tab[posibles.f][posibles.c].color == BLANCO) {//si la casilla es una pieza enemiga que el rey puede comer
+										tab[posibles.f][posibles.c].color = NEGRO;//para que funcione validarMov, ya que Trayectoria ignoraría la pieza
+										if (validarMov(tab[a][b].casilla, posibles)) {
+											mover2--;
+										}//si está amenazada por una pieza enemiga, no cuenta como movimiento posible
+										tab[posibles.f][posibles.c].color = BLANCO;
+									}
+								}
+							}
 						}
 					}
 				}
 			}
 		}
 	}
-	setMovInit();
-	if (sumMovRey <= sumMovColorContr) { return true; }
-	//Reseteo de valores
-	sumMovRey = 0;
-	sumMovColorContr = 0;
-
-	//Comprobar jaque Mate rey blanco
-	sumMovRey = posiblesMov(rb);
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < n; j++) {
-			if (tab[i][j].color == NEGRO) {
-				for (int k = 0; k < n; k++) {
-					for (int h = 0; h < n; h++) {
-						if (validarMov(tab[i][j].casilla, tab[k][h].casilla) && (tab[i][j].casilla != tab[k][h].casilla) && (pmov[k][h] == 1)) {
-							sumMovColorContr++;
-							pmov[k][h] == 0;
+	if (jaque1 > 0) {
+		for (i = 7; i >= 0; i--) {
+			for (j = 7; j >= 0; j--) {
+				if (tab[i][j].color == BLANCO && tab[i][j].casilla != rb) {
+					if (validarMov(tab[i][j].casilla, EnemigoN)) {
+						comer1++;
+						for (a = 7; a >= 0; a--) {
+							for (b = 7; b >= 0; b--) {
+								if (tab[a][b].color == NEGRO && validarMov(tab[a][b].casilla, tab[i][j].casilla)) {
+									if (Trayectoria(tab[a][b].casilla, rb, rb) == 1) {
+										comer1--;
+									}
+								}
+							}
+						}
+					}
+					if (Trayectoria(EnemigoN, rb, tab[i][j].casilla) == 2) {
+						proteger1++;
+					}
+				}
+				if (validarMov(rb, tab[i][j].casilla) && Trayectoria(EnemigoN, tab[i][j].casilla, NULL) == 0) {
+					posibles = tab[i][j].casilla;
+					mover1++;
+					for (a = 7; a >= 0; a--) {
+						for (b = 7; b >= 0; b--) {
+							if (mover1 > 0) {
+								if (tab[a][b].color == NEGRO && tab[a][b].casilla != EnemigoN) {
+									if (tab[posibles.f][posibles.c].pieza == NO_PIEZA) {
+										if (tab[a][b].pieza == PEON) {
+											if ((abs(b - posibles.c) == 1 && a - posibles.f == 1)) {
+												mover1--;
+											}
+										}
+										else if (validarMov(tab[a][b].casilla, posibles)) {
+											mover1--;
+										}
+									}
+									else if (tab[posibles.f][posibles.c].color == NEGRO) {
+										tab[posibles.f][posibles.c].color = BLANCO;
+										if (validarMov(tab[a][b].casilla, posibles)) {
+											mover1--;
+										}
+										tab[posibles.f][posibles.c].color = NEGRO;
+									}
+								}
+							}
 						}
 					}
 				}
 			}
 		}
 	}
-	setMovInit();
-	if (sumMovRey <= sumMovColorContr) { return true; }
-
-	return false;
+	cout << jaque1 << "/" << comer1 << "/" << mover1 << "/" << proteger1 << endl;
+	cout << jaque2 << "/" << comer2 << "/" << mover2 << "/" << proteger2 << endl;//para ver como van variando las variables y si coinciden con lo que está pasando
+	//en el tablero
+	if (jaque1 > 0) {
+		if (jaque1 > 1 && mover1 == 0) {
+			return 3;
+		}
+		else if (comer1 == 0 && mover1 == 0 && (proteger1 == 0 || tab[EnemigoN.f][EnemigoN.c].pieza == CABALLO)) {
+			return 3;
+		}//Jaque Mate al blanco
+		else {
+			return 1;
+		}//Jaque al blanco
+	}
+	if (jaque2 > 0) {
+		if (jaque2 > 1 && mover2 == 0) {//si hay más de un jaque a la vez y no se puede mover, Jaque Mate
+			return 4;
+		}
+		else if (comer2 == 0 && mover2 == 0 && (proteger2 == 0 || tab[EnemigoB.f][EnemigoB.c].pieza == CABALLO)) {
+			//si hay jaque y no se cumple ninguno, o la pieza no tiene trayectoria, por lo que no se puede proteger, Jaque Mate
+			return 4;
+		}//Jaque Mate al negro
+		else {
+			return 2;
+		}//Jaque al negro
+	}
+	else {
+		return 0;
+	}
 }
+int Tablero::Trayectoria(Casilla ori, Casilla des, Casilla prot) {
+	int i = 0, j = 0, k = 0, l = 0;
+	Casilla aux;
+	aux = ori;
+	if (ori != des) {
+		if (tab[ori.f][ori.c].pieza == TORRE || tab[ori.f][ori.c].pieza == REINA) {
+			if (ori.c == des.c) {
+				do {
+					if (ori.f - des.f > 0) {
+						aux.f--;
+					}
+					else if (ori.f - des.f < 0) {
+						aux.f++;
+					}
+					if (aux.f == des.f) {
+						i++;
+					}
+					if (prot == des) {
+						if (tab[aux.f][aux.c].pieza != NO_PIEZA) {
+							l++;
+						}//para ver si hay una pieza más entre el enmigo, el que puede comer pero está bloqueando y el rey
+					}
+					else {
+						if (validarMov(prot, aux)) {
+							j++;
+						}
+						if (tab[aux.f][aux.c].pieza != NO_PIEZA) {
+							k++;
+							if (tab[aux.f][aux.c].pieza == REY && tab[aux.f][aux.c].color != tab[ori.f][ori.c].color) {
+								k--;
+							}
+						}//si en la casilla hay una pieza, que termine el do-while, pero si esa pieza es el rey opuesto, seguir para ver si la casilla
+						//a la que quiere ir el rey seguiría amenazada por la pieza
+					}
+				} while ((aux.f != des.f) && k == 0 && l <= 1);
+			}
+			else if (ori.f == des.f) {
+				do {
+					if (ori.c - des.c > 0) {
+						aux.c--;
+					}
+					else if (ori.c - des.c < 0) {
+						aux.c++;
+					}
+					if (aux.c == des.c) {
+						i++;
+					}
+					if (prot == des) {
+						if (tab[aux.f][aux.c].pieza != NO_PIEZA) {
+							l++;
+						}
+					}
+					else {
+						if (validarMov(prot, aux)) {
+							j++;
+						}
+						if (tab[aux.f][aux.c].pieza != NO_PIEZA) {
+							k++;
+							if (tab[aux.f][aux.c].pieza == REY && tab[aux.f][aux.c].color != tab[ori.f][ori.c].color) {
+								k--;
+							}
+						}//si en la casilla hay una pieza, que termine el do-while, pero si esa pieza es el rey opuesto, seguir para ver si la casilla
+						//a la que quiere ir el rey seguiría amenazada por la pieza
+					}
+				} while ((aux.c != des.c) && k == 0 && l <= 1);
+			}
+		}
+		if (tab[ori.f][ori.c].pieza == ALFIL || tab[ori.f][ori.c].pieza == REINA) {
+			if (ori.f - des.f < 0) {
+				do {
+					if (ori.c - des.c > 0) {
+						aux.c--;
+						aux.f++;
+					}
+					else if (ori.c - des.c < 0) {
+						aux.c++;
+						aux.f++;
+					}
+					if (aux == des) {
+						i++;
+					}
+					if (prot == des) {
+						if (tab[aux.f][aux.c].pieza != NO_PIEZA) {
+							l++;
+						}
+					}
+					else {
+						if (validarMov(prot, aux)) {
+							j++;
+						}
+						if (tab[aux.f][aux.c].pieza != NO_PIEZA) {
+							k++;
+							if (tab[aux.f][aux.c].pieza == REY && tab[aux.f][aux.c].color != tab[ori.f][ori.c].color) {
+								k--;
+							}
+						}//si en la casilla hay una pieza, que termine el do-while, pero si esa pieza es el rey opuesto, seguir para ver si la casilla
+						//a la que quiere ir el rey seguiría amenazada por la pieza
+					}
+				} while ((aux.c != des.c && aux.f != des.f) && k == 0 && l <= 1);
+			}
+			else if (ori.f - des.f > 0) {
+				do {
+					if (ori.c - des.c > 0) {
+						aux.c--;
+						aux.f--;
+					}
+					else if (ori.c - des.c < 0) {
+						aux.c++;
+						aux.f--;
+					}
+					if (aux == des) {
+						i++;
+					}
+					if (prot == des) {
+						if (tab[aux.f][aux.c].pieza != NO_PIEZA) {
+							l++;
+						}
+					}
+					else {
+						if (validarMov(prot, aux)) {
+							j++;
+						}
+						if (tab[aux.f][aux.c].pieza != NO_PIEZA) {
+							k++;
+							if (tab[aux.f][aux.c].pieza == REY && tab[aux.f][aux.c].color != tab[ori.f][ori.c].color) {
+								k--;
+							}
+						}//si en la casilla hay una pieza, que termine el do-while, pero si esa pieza es el rey opuesto, seguir para ver si la casilla
+						//a la que quiere ir el rey seguiría amenazada por la pieza
+					}
+				} while ((aux.c != des.c && aux.f != des.f) && k == 0 && l <= 1);
+			}
+		}
+	}
+	if (i > 0) {
+		if (j > 0) {
+			return 2;
+		}
+		else {
+			return 1;
+		}
+	}
+	else {
+		return 0;
+	}
+}
+
 
