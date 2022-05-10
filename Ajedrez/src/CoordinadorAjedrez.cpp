@@ -14,10 +14,10 @@ void CoordinadorAjedrez::dibuja() {
 			0.0, 7.5, 0.0, // hacia que punto mira (0,7.5,0) 
 			0.0, 1.0, 0.0); // definimos hacia arriba (eje Y) 
 		ETSIDI::setTextColor(1, 1, 0);
-		ETSIDI::setFont("fuentes/fuente.ttf", 16);
+		ETSIDI::setFont("fuentes/fuente2.otf", 16);
 		ETSIDI::printxy("Ajedrez", -5, 8);
 		ETSIDI::setTextColor(1, 1, 1);
-		ETSIDI::setFont("fuentes/fuente.ttf", 12);
+		ETSIDI::setFont("fuentes/fuente2.otf", 12);
 		ETSIDI::printxy("PULSE LA TECLA -E- PARA EMPEZAR", -5, 7);
 		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", -5, 6);
 		ETSIDI::printxy("WenasnoCHESS", 2, 1);
@@ -38,7 +38,15 @@ void CoordinadorAjedrez::dibuja() {
 		//incluir algún identificador de pausa
 	}
 	else if (estado == FIN) {
-		//Incluir pantalla de fin
+		ajedrez.dibuja();
+		ETSIDI::setTextColor(1, 1, 0);
+		ETSIDI::setFont("fuentes/fuente2.otf", 16);
+		ETSIDI::printxy("JAQUE MATE!!!!!", -5, 8);
+		ETSIDI::setTextColor(1, 1, 1);
+		ETSIDI::setFont("fuentes/fuente2.otf", 12);
+		ETSIDI::printxy("PULSE LA TECLA -E- PARA JUGAR DE BUEVO", -5, 7);
+		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", -5, 6);
+		ETSIDI::printxy("WenasnoCHESS", 2, 1);
 	}
 }
 
