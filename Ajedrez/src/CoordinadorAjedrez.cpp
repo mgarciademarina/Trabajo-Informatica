@@ -13,10 +13,24 @@ void CoordinadorAjedrez::dibuja() {
 		gluLookAt(0, 7.5, 30, // posicion del ojo
 			0.0, 7.5, 0.0, // hacia que punto mira (0,7.5,0) 
 			0.0, 1.0, 0.0); // definimos hacia arriba (eje Y) 
-		ETSIDI::setTextColor(1, 1, 0);
+
+		/*glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/inicio.png").id);
+		glDisable(GL_LIGHTING);
+		glBegin(GL_POLYGON);
+		glColor3f(1, 1, 1);
+		glTexCoord2d(0, 1); glVertex2f(-10, 0);
+		glTexCoord2d(1, 1); glVertex2f(10, 0);
+		glTexCoord2d(1, 0); glVertex2f(10, 15);
+		glTexCoord2d(0, 0); glVertex2f(-10, 15);
+		glEnd();
+		glEnable(GL_LIGHTING);
+		glDisable(GL_TEXTURE_2D);*/
+
+		ETSIDI::setTextColor(1,1,1);
 		ETSIDI::setFont("fuentes/fuente2.otf", 16);
 		ETSIDI::printxy("Ajedrez", -5, 8);
-		ETSIDI::setTextColor(1, 1, 1);
+		ETSIDI::setTextColor(1,1,1);
 		ETSIDI::setFont("fuentes/fuente2.otf", 12);
 		ETSIDI::printxy("PULSE LA TECLA -E- PARA EMPEZAR", -5, 7);
 		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", -5, 6);
@@ -27,26 +41,44 @@ void CoordinadorAjedrez::dibuja() {
 	}
 	else if (estado == JAQUEBLANCO) {
 		ajedrez.dibuja();
-		//incluir algún identificador de jaque blanco
+		ETSIDI::setTextColor(1, 1, 1);
+		ETSIDI::setFont("fuentes/fuente2.otf", 16);
+		ETSIDI::printxy("JAQUE!!!", -1, 8);
 	}
 	else if (estado == JAQUENEGRO) {
 		ajedrez.dibuja();
-		//incluir algún identificador de jaque negro
+		ETSIDI::setTextColor(1, 1, 1);
+		ETSIDI::setFont("fuentes/fuente2.otf", 16);
+		ETSIDI::printxy("JAQUE!!!", -1, 8);
 	}
 	else if (estado == PAUSE) {
-		ajedrez.dibuja();
-		//incluir algún identificador de pausa
+		gluLookAt(4, 4, 12,
+			4, 4, 0.0,
+			0.0, 1.0, 0.0);
+
+		ETSIDI::setTextColor(1, 1, 1);
+		ETSIDI::setFont("fuentes/fuente2.otf", 16);
+		ETSIDI::printxy("PAUSA", 2, 5);
+		ETSIDI::setTextColor(1, 1, 1);
+		ETSIDI::setFont("fuentes/fuente2.otf", 12);
+		ETSIDI::printxy("PULSE LA TECLA -C- PARA CONTINUAR", 1, 4);
+		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", 1, 3);
 	}
 	else if (estado == FIN) {
+		gluLookAt(4, 4, 12,
+			4, 4, 0.0,
+			0.0, 1.0, 0.0);
+
 		ajedrez.dibuja();
 		ETSIDI::setTextColor(1, 1, 0);
 		ETSIDI::setFont("fuentes/fuente2.otf", 16);
-		ETSIDI::printxy("JAQUE MATE!!!!!", -5, 8);
+		ETSIDI::printxy("JAQUE MATE!!!!!", 2, 5);
 		ETSIDI::setTextColor(1, 1, 1);
 		ETSIDI::setFont("fuentes/fuente2.otf", 12);
-		ETSIDI::printxy("PULSE LA TECLA -E- PARA JUGAR DE BUEVO", -5, 7);
-		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", -5, 6);
-		ETSIDI::printxy("WenasnoCHESS", 2, 1);
+		ETSIDI::printxy("PULSE LA TECLA -C- PARA LA REVANCHA", 1, 4);
+		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", 1, 3);
+		ETSIDI::setFont("fuentes/fuente2.otf", 16);
+		ETSIDI::printxy("WenasnoCHESS", 4, 1);
 	}
 }
 
@@ -85,7 +117,7 @@ void CoordinadorAjedrez::tecla(unsigned char key) {
 	}
 	else if (estado == FIN) {
 		if (key == 'c') {
-			estado == INICIO;
+			estado = INICIO;
 		}
 		else if (key == 's') {
 			exit(0);
@@ -104,22 +136,22 @@ void CoordinadorAjedrez::jugada(int button, int state, int x, int y) {
 void CoordinadorAjedrez::jaque() {
 	if (estado == JUEGO) {
 		if (ajedrez.jaque() == 1) {
-			estado == JAQUEBLANCO;
+			estado = JAQUEBLANCO;
 			jaqueBlanco = true;
 		}
 		else if (ajedrez.jaque() == 2) {
-			estado == JAQUENEGRO;
+			estado = JAQUENEGRO;
 			jaqueNegro = true;
 		}
 		else if (ajedrez.jaque() == 3 || ajedrez.jaque() == 4) {
-			estado == FIN;
+			estado = FIN;
 		}
 	}
 	else if (estado == JAQUEBLANCO || estado == JAQUENEGRO) {
 		if (ajedrez.jaque() == 0) { 
 			jaqueNegro = false;
 			jaqueBlanco = false;
-			estado == JUEGO; 
+			estado = JUEGO; 
 		}
 		else if (ajedrez.jaque() == 3 || ajedrez.jaque() == 4) { estado == FIN; }
 	}
