@@ -5,6 +5,7 @@ Poned fecha en la que hayáis hecho X y vuestra inicial.
 Los cambios más recientes al principio, para que tengan  más visibilidad.
 
 -------------------------------
+(07/05 R) Pantallas básicas de cada estado.
 (07/05 R) Menús básicos:
   - INICIO, JUEGO, PAUSE, JAQUEBLANCO, JAQUENEGRO y FIN 
   - Relaciones y transiciones entre estados
