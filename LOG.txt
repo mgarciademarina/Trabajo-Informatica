@@ -11,6 +11,7 @@ Los cambios más recientes al principio, para que tengan  más visibilidad.
   - Relaciones y transiciones entre estados
   - Falta por meter las pantallas personalizadas de cada estado
 (07/05 R) Correcciones en Peon
+(06/05 D) Jaque Mate definitivo
 (27/04 R) Sobrecarga operador != de Casilla
 (27/04 R) Jaque Mate básico: desde jaque() se llama a jaqueMate() si hay jaque para comprobar. JaqueMate() ve los posibles movimientos del rey y el número de piezas del color contrario que amenazan esos movimientos. Funciona para alfiles, torres, caballos y hay que revisarlo para peones.
 (27/04 V) Implementado Enroque: 
