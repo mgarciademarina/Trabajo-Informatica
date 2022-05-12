@@ -153,6 +153,6 @@ void CoordinadorAjedrez::jaque() {
 			jaqueBlanco = false;
 			estado = JUEGO; 
 		}
-		else if (ajedrez.jaque() == 3 || ajedrez.jaque() == 4) { estado == FIN; }
+		else if (ajedrez.jaque() == 3 || ajedrez.jaque() == 4) { estado = FIN; }
 	}
 }
