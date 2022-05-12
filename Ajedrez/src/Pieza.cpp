@@ -20,28 +20,28 @@ void Pieza::dibuja(int flag, int auxmov) {
 
 	switch (pieza) {
 	case PEON:
-		if (color == 0) { glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Peon_B.png").id); }
-		else if (color == 1) { glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Peon_N.png").id); }
+		if (color == 0) { glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Peon_B_Mod.png").id); }
+		else if (color == 1) { glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Peon_N_Mod.png").id); }
 		break;
 	case TORRE:
-		if (color == 0) { glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Torre_B.png").id); }
-		else if (color == 1) { glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Torre_N.png").id); }
+		if (color == 0) { glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Torre_B_Mod.png").id); }
+		else if (color == 1) { glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Torre_N_Mod.png").id); }
 		break;
 	case ALFIL:
-		if (color == 0) { glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Alfil_B.png").id); }
-		else if (color == 1) { glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Alfil_N.png").id); }
+		if (color == 0) { glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Alfil_B_Mod.png").id); }
+		else if (color == 1) { glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Alfil_N_Mod.png").id); }
 		break;
 	case CABALLO:
-		if (color == 0) { glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Caballo_B.png").id); }
-		else if (color == 1) { glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Caballo_N.png").id); }
+		if (color == 0) { glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Caballo_B_Mod.png").id); }
+		else if (color == 1) { glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Caballo_N_Mod.png").id); }
 		break;
 	case REY:
-		if (color == 0) { glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Rey_B.png").id); }
-		else if (color == 1) { glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Rey_N.png").id); }
+		if (color == 0) { glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Rey_B_Mod.png").id); }
+		else if (color == 1) { glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Rey_N_Mod.png").id); }
 		break;
 	case REINA:
-		if (color == 0) { glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Reina_B.png").id); }
-		else if (color == 1) { glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Reina_N.png").id); }
+		if (color == 0) { glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Reina_B_Mod.png").id); }
+		else if (color == 1) { glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Reina_N_Mod.png").id); }
 		break;
 	case NO_PIEZA:
 		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/vacio.png").id);
