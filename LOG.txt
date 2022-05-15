@@ -5,7 +5,7 @@ Poned fecha en la que hayáis hecho X y vuestra inicial.
 Los cambios más recientes al principio, para que tengan  más visibilidad.
 
 -------------------------------
-(15/05 R) Sonidos al inico y con el movimiento de las piezas.
+(15/05 R) Sonidos al inicio del juego y con el movimiento de las piezas.
 (12/05 R) Pantallas básicas de cada estado.
 (07/05 R) Menús básicos:
   - INICIO, JUEGO, PAUSE, JAQUEBLANCO, JAQUENEGRO y FIN 
