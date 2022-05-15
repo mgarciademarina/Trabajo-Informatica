@@ -10,22 +10,9 @@ CoordinadorAjedrez::~CoordinadorAjedrez() {
 
 void CoordinadorAjedrez::dibuja() {
 	if (estado == INICIO) {
-		gluLookAt(0, 7.5, 30, // posicion del ojo
-			0.0, 7.5, 0.0, // hacia que punto mira (0,7.5,0) 
-			0.0, 1.0, 0.0); // definimos hacia arriba (eje Y) 
-
-		/*glEnable(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/inicio.png").id);
-		glDisable(GL_LIGHTING);
-		glBegin(GL_POLYGON);
-		glColor3f(1, 1, 1);
-		glTexCoord2d(0, 1); glVertex2f(-10, 0);
-		glTexCoord2d(1, 1); glVertex2f(10, 0);
-		glTexCoord2d(1, 0); glVertex2f(10, 15);
-		glTexCoord2d(0, 0); glVertex2f(-10, 15);
-		glEnd();
-		glEnable(GL_LIGHTING);
-		glDisable(GL_TEXTURE_2D);*/
+		gluLookAt(0, 7.5, 30, 
+			0.0, 7.5, 0.0, 
+			0.0, 1.0, 0.0); 
 
 		ETSIDI::setTextColor(1,1,1);
 		ETSIDI::setFont("fuentes/fuente2.otf", 16);
@@ -52,17 +39,18 @@ void CoordinadorAjedrez::dibuja() {
 		ETSIDI::printxy("JAQUE!!!", -1, 8);
 	}
 	else if (estado == PAUSE) {
-		gluLookAt(4, 4, 12,
-			4, 4, 0.0,
+		gluLookAt(0, 7.5, 30,
+			0.0, 7.5, 0.0,
 			0.0, 1.0, 0.0);
 
 		ETSIDI::setTextColor(1, 1, 1);
 		ETSIDI::setFont("fuentes/fuente2.otf", 16);
-		ETSIDI::printxy("PAUSA", 2, 5);
+		ETSIDI::printxy("Pausa", -5, 8);
 		ETSIDI::setTextColor(1, 1, 1);
 		ETSIDI::setFont("fuentes/fuente2.otf", 12);
-		ETSIDI::printxy("PULSE LA TECLA -C- PARA CONTINUAR", 1, 4);
-		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", 1, 3);
+		ETSIDI::printxy("PULSE LA TECLA -C- PARA CONTINUAR", -5, 7);
+		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", -5, 6);
+		ETSIDI::printxy("WenasnoCHESS", 2, 1);
 	}
 	else if (estado == FIN) {
 		gluLookAt(4, 4, 12,
@@ -87,6 +75,7 @@ void CoordinadorAjedrez::tecla(unsigned char key) {
 		ajedrez.inicializa();
 		if (key == 'e'){
 			estado = JUEGO;
+			ETSIDI::play("sonidos/tablero.wav");
 		}
 		else if (key == 's') {
 			exit(0);
@@ -94,10 +83,7 @@ void CoordinadorAjedrez::tecla(unsigned char key) {
 		
 	}
 	else if (estado == JUEGO || estado == JAQUEBLANCO || estado == JAQUENEGRO) {
-		if (key == 's') {
-			exit(0); //Salir del juego si se pulsa la tecla s
-		}
-		else if (key == 'p') {
+		if (key == 'p') {
 			estado = PAUSE;
 		}
 	}

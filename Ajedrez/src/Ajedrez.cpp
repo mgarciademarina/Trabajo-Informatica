@@ -63,6 +63,7 @@ int Ajedrez::jugada(int button, int state, int x, int y) {
 			turno++;
 			origen.f = origen.c = destino.f = destino.c = HOME;
 			tablero.setMovInit();
+			ETSIDI::play("sonidos/piezas1");
 			return 0;
 
 		}
@@ -73,6 +74,23 @@ int Ajedrez::jugada(int button, int state, int x, int y) {
 			turno++;
 			origen.f = origen.c = destino.f = destino.c = HOME;
 			tablero.setMovInit();
+
+			//Sonidos de movimiento
+			int r = rand() % 4;
+			switch (r) {
+			case 0:
+				ETSIDI::play("sonidos/piezas1.wav");
+				break;
+			case 1:
+				ETSIDI::play("sonidos/piezas2.wav");
+				break;
+			case 2:
+				ETSIDI::play("sonidos/piezas3.wav");
+				break;
+			case 3:
+				ETSIDI::play("sonidos/piezas4.wav");
+				break;
+			}
 
 		}
 		//Poner las casillas origen y destino a -10 una vez finalizada la jugada
