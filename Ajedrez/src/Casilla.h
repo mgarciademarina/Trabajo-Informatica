@@ -2,12 +2,9 @@
 #include "freeglut.h"
 
 class Casilla {
-private:
-	
 public:
 	int f; //fila (1,2...8)
 	int c; //columna (a,b,c...h en tablero, pero numeralizado en código)
-	
 	
 	//Constr-Destr
 	Casilla(int x=-1, int y=-1);
