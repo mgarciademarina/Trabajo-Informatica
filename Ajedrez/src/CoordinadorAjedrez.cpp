@@ -55,14 +55,23 @@ void CoordinadorAjedrez::dibuja() {
 	else if (estado == FIN) {
 		ajedrez.dibuja();
 
-		ETSIDI::setTextColor(0,0,0);
+		glDisable(GL_LIGHTING);
+		glBegin(GL_POLYGON);
+		glColor3ub(205, 92, 92);
+		glVertex3f(1, 2, 0.1);
+		glVertex3f(1, 6, 0.1);
+		glVertex3f(7, 6, 0.1);
+		glVertex3f(7, 2, 0.1);
+		glEnd();
+		glEnable(GL_LIGHTING);
+
+		ETSIDI::setTextColor(1,1,1);
 		ETSIDI::setFont("fuentes/fuente2.otf", 16);
-		ETSIDI::printxy("ENHORABUENA HAS GANADO!!!!", -5, 8);
-		ETSIDI::setTextColor(0,0,0);
+		ETSIDI::printxy("ENHORABUENA HAS GANADO!!!!", 2, 5);
+		ETSIDI::setTextColor(1,1,1);
 		ETSIDI::setFont("fuentes/fuente2.otf", 12);
-		ETSIDI::printxy("PULSE LA TECLA -C- PARA CONTINUAR", -5, 7);
-		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", -5, 6);
-		ETSIDI::printxy("WenasnoCHESS", 2, 1);
+		ETSIDI::printxy("PULSE LA TECLA -C- PARA CONTINUAR", 3, 4);
+		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", 3, 3);
 	}
 }
 
