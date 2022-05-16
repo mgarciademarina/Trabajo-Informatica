@@ -20,4 +20,5 @@ public:
 	Casilla getCasilla(int x, int y); //Casilla en la que se pincha
 	bool validarTurno(int color);
 	int jaque(); //Este va en el OnTimer y comprueba todo el rato si hay jaque o jaque mate
+	void setTurno(int v);
 };

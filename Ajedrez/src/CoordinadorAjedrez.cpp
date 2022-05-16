@@ -30,13 +30,13 @@ void CoordinadorAjedrez::dibuja() {
 		ajedrez.dibuja();
 		ETSIDI::setTextColor(1, 1, 1);
 		ETSIDI::setFont("fuentes/fuente2.otf", 16);
-		ETSIDI::printxy("JAQUE!!!", -1, 8);
+		ETSIDI::printxy("JAQUE AL REY BLANCO!!!", -1, 8);
 	}
 	else if (estado == JAQUENEGRO) {
 		ajedrez.dibuja();
 		ETSIDI::setTextColor(1, 1, 1);
 		ETSIDI::setFont("fuentes/fuente2.otf", 16);
-		ETSIDI::printxy("JAQUE!!!", -1, 8);
+		ETSIDI::printxy("JAQUE AL REY NEGRO!!!", -1, 8);
 	}
 	else if (estado == PAUSE) {
 		gluLookAt(0, 7.5, 30,
@@ -45,7 +45,7 @@ void CoordinadorAjedrez::dibuja() {
 
 		ETSIDI::setTextColor(1, 1, 1);
 		ETSIDI::setFont("fuentes/fuente2.otf", 16);
-		ETSIDI::printxy("Pausa", -5, 8);
+		ETSIDI::printxy("PAUSA", -5, 8);
 		ETSIDI::setTextColor(1, 1, 1);
 		ETSIDI::setFont("fuentes/fuente2.otf", 12);
 		ETSIDI::printxy("PULSE LA TECLA -C- PARA CONTINUAR", -5, 7);
@@ -53,20 +53,16 @@ void CoordinadorAjedrez::dibuja() {
 		ETSIDI::printxy("WenasnoCHESS", 2, 1);
 	}
 	else if (estado == FIN) {
-		gluLookAt(4, 4, 12,
-			4, 4, 0.0,
-			0.0, 1.0, 0.0);
-
 		ajedrez.dibuja();
-		ETSIDI::setTextColor(1, 1, 0);
+
+		ETSIDI::setTextColor(0,0,0);
 		ETSIDI::setFont("fuentes/fuente2.otf", 16);
-		ETSIDI::printxy("JAQUE MATE!!!!!", 2, 5);
-		ETSIDI::setTextColor(1, 1, 1);
+		ETSIDI::printxy("ENHORABUENA HAS GANADO!!!!", -5, 8);
+		ETSIDI::setTextColor(0,0,0);
 		ETSIDI::setFont("fuentes/fuente2.otf", 12);
-		ETSIDI::printxy("PULSE LA TECLA -C- PARA LA REVANCHA", 1, 4);
-		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", 1, 3);
-		ETSIDI::setFont("fuentes/fuente2.otf", 16);
-		ETSIDI::printxy("WenasnoCHESS", 4, 1);
+		ETSIDI::printxy("PULSE LA TECLA -C- PARA CONTINUAR", -5, 7);
+		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", -5, 6);
+		ETSIDI::printxy("WenasnoCHESS", 2, 1);
 	}
 }
 
@@ -104,6 +100,7 @@ void CoordinadorAjedrez::tecla(unsigned char key) {
 	else if (estado == FIN) {
 		if (key == 'c') {
 			estado = INICIO;
+			ajedrez.setTurno(0);
 		}
 		else if (key == 's') {
 			exit(0);

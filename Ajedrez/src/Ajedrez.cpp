@@ -2,9 +2,9 @@
 using namespace std;
 
 void Ajedrez::dibuja() {
-	gluLookAt(4, 4, 12,	// posicion del ojo
-		4, 4, 0,			// hacia que punto mira  
-		0.0, 1.0, 0.0);		// definimos hacia arriba (eje Y)  
+	gluLookAt(4, 4, 12,	
+		4, 4, 0,			
+		0.0, 1.0, 0.0);		
 
 	tablero.dibuja();
 
@@ -116,4 +116,8 @@ Casilla Ajedrez::getCasilla(int x, int y) { //Devuelve la casilla en función de
 
 int Ajedrez::jaque() {
 	return tablero.jaque();
+}
+
+void Ajedrez::setTurno(int v) {
+	turno = v;
 }
