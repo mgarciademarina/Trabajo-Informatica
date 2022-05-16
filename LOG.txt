@@ -5,6 +5,7 @@ Poned fecha en la que hayáis hecho X y vuestra inicial.
 Los cambios más recientes al principio, para que tengan  más visibilidad.
 
 -------------------------------
+(16/05 R) Correción de jaque() para que se tenga en cuenta el turno.
 (16/05 R) Adición de método setTurno(int) en Ajedrez para poder controlar el turno desde CoordinadorAjedrez
 (16/05 R) Correciones de errores en los menús.
 (15/05 R) Sonidos al inicio del juego y con el movimiento de las piezas.
