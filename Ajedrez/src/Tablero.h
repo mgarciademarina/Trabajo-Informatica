@@ -27,7 +27,7 @@ public:
 	int validarEnroque(Casilla co, Casilla cd);
 	bool validarMov(Casilla co, Casilla cd);//Método para validar movimiento, dentro llama al método validar movimiento de la pieza de la casilla de origen
 	void actualiza(Casilla co, Casilla cd);//Actualiza la matriz del tablero
-	int jaque(); 
+	int jaque(int turn); 
 	int Trayectoria(Casilla co, Casilla cd, Casilla cp);
 	
 

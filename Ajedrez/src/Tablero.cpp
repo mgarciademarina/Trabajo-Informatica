@@ -174,7 +174,7 @@ ostream& Tablero::print(ostream& o) {
 	return o;
 }
 
-int Tablero::jaque() {
+int Tablero::jaque(int turn) {
 	int a, b, i, j, jaque1 = 0, jaque2 = 0, comer1 = 0, comer2 = 0, proteger1 = 0, proteger2 = 0, mover1 = 0, mover2 = 0;
 	Casilla rb, rn, EnemigoB, EnemigoN, posibles;
 	for (i = 0; i < 8; i++) {
@@ -195,7 +195,7 @@ int Tablero::jaque() {
 					jaque1++;
 				}
 			}
-			else if (tab[i][j].pieza != NO_PIEZA && tab[i][j].color == BLANCO) {
+			else if (tab[i][j].pieza != NO_PIEZA &&  tab[i][j].color == BLANCO) {
 				if (validarMov(tab[i][j].casilla, rn)) {
 					EnemigoB = tab[i][j].casilla;
 					jaque2++;
@@ -318,9 +318,12 @@ int Tablero::jaque() {
 		else if (comer1 == 0 && mover1 == 0 && (proteger1 == 0 || tab[EnemigoN.f][EnemigoN.c].pieza == CABALLO)) {
 			return 3;
 		}//Jaque Mate al blanco
-		else {
+		else if(turn % 2 == 0){
 			return 1;
-		}//Jaque al blanco
+		}//Jaque al blanco si el turno es de los blancos
+		else {
+			return 3;
+		}
 	}
 	if (jaque2 > 0) {
 		if (jaque2 > 1 && mover2 == 0) {//si hay más de un jaque a la vez y no se puede mover, Jaque Mate
@@ -330,9 +333,12 @@ int Tablero::jaque() {
 			//si hay jaque y no se cumple ninguno, o la pieza no tiene trayectoria, por lo que no se puede proteger, Jaque Mate
 			return 4;
 		}//Jaque Mate al negro
-		else {
+		else if(turn % 2 != 0){
 			return 2;
-		}//Jaque al negro
+		}//Jaque al negro si el tueno es de los negros
+		else {
+			return 4;
+		}
 	}
 	else {
 		return 0;

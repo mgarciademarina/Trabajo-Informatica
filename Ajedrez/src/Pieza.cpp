@@ -52,9 +52,11 @@ void Pieza::dibuja(int flag, int auxmov) {
 	glBegin(GL_POLYGON);
 	if (flag % 2 == 0 && auxmov == 0) {
 		glColor3ub(160, 64, 0);
+		
 	}
 	else if (flag % 2 != 0 && auxmov == 0) {
 		glColor3ub(255, 255, 255);
+		
 	}
 	else if (flag % 2 == 0 && auxmov == 1) {
 		glColor3ub(66, 99, 20);

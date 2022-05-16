@@ -115,9 +115,10 @@ Casilla Ajedrez::getCasilla(int x, int y) { //Devuelve la casilla en función de
 }
 
 int Ajedrez::jaque() {
-	return tablero.jaque();
+	return tablero.jaque(turno);
 }
 
 void Ajedrez::setTurno(int v) {
 	turno = v;
 }
+
