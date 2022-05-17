@@ -27,10 +27,22 @@ public:
 
 	//Métodos gráficos
 	void dibuja(int flag, int auxmov);
+
+	//Otro métodos
+	Casilla getCasilla() { return casilla; }
+	pieza_t getPieza() { return pieza; }
+	color_t getColor() { return color; }
+	bool getMoved() { return moved; }
+
+	void setPieza(pieza_t p) { pieza = p; }
+	void setColor(color_t c) { color = c; }
+	void setCasilla(int x, int y) { casilla.f = x; casilla.c = y; }
+	void setMoved(bool a) { moved = a; }
 	
-	friend class Tablero;
+	
+	/*friend class Tablero;
 	friend class Torre;
 	friend class Reina;
 	friend class Peon;
-	friend class Alfil;
+	friend class Alfil;*/
 };

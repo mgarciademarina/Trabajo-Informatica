@@ -8,7 +8,7 @@ bool Alfil::Mov(Casilla cd, Casilla co, Pieza** tab){
 			int i = cd.f;
 			int j = cd.c;
 			while (cd.f != co.f && cd.c != co.c) {
-				if (tab[cd.f][cd.c].pieza != NO_PIEZA && (cd.f != i && cd.c != j)) {
+				if (tab[cd.f][cd.c].getPieza() != NO_PIEZA && (cd.f != i && cd.c != j)) {
 					return false;
 				}
 				cd.f--;
@@ -18,7 +18,7 @@ bool Alfil::Mov(Casilla cd, Casilla co, Pieza** tab){
 			int i = cd.f;
 			int j = cd.c;
 			while (cd.f != co.f && cd.c != co.c) {
-				if (tab[cd.f][cd.c].pieza != NO_PIEZA && (cd.f != i && cd.c != j)) {
+				if (tab[cd.f][cd.c].getPieza() != NO_PIEZA && (cd.f != i && cd.c != j)) {
 					return false;
 				}
 				cd.f--;
@@ -28,7 +28,7 @@ bool Alfil::Mov(Casilla cd, Casilla co, Pieza** tab){
 			int i = cd.f;
 			int j = cd.c;
 			while (cd.f != co.f && cd.c != co.c) {
-				if (tab[cd.f][cd.c].pieza != NO_PIEZA && (cd.f != i && cd.c != j)) {
+				if (tab[cd.f][cd.c].getPieza() != NO_PIEZA && (cd.f != i && cd.c != j)) {
 					return false;
 				}
 				cd.f++;
@@ -38,7 +38,7 @@ bool Alfil::Mov(Casilla cd, Casilla co, Pieza** tab){
 			int i = cd.f;
 			int j = cd.c;
 			while (cd.f != co.f && cd.c != co.c) {
-				if (tab[cd.f][cd.c].pieza != NO_PIEZA && (cd.f != i && cd.c != j)) {
+				if (tab[cd.f][cd.c].getPieza() != NO_PIEZA && (cd.f != i && cd.c != j)) {
 					return false;
 				}
 				cd.f++;

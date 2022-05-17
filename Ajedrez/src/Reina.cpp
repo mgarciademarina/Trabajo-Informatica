@@ -8,7 +8,7 @@ bool Reina::Mov(Casilla cd, Casilla co, Pieza** tab){
 			int i = cd.f;
 			int j = cd.c;
 			while (cd.f != co.f && cd.c != co.c) {
-				if (tab[cd.f][cd.c].pieza != NO_PIEZA && (cd.f != i && cd.c != j)) {
+				if (tab[cd.f][cd.c].getPieza() != NO_PIEZA && (cd.f != i && cd.c != j)) {
 					return false;
 				}
 				cd.f--;
@@ -18,7 +18,7 @@ bool Reina::Mov(Casilla cd, Casilla co, Pieza** tab){
 			int i = cd.f;
 			int j = cd.c;
 			while (cd.f != co.f && cd.c != co.c) {
-				if (tab[cd.f][cd.c].pieza != NO_PIEZA && (cd.f != i && cd.c != j)) {
+				if (tab[cd.f][cd.c].getPieza() != NO_PIEZA && (cd.f != i && cd.c != j)) {
 					return false;
 				}
 				cd.f--;
@@ -28,7 +28,7 @@ bool Reina::Mov(Casilla cd, Casilla co, Pieza** tab){
 			int i = cd.f;
 			int j = cd.c;
 			while (cd.f != co.f && cd.c != co.c) {
-				if (tab[cd.f][cd.c].pieza != NO_PIEZA && (cd.f != i && cd.c != j)) {
+				if (tab[cd.f][cd.c].getPieza() != NO_PIEZA && (cd.f != i && cd.c != j)) {
 					return false;
 				}
 				cd.f++;
@@ -38,7 +38,7 @@ bool Reina::Mov(Casilla cd, Casilla co, Pieza** tab){
 			int i = cd.f;
 			int j = cd.c;
 			while (cd.f != co.f && cd.c != co.c) {
-				if (tab[cd.f][cd.c].pieza != NO_PIEZA && (cd.f != i && cd.c != j)) {
+				if (tab[cd.f][cd.c].getPieza() != NO_PIEZA && (cd.f != i && cd.c != j)) {
 					return false;
 				}
 				cd.f++;
@@ -49,7 +49,7 @@ bool Reina::Mov(Casilla cd, Casilla co, Pieza** tab){
 			case true:
 				for (int i = cd.c; i != co.c; i--) {
 
-					if (tab[co.f][i].pieza != NO_PIEZA && i != cd.c) {
+					if (tab[co.f][i].getPieza() != NO_PIEZA && i != cd.c) {
 
 						return false;
 					}
@@ -57,7 +57,7 @@ bool Reina::Mov(Casilla cd, Casilla co, Pieza** tab){
 				break;
 			case false:
 				for (int i = cd.c; i != co.c; i++) {
-					if (tab[co.f][i].pieza != NO_PIEZA && i != cd.c) {
+					if (tab[co.f][i].getPieza() != NO_PIEZA && i != cd.c) {
 						return false;
 					}
 				}
@@ -68,14 +68,14 @@ bool Reina::Mov(Casilla cd, Casilla co, Pieza** tab){
 			switch (cd.f > co.f) {
 			case true:
 				for (int i = cd.f; i != co.f; i--) {
-					if (tab[i][co.c].pieza != NO_PIEZA && i != cd.f) {
+					if (tab[i][co.c].getPieza() != NO_PIEZA && i != cd.f) {
 						return false;
 					}
 				}
 				break;
 			case false:
 				for (int i = cd.f; i != co.f; i++) {
-					if (tab[i][co.c].pieza != NO_PIEZA && i != cd.f) {
+					if (tab[i][co.c].getPieza() != NO_PIEZA && i != cd.f) {
 						return false;
 					}
 				}
