@@ -50,6 +50,7 @@ void CoordinadorAjedrez::dibuja() {
 		ETSIDI::setFont("fuentes/fuente2.otf", 12);
 		ETSIDI::printxy("PULSE LA TECLA -C- PARA CONTINUAR", -5, 7);
 		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", -5, 6);
+		ETSIDI::printxy("PULSE LA TECLA -R- PARA REINICIAR LA PARTIDA", -5, 5);
 		ETSIDI::printxy("WenasnoCHESS", 2, 1);
 	}
 	else if (estado == FIN) {
@@ -104,6 +105,10 @@ void CoordinadorAjedrez::tecla(unsigned char key) {
 		}
 		else if (key == 'c' && !jaqueNegro && !jaqueBlanco) {
 			estado = JUEGO;
+		}
+		else if (key == 'r') {
+			estado = INICIO;
+			ajedrez.setTurno(0);
 		}
 	}
 	else if (estado == FIN) {
