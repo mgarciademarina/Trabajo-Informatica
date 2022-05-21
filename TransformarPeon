@@ -1,34 +1,65 @@
-void Peon::Transfor(Casilla cd, Casilla co, color_t color, Tablero tab)
-{
+// EN PEON.CPP
+//bool Peon:: Transfor(Casilla cd, Casilla co,  Pieza** tab) {
 	int num;
-	if ((cd.f == 7) &&( color==BLANCO)) {
-		cout << "Seleccione una pieza:" << endl;
-		cin >> num;
-		switch (num) {
-		case 1: tab[cd.f][cd.c].pieza_t = CABALLO;
+	
+    if (tab[7][cd.c].getColor() == BLANCO) {
+	cout << "Seleccione una pieza:" << endl;
+	cout << "Si presiona 1 se transforma en CABALLO" << endl;
+	cout << "Si presiona 2 se transforma en ALFIL" << endl;
+	cout << "Si presiona 3 se transforma en TORRE" << endl;
+	cout << "Si presiona 4 se transforma en REINA" << endl;
+	cin >> num;
+	switch (num) {
+
+	case 1: tab[cd.f][cd.c].setPieza(CABALLO);
+		return true;
 		break;
-		case 2: tab[cd.f][cd.c].pieza_t = ALFIL;
-			break;
-		case 3: tab[cd.f][cd.c].pieza_t = TORRE;
-			break;
-		case 4: tab[cd.f][cd.c].pieza_t = REINA;
-			break;	
+	case 2: tab[cd.f][cd.c].setPieza(ALFIL);
+		return true;
+		break;
+	case 3: tab[cd.f][cd.c].setPieza(TORRE);
+		return true;
+		break;
+	case 4: tab[cd.f][cd.c].setPieza(REINA);
+		return true;
+		break;
 	}
-	if ((cd.f == 0) && (color == NEGRO)) {
-		cout << "Seleccione una pieza:" << endl;
-		cin >> num;
-		switch (num) {
-		case 1: tab[cd.f][cd.c].pieza_t = CABALLO;
-			break;
-		case 2: tab[cd.f][cd.c].pieza_t = ALFIL;
-			break;
-		case 3: tab[cd.f][cd.c].pieza_t = TORRE;
-			break;
-		case 4: tab[cd.f][cd.c].pieza_t = REINA;
-			break;
-		}
+}
+		
+    if (tab[7][cd.c].getColor() == NEGRO) {
+	cout << "Seleccione una pieza:" << endl;
+	cout << "Si presiona 1 se transforma en CABALLO" << endl;
+	cout << "Si presiona 2 se transforma en ALFIL" << endl;
+	cout << "Si presiona 3 se transforma en TORRE" << endl;
+	cout << "Si presiona 4 se transforma en REINA" << endl;
+	cin >> num;
+	switch (num) {
+	case 1: tab[cd.f][cd.c].setPieza(CABALLO);
+		return true;
+		break;
+	case 2: tab[cd.f][cd.c].setPieza(ALFIL);
+		return true;
+		break;
+	case 3: tab[cd.f][cd.c].setPieza(TORRE);
+		return true;
+		break;
+	case 4: tab[cd.f][cd.c].setPieza(REINA);
+		return true;
+		break;
 	}
 }
 
-//Modificar en Peon.h
-static void Transfor(Casilla cd, Casilla co, color_t color, Tablero tab)
+}
+
+//PEON.H
+static bool Transfor(Casilla cd, Casilla co, Pieza** tab);
+
+//TABLERO.CPP (Se llama esta funcion dentro de Ta
+int Tablero::validarTransformacion(Casilla co, Casilla cd) {
+
+	if ((((tab[co.f][co.c]).getColor() == BLANCO) && (tab[7][cd.c].getColor() == BLANCO)) || ((tab[co.f][co.c].getColor() == NEGRO) && (tab[0][cd.c].getColor() == NEGRO)))
+	return	Peon::Transfor(cd, co, tab);  
+}
+
+//TABLERO.H
+int validarTransformacion(Casilla co, Casilla cd);
