@@ -2,8 +2,8 @@
 #include "Pieza.h"
 
 class Rey{
-private:
-	
 public:
-	static bool Mov(Casilla cd, Casilla co, Pieza** tab);
+	static bool Mov(Casilla cd, Casilla co);
+	//Comprueba el movimiento a partir de la casilla de origen y destino
+	//No es necesaria la trayectoria
 };
