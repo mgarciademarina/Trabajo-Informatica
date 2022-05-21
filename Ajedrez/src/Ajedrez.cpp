@@ -115,9 +115,11 @@ int Ajedrez::jaque() {
 void Ajedrez::setTurno(int v) {
 	turno = v;
 }
+
 void Ajedrez::guardar() {
 	tablero.guardar();
 }
+
 void Ajedrez::cargar() {
 	tablero.cargar();
 }
