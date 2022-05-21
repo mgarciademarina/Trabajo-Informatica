@@ -21,6 +21,7 @@ void CoordinadorAjedrez::dibuja() {
 		ETSIDI::setFont("fuentes/fuente2.otf", 12);
 		ETSIDI::printxy("PULSE LA TECLA -E- PARA EMPEZAR", -5, 7);
 		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", -5, 6);
+		ETSIDI::printxy("PULSE LA TECLA -L- PARA CARGAR", -5, 5);
 		ETSIDI::printxy("WenasnoCHESS", 2, 1);
 	}
 	else if (estado == JUEGO) {
@@ -51,6 +52,7 @@ void CoordinadorAjedrez::dibuja() {
 		ETSIDI::printxy("PULSE LA TECLA -C- PARA CONTINUAR", -5, 7);
 		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", -5, 6);
 		ETSIDI::printxy("PULSE LA TECLA -R- PARA REINICIAR LA PARTIDA", -5, 5);
+		ETSIDI::printxy("PULSE LA TECLA -G- PARA GUARDAR", -5, 4);
 		ETSIDI::printxy("WenasnoCHESS", 2, 1);
 	}
 	else if (estado == FIN) {										//Pantalla de fin
@@ -76,7 +78,7 @@ void CoordinadorAjedrez::dibuja() {
 	}
 }
 
-void CoordinadorAjedrez::tecla(unsigned char key) {	//Navegación por los menús con el teclado
+void CoordinadorAjedrez::tecla(unsigned char key) {	//NavegaciÃ³n por los menÃºs con el teclado
 	if (estado == INICIO) {
 		ajedrez.inicializa();
 		if (key == 'e'){
@@ -110,6 +112,9 @@ void CoordinadorAjedrez::tecla(unsigned char key) {	//Navegación por los menús c
 			estado = INICIO;
 			ajedrez.setTurno(0);
 		}
+		else if(key=='g') {
+			ajedrez.guardar();	
+		}
 	}
 	else if (estado == FIN) {
 		if (key == 'c') {
@@ -122,7 +127,7 @@ void CoordinadorAjedrez::tecla(unsigned char key) {	//Navegación por los menús c
 	}
 }
 
-void CoordinadorAjedrez::jugada(int button, int state, int x, int y) { //En qué estados se pueden mover las piezas
+void CoordinadorAjedrez::jugada(int button, int state, int x, int y) { //En quÃ© estados se pueden mover las piezas
 	if (estado == JUEGO) {
 		ajedrez.jugada(button, state, x, y);
 	}if (estado == JAQUEBLANCO || estado == JAQUENEGRO) {
@@ -130,7 +135,7 @@ void CoordinadorAjedrez::jugada(int button, int state, int x, int y) { //En qué 
 	}
 }
 
-void CoordinadorAjedrez::jaque() { //Transiciones entre estados relacionas con jaque y jaque mate en función del valor devuelto
+void CoordinadorAjedrez::jaque() { //Transiciones entre estados relacionas con jaque y jaque mate en funciÃ³n del valor devuelto
 	if (estado == JUEGO) {
 		if (ajedrez.jaque() == 1) {
 			estado = JAQUEBLANCO;
