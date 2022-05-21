@@ -2,9 +2,12 @@
 #include <iostream>
 using namespace std;
 
-bool Torre::Mov(Casilla cd, Casilla co, Pieza** tab){
+bool Torre::Mov(Casilla cd, Casilla co, Pieza** tab){	
+//Comprbación de la trayectoria en sus difernetes posibilidades
+//Basta con recorrer el tablero desde la casilla de origen hasta el destino
+//Teniedno en cuenta la ley de movimiento para evitar comprobaciones innecesarias
 
-	if (cd.f == co.f) {
+	if (cd.f == co.f) {														
 		switch (cd.c > co.c) {
 		case true:
 			for (int i = cd.c; i != co.c; i--) {
