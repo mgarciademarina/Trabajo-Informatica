@@ -35,49 +35,38 @@ int main(int argc, char* argv[])
 	return 0;
 }
 
-void OnDraw(void)
-{
+void OnDraw(void){
 		
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
 	miajedrez.dibuja();
 
-	//no borrar esta linea ni poner nada despues
 	glutSwapBuffers();
 }
 
-void OnKeyboardDown(unsigned char key, int x_t, int y_t)
-{
-	//poner aqui el código de teclado
+void OnKeyboardDown(unsigned char key, int x_t, int y_t){
+
 	miajedrez.tecla(key);
 
 	glutPostRedisplay();
 }
 
 void OnMouseDown(int button, int state, int x, int y) {
+	//Solo permite la jugada si se pulsa el botón izdo. dentro del tablero
+	//Si se pulsa fuera no hace nada
+	//Dependiente del tamaño de la ventana de juego, si se cambia no funciona
 	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && x>=125 && x<= 677 && y>= 25 && y <= 577) {
 		miajedrez.jugada(button, state, x, y);
 	}
 	
 }
 
-void OnTimer(int value)
-{
-	//poner aqui el código de animacion
-	
-	miajedrez.jaque();
-	/*if (ajedrez.jaque() == 1 || ajedrez.jaque() == 2) {
-		cout << "Jaque" << endl;
-	}
-	else if (ajedrez.jaque() == 3 || ajedrez.jaque() == 4) {
-		cout << "Jaque Mate" << endl;
-	}*/
+void OnTimer(int value){
 
-	//no borrar estas lineas
+	miajedrez.jaque();
+
 	glutTimerFunc(25, OnTimer, 0);
 	glutPostRedisplay();
 }
