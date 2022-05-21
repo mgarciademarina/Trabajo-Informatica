@@ -2,6 +2,10 @@
 #include <math.h>
 
 bool Alfil::Mov(Casilla cd, Casilla co, Pieza** tab){
+//Comprbación de la trayectoria en sus difernetes posibilidades
+//Basta con recorrer el tablero desde la casilla de origen hasta el destino
+//Teniedno en cuenta la ley de movimiento para evitar comprobaciones innecesarias
+//Hay 4 posibilidades en cuanto a la relación entre casilla de origen y destino 
 
 	if ((abs(cd.f - co.f) == abs(cd.c - co.c))) {
 		if (cd.f > co.f && cd.c > co.c) {
