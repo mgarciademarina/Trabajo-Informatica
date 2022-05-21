@@ -88,6 +88,10 @@ void CoordinadorAjedrez::tecla(unsigned char key) {	//Navegación por los menús
 		else if (key == 's') {
 			exit(0);
 		}
+		else if (key == 'l') {
+			ajedrez.cargar();
+			estado = JUEGO;
+		}
 		
 	}
 	else if (estado == JUEGO || estado == JAQUEBLANCO || estado == JAQUENEGRO) {
