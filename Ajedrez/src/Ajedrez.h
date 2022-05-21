@@ -24,4 +24,5 @@ public:
 	void setTurno(int v);								//Setter del turno para permitir reiniciar la partida sin errores
 	void guardar(); //Llamada al método guardar de tablero
 	void cargar(); //Llamada al método cargar de tablero
+	int getTurno(){return turno;}
 };
