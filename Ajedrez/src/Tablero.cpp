@@ -29,7 +29,7 @@ Tablero::~Tablero() {
 	delete[] pmov;
 }
 
-void Tablero::setPosInit() {
+void Tablero::setPosInit() {	//Inicialización del tablero a las posiciones iniciales de las piezas
 	for (int i = 0; i < 8; i++) {
 		for (int j = 0; j < 8; j++) {
 			//Asignación de color
@@ -90,33 +90,33 @@ int Tablero::validarEnroque(Casilla co, Casilla cd) {
 
 bool Tablero::validarMov(Casilla co, Casilla cd){
 	
-	if (validarEnroque(co, cd) != 0) return Torre::Mov(cd, co, tab);
+	if (validarEnroque(co, cd) != 0) return Torre::Mov(cd, co, tab); //Comprobación de enroque si procede
 	
-	if (tab[co.f][co.c].getColor() == tab[cd.f][cd.c].getColor()) {
+	if (tab[co.f][co.c].getColor() == tab[cd.f][cd.c].getColor()) { //Si el color de destino es igual que el de origen invalida el movimiento
 		return false;
 	}
 	else {
 		bool R = false;
-		switch (tab[co.f][co.c].getPieza()) {
+		switch (tab[co.f][co.c].getPieza()) { //Comprobación del movimiento en función de la pieza de origen y destino
 		case PEON:
 			if (((tab[co.f][co.c].getColor() == BLANCO)&&(tab[cd.f][cd.c].getColor() == NEGRO))||((tab[co.f][co.c].getColor() == NEGRO)&&(tab[cd.f][cd.c].getColor() == BLANCO)))
-			{ R=Peon::Comer(cd, co, tab);} //Si hay una Pieza de Negro en el destino de un peon blanco o al reves se llama al metodo que comprueva el movimiento de mover
+			{ R=Peon::Comer(cd, co, tab);} //Si hay una Pieza de Negro en el destino de un peon blanco o al reves se llama al metodo que comprueba el movimiento de comer
 			else {R = Peon::Mov(cd, co, tab);}
 			break;
 		case TORRE:
-			R = Torre::Mov(cd, co, tab); //Completo
+			R = Torre::Mov(cd, co, tab); 
 			break;
 		case CABALLO:
-			R = Caballo::Mov(cd, co); //Como el caballo puede saltar ya está completo
+			R = Caballo::Mov(cd, co); 
 			break;
 		case ALFIL:
-			R = Alfil::Mov(cd, co, tab); //Completo
+			R = Alfil::Mov(cd, co, tab);
 			break;
 		case REINA:
-			R = Reina::Mov(cd, co, tab); //Completo
+			R = Reina::Mov(cd, co, tab); 
 			break;
 		case REY:
-			R = Rey::Mov(cd, co, tab); //Completo a falta del enroque 
+			R = Rey::Mov(cd, co); 
 			break;
 		}
 		return R;
@@ -125,7 +125,8 @@ bool Tablero::validarMov(Casilla co, Casilla cd){
 
 void Tablero::actualiza(Casilla co, Casilla cd) {
 	//Hay dos posibilidades: movimiento a casilla vacía o comer pieza
-	//Conviene borrar la casilla de origen (NO_PIEZA y NO_COLOR) y sobreescribir los datos en la de destino
+	//borra la casilla de origen (NO_PIEZA y NO_COLOR) y sobreescribe los datos en la de destino
+	//Indica que la pieza se ha movido
 	tab[cd.f][cd.c].setPieza(tab[co.f][co.c].getPieza());
 	tab[cd.f][cd.c].setColor(tab[co.f][co.c].getColor());
 
@@ -136,41 +137,25 @@ void Tablero::actualiza(Casilla co, Casilla cd) {
 
 }
 
-int Tablero::posiblesMov(Casilla co) {
-	int sum = 0;
+int Tablero::posiblesMov(Casilla co) { 
+	//Recorre el tablero y asigna valor 1 a la casilla de destino si la pieza se puede mover ahí
+	//Matriz de ayuda al movimiento
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
 			if (validarMov(co, tab[i][j].getCasilla())) {
 				pmov[i][j] = 1;
-				sum++;
 			}
 		}
 	}
-	return sum;
+	return 0;
 }
 
-void Tablero::setMovInit() {
+void Tablero::setMovInit() { //Reseta la matriz de ayuda al movimiento a 0
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
 			pmov[i][j] = 0;
 		}
 	}
-}
-
-string Tablero::to_string() {
-	stringstream str;
-	for (int i = 7; i >= 0; i--) {
-		for (int j = 0; j < 8; j++) {
-			str << tab[i][j].getPieza() << " " << tab[i][j].getColor() << "|";
-		}
-		str << endl;
-	}
-	return str.str();
-}
-
-ostream& Tablero::print(ostream& o) {
-	o << to_string();
-	return o;
 }
 
 int Tablero::jaque(int turn) {
@@ -307,8 +292,8 @@ int Tablero::jaque(int turn) {
 			}
 		}
 	}
-	cout << jaque1 << "/" << comer1 << "/" << mover1 << "/" << proteger1 << endl;
-	cout << jaque2 << "/" << comer2 << "/" << mover2 << "/" << proteger2 << endl;//para ver como van variando las variables y si coinciden con lo que está pasando
+	//cout << jaque1 << "/" << comer1 << "/" << mover1 << "/" << proteger1 << endl;
+	//cout << jaque2 << "/" << comer2 << "/" << mover2 << "/" << proteger2 << endl;//para ver como van variando las variables y si coinciden con lo que está pasando
 	//en el tablero
 	if (jaque1 > 0) {
 		if (jaque1 > 1 && mover1 == 0) {
@@ -343,6 +328,8 @@ int Tablero::jaque(int turn) {
 		return 0;
 	}
 }
+
+
 int Tablero::Trayectoria(Casilla ori, Casilla des, Casilla prot) {
 	int i = 0, j = 0, k = 0, l = 0;
 	Casilla aux;
@@ -488,6 +475,23 @@ int Tablero::Trayectoria(Casilla ori, Casilla des, Casilla prot) {
 	else {
 		return 0;
 	}
+}
+
+
+string Tablero::to_string() { //Métodos para test unitarios, no se utilizan en el juego
+	stringstream str;
+	for (int i = 7; i >= 0; i--) {
+		for (int j = 0; j < 8; j++) {
+			str << tab[i][j].getPieza() << " " << tab[i][j].getColor() << "|";
+		}
+		str << endl;
+	}
+	return str.str();
+}
+
+ostream& Tablero::print(ostream& o) { //Métodos para test unitarios, no se utilizan en el juego
+	o << to_string();
+	return o;
 }
 
 

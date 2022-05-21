@@ -9,7 +9,7 @@ CoordinadorAjedrez::~CoordinadorAjedrez() {
 }
 
 void CoordinadorAjedrez::dibuja() {
-	if (estado == INICIO) {
+	if (estado == INICIO) {											//Dibuja la pantalla de inicio
 		gluLookAt(0, 7.5, 30, 
 			0.0, 7.5, 0.0, 
 			0.0, 1.0, 0.0); 
@@ -24,21 +24,21 @@ void CoordinadorAjedrez::dibuja() {
 		ETSIDI::printxy("WenasnoCHESS", 2, 1);
 	}
 	else if (estado == JUEGO) {
-		ajedrez.dibuja();
+		ajedrez.dibuja();											//Dibuja el tablero con las piezas
 	}
-	else if (estado == JAQUEBLANCO) {
+	else if (estado == JAQUEBLANCO) {								//Incluye aviso de jaque a rey blanco
 		ajedrez.dibuja();
 		ETSIDI::setTextColor(1, 1, 1);
 		ETSIDI::setFont("fuentes/fuente2.otf", 16);
 		ETSIDI::printxy("JAQUE AL REY BLANCO!!!", -1, 8);
 	}
-	else if (estado == JAQUENEGRO) {
+	else if (estado == JAQUENEGRO) {								//Incluye aviso de jaque a rey negro
 		ajedrez.dibuja();
 		ETSIDI::setTextColor(1, 1, 1);
 		ETSIDI::setFont("fuentes/fuente2.otf", 16);
 		ETSIDI::printxy("JAQUE AL REY NEGRO!!!", -1, 8);
 	}
-	else if (estado == PAUSE) {
+	else if (estado == PAUSE) {										//Pantalla de pausa 
 		gluLookAt(0, 7.5, 30,
 			0.0, 7.5, 0.0,
 			0.0, 1.0, 0.0);
@@ -53,7 +53,7 @@ void CoordinadorAjedrez::dibuja() {
 		ETSIDI::printxy("PULSE LA TECLA -R- PARA REINICIAR LA PARTIDA", -5, 5);
 		ETSIDI::printxy("WenasnoCHESS", 2, 1);
 	}
-	else if (estado == FIN) {
+	else if (estado == FIN) {										//Pantalla de fin
 		ajedrez.dibuja();
 
 		glDisable(GL_LIGHTING);
@@ -76,7 +76,7 @@ void CoordinadorAjedrez::dibuja() {
 	}
 }
 
-void CoordinadorAjedrez::tecla(unsigned char key) {
+void CoordinadorAjedrez::tecla(unsigned char key) {	//Navegación por los menús con el teclado
 	if (estado == INICIO) {
 		ajedrez.inicializa();
 		if (key == 'e'){
@@ -122,7 +122,7 @@ void CoordinadorAjedrez::tecla(unsigned char key) {
 	}
 }
 
-void CoordinadorAjedrez::jugada(int button, int state, int x, int y) {
+void CoordinadorAjedrez::jugada(int button, int state, int x, int y) { //En qué estados se pueden mover las piezas
 	if (estado == JUEGO) {
 		ajedrez.jugada(button, state, x, y);
 	}if (estado == JAQUEBLANCO || estado == JAQUENEGRO) {
@@ -130,7 +130,7 @@ void CoordinadorAjedrez::jugada(int button, int state, int x, int y) {
 	}
 }
 
-void CoordinadorAjedrez::jaque() {
+void CoordinadorAjedrez::jaque() { //Transiciones entre estados relacionas con jaque y jaque mate en función del valor devuelto
 	if (estado == JUEGO) {
 		if (ajedrez.jaque() == 1) {
 			estado = JAQUEBLANCO;
