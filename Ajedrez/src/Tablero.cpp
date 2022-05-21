@@ -535,23 +535,25 @@ void Tablero::guardar(int t) {
 				color = 'Q';
 				break;
 			}
-			guarda << pieza << color << tab[i][j],getMoved()<< endl;
+			guarda << pieza << color << tab[i][j].getMoved()<< endl;
 		}
 	}
 }
 
-void Tablero::cargar() {
+int Tablero::cargar() {
 	string cas;
-	int i, j, k;
+	int i, j, k = 0;
 	ifstream carga("Partida.txt");
-	if(cas[0]>=48 && cas[0]<= 57){
-		k=cas[0]-48;
-	}
 	if (!carga) {
 		setMovInit();
 		setPosInit();
+		return 0;
 	}
 	else {
+		carga >> cas;
+		if (cas[0] >= 48 && cas[0] <= 57) {
+			k = cas[0] - 48;
+		}
 		for (i = 0; i < 8; i++) {
 			for (j = 0; j < 8; j++) {
 				carga >> cas;
