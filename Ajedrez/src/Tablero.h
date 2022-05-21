@@ -31,7 +31,7 @@ public:
 	int jaque(int turn);									//Comprobación de jaque y jaque mate
 	int Trayectoria(Casilla co, Casilla cd, Casilla cp);	//Comprobación de trayectorias para jaque y jaque mate
 	void guardar(int t);									//Guarda la posición de las fichas en un fichero txt
-	int cargar();											//Lee el fichero txt guardado y coloca las piezas acorede a lo escrito
+	int cargar();											//Lee el fichero txt guardado y coloca las piezas acorde a lo escrito
 
 	//Otros métodos
 	string to_string();										//Auxiliares para test unitarios
