@@ -493,13 +493,14 @@ ostream& Tablero::print(ostream& o) { //Métodos para test unitarios, no se util
 	o << to_string();
 	return o;
 }
+
 void Tablero::guardar() {
 	int i, j, fila, colum;
 	char pieza, color;
 	ofstream guarda("Partida.txt");
 	for (i = 0; i <8; i++) {
 		for (j = 0; j <8; j++) {
-			switch (tab[i][j].pieza) {
+			switch (tab[i][j].getPieza()) {
 			case PEON:
 				pieza = 'P';
 				break;
@@ -522,7 +523,7 @@ void Tablero::guardar() {
 				pieza = 'Q';
 				break;
 			}
-			switch (tab[i][j].color) {
+			switch (tab[i][j].getColor()) {
 			case BLANCO:
 				color = 'B';
 				break;
@@ -537,49 +538,54 @@ void Tablero::guardar() {
 		}
 	}
 }
+
 void Tablero::cargar() {
 	string cas;
 	int i, j;
-	setPosInit();
-	setMovInit();
 	ifstream carga("Partida.txt");
-	for (i = 0; i < 8; i++) {
-		for (j = 0; j < 8; j++) {
-			carga >> cas;
-			cout << cas << endl;
-			switch (cas[0]) {
-			case 'P':
-				tab[i][j].pieza = PEON;
-				break;
-			case 'T':
-				tab[i][j].pieza = TORRE;
-				break;
-			case 'A':
-				tab[i][j].pieza = ALFIL;
-				break;
-			case 'C':
-				tab[i][j].pieza = CABALLO;
-				break;
-			case 'R':
-				tab[i][j].pieza = REY;
-				break;
-			case 'X':
-				tab[i][j].pieza = REINA;
-				break;
-			case 'Q':
-				tab[i][j].pieza = NO_PIEZA;
-				break;
-			}
-			switch (cas[1]) {
-			case 'B':
-				tab[i][j].color = BLANCO;
-				break;
-			case 'N':
-				tab[i][j].color = NEGRO;
-				break;
-			case 'Q':
-				tab[i][j].color = NO_COLOR;
-				break;
+	if (!carga) {
+		setMovInit();
+		setPosInit();
+	}
+	else {
+		for (i = 0; i < 8; i++) {
+			for (j = 0; j < 8; j++) {
+				carga >> cas;
+				cout << cas << endl;
+				switch (cas[0]) {
+				case 'P':
+					tab[i][j].setPieza(PEON);
+					break;
+				case 'T':
+					tab[i][j].setPieza(TORRE);
+					break;
+				case 'A':
+					tab[i][j].setPieza(ALFIL);
+					break;
+				case 'C':
+					tab[i][j].setPieza(CABALLO);
+					break;
+				case 'R':
+					tab[i][j].setPieza(REY);
+					break;
+				case 'X':
+					tab[i][j].setPieza(REINA);
+					break;
+				case 'Q':
+					tab[i][j].setPieza(NO_PIEZA);
+					break;
+				}
+				switch (cas[1]) {
+				case 'B':
+					tab[i][j].setColor(BLANCO);
+					break;
+				case 'N':
+					tab[i][j].setColor(NEGRO);
+					break;
+				case 'Q':
+					tab[i][j].setColor(NO_COLOR);
+					break;
+				}
 			}
 		}
 	}
