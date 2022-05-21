@@ -5,6 +5,7 @@ Poned fecha en la que hayáis hecho X y vuestra inicial.
 Los cambios más recientes al principio, para que tengan  más visibilidad.
 
 -------------------------------
+(21/05 D) Adición de los métodos guardar y cargar
 (21/05 R) Comentarios en el código y corrección de errores
 (17/05 R) Ahora desde pause se puede reiniciar el juego
 (17/05 R) Setter y getters de pieza para el encapsulamiento.
