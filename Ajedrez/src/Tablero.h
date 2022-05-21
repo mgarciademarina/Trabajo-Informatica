@@ -30,8 +30,8 @@ public:
 	void actualiza(Casilla co, Casilla cd);					//Actualiza la matriz del tablero si el movmiento es válido
 	int jaque(int turn);									//Comprobación de jaque y jaque mate
 	int Trayectoria(Casilla co, Casilla cd, Casilla cp);	//Comprobación de trayectorias para jaque y jaque mate
-	void guardar(); //Guarda la posición de las fichas en un fichero txt
-	void cargar(); //Lee el fichero txt guardado y coloca las piezas acorede a lo escrito
+	void guardar(int t); //Guarda la posición de las fichas en un fichero txt
+	int cargar(); //Lee el fichero txt guardado y coloca las piezas acorede a lo escrito
 
 	//Otros métodos
 	string to_string();										//Auxiliares para test unitarios
