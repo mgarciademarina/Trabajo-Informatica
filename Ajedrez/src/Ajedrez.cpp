@@ -120,7 +120,7 @@ void Ajedrez::setTurno(int v) {
 }
 
 void Ajedrez::guardar() {
-	tablero.guardar();
+	tablero.guardar(turno);
 }
 
 void Ajedrez::cargar() {
