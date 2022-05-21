@@ -493,5 +493,97 @@ ostream& Tablero::print(ostream& o) { //Métodos para test unitarios, no se util
 	o << to_string();
 	return o;
 }
+void Tablero::guardar() {
+	int i, j, fila, colum;
+	char pieza, color;
+	ofstream guarda("Partida.txt");
+	for (i = 0; i <8; i++) {
+		for (j = 0; j <8; j++) {
+			switch (tab[i][j].pieza) {
+			case PEON:
+				pieza = 'P';
+				break;
+			case TORRE:
+				pieza = 'T';
+				break;
+			case CABALLO:
+				pieza = 'C';
+				break;
+			case ALFIL:
+				pieza = 'A';
+				break;
+			case REY:
+				pieza = 'R';
+				break;
+			case REINA:
+				pieza = 'X';
+				break;
+			case NO_PIEZA:
+				pieza = 'Q';
+				break;
+			}
+			switch (tab[i][j].color) {
+			case BLANCO:
+				color = 'B';
+				break;
+			case NEGRO:
+				color = 'N';
+				break;
+			case NO_COLOR:
+				color = 'Q';
+				break;
+			}
+			guarda << pieza << color << endl;
+		}
+	}
+}
+void Tablero::cargar() {
+	string cas;
+	int i, j;
+	setPosInit();
+	setMovInit();
+	ifstream carga("Partida.txt");
+	for (i = 0; i < 8; i++) {
+		for (j = 0; j < 8; j++) {
+			carga >> cas;
+			cout << cas << endl;
+			switch (cas[0]) {
+			case 'P':
+				tab[i][j].pieza = PEON;
+				break;
+			case 'T':
+				tab[i][j].pieza = TORRE;
+				break;
+			case 'A':
+				tab[i][j].pieza = ALFIL;
+				break;
+			case 'C':
+				tab[i][j].pieza = CABALLO;
+				break;
+			case 'R':
+				tab[i][j].pieza = REY;
+				break;
+			case 'X':
+				tab[i][j].pieza = REINA;
+				break;
+			case 'Q':
+				tab[i][j].pieza = NO_PIEZA;
+				break;
+			}
+			switch (cas[1]) {
+			case 'B':
+				tab[i][j].color = BLANCO;
+				break;
+			case 'N':
+				tab[i][j].color = NEGRO;
+				break;
+			case 'Q':
+				tab[i][j].color = NO_COLOR;
+				break;
+			}
+		}
+	}
+	carga.close();
+}
 
 
