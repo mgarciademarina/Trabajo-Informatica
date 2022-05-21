@@ -83,9 +83,6 @@
     <ClCompile Include="src\Rey.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\TestUnitarios.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="src\CoordinadorAjedrez.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>

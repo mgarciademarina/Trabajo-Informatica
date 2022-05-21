@@ -43,7 +43,6 @@
     <ClCompile Include="src\Reina.cpp" />
     <ClCompile Include="src\Rey.cpp" />
     <ClCompile Include="src\Tablero.cpp" />
-    <ClCompile Include="src\TestUnitarios.cpp" />
     <ClCompile Include="src\Torre.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
