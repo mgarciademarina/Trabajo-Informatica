@@ -90,6 +90,9 @@ int Ajedrez::jugada(int button, int state, int x, int y) { //Implementación de 
 
 		}
 	}
+	if (turno > 9) {
+		turno = 0;
+	}
 	return 0;
 }
 
@@ -121,5 +124,5 @@ void Ajedrez::guardar() {
 }
 
 void Ajedrez::cargar() {
-	tablero.cargar();
+	setTurno(tablero.cargar());
 }
