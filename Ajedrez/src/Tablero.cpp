@@ -494,10 +494,11 @@ ostream& Tablero::print(ostream& o) { //Métodos para test unitarios, no se util
 	return o;
 }
 
-void Tablero::guardar() {
+void Tablero::guardar(int t) {
 	int i, j, fila, colum;
 	char pieza, color;
 	ofstream guarda("Partida.txt");
+	guarda<<t<<endl;
 	for (i = 0; i <8; i++) {
 		for (j = 0; j <8; j++) {
 			switch (tab[i][j].getPieza()) {
@@ -534,15 +535,18 @@ void Tablero::guardar() {
 				color = 'Q';
 				break;
 			}
-			guarda << pieza << color << endl;
+			guarda << pieza << color << tab[i][j],getMoved()<< endl;
 		}
 	}
 }
 
 void Tablero::cargar() {
 	string cas;
-	int i, j;
+	int i, j, k;
 	ifstream carga("Partida.txt");
+	if(cas[0]>=48 && cas[0]<= 57){
+		k=cas[0]-48;
+	}
 	if (!carga) {
 		setMovInit();
 		setPosInit();
@@ -586,10 +590,12 @@ void Tablero::cargar() {
 					tab[i][j].setColor(NO_COLOR);
 					break;
 				}
+				tab[i][j].setMoved(cas[2]-48);
 			}
 		}
 	}
 	carga.close();
+	return k;
 }
 
 
