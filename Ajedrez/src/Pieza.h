@@ -9,15 +9,16 @@
 #include "freeglut.h"
 #include "ETSIDI.h"
 
+//Numeración para la identificación de piezas
 enum pieza_t { NO_PIEZA = -1, PEON = 0, TORRE = 1, ALFIL = 2, CABALLO = 3, REY = 4, REINA = 5 };
 enum color_t { NO_COLOR = -1, BLANCO = 0, NEGRO = 1 };
 
 class Pieza {
 private: 
-	Casilla casilla;
+	Casilla casilla;	
 	pieza_t pieza;
 	color_t color;
-	bool moved; //indica si la pieza se ha movido durante la partida o no
+	bool moved;			//indica si la pieza se ha movido durante la partida o no
 
 public:
 	Pieza();
@@ -26,9 +27,11 @@ public:
 	~Pieza();
 
 	//Métodos gráficos
-	void dibuja(int flag, int auxmov);
+	void dibuja(int flag, int auxmov);	//Cada pieza se dibuja a sí misma
+										//flag y auxmov son auxiliares para el color de fondo de la casilla y la ayuda al jugador
 
 	//Otro métodos
+	//Setters y getters para cumplir el principio de encpasulamiento
 	Casilla getCasilla() { return casilla; }
 	pieza_t getPieza() { return pieza; }
 	color_t getColor() { return color; }
@@ -39,10 +42,4 @@ public:
 	void setCasilla(int x, int y) { casilla.f = x; casilla.c = y; }
 	void setMoved(bool a) { moved = a; }
 	
-	
-	/*friend class Tablero;
-	friend class Torre;
-	friend class Reina;
-	friend class Peon;
-	friend class Alfil;*/
 };

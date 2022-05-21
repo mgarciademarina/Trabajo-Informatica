@@ -15,10 +15,10 @@ Pieza::~Pieza(){
 
 }
 
-void Pieza::dibuja(int flag, int auxmov) {
+void Pieza::dibuja(int flag, int auxmov) { //Cada pieza se dibuja a sí misma 
 	glEnable(GL_TEXTURE_2D);
 
-	switch (pieza) {
+	switch (pieza) {	//Carga las texturas en función del tipo de pieza
 	case PEON:
 		if (color == 0) { glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Peon_B_Mod.png").id); }
 		else if (color == 1) { glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/Peon_N_Mod.png").id); }
@@ -50,6 +50,7 @@ void Pieza::dibuja(int flag, int auxmov) {
 
 	glDisable(GL_LIGHTING);
 	glBegin(GL_POLYGON);
+	//Carga el color de fondo de la casilla teniendo en cuenta la ayuda al movimiento
 	if (flag % 2 == 0 && auxmov == 0) {
 		glColor3ub(160, 64, 0);
 		
@@ -60,7 +61,6 @@ void Pieza::dibuja(int flag, int auxmov) {
 	}
 	else if (flag % 2 == 0 && auxmov == 1) {
 		glColor3ub(66, 99, 20);
-		//Pinta el fondo de la casilla de otro color si la pieza seleccionada puede moverse a esa posición
 	}
 	else if (flag % 2 != 0 && auxmov == 1) {
 		glColor3ub(131, 169, 79);
