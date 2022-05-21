@@ -21,7 +21,7 @@ void CoordinadorAjedrez::dibuja() {
 		ETSIDI::setFont("fuentes/fuente2.otf", 12);
 		ETSIDI::printxy("PULSE LA TECLA -E- PARA EMPEZAR", -5, 7);
 		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", -5, 6);
-		ETSIDI::printxy("PULSE LA TECLA -L- PARA CARGAR", -5, 5);
+		ETSIDI::printxy("PULSE LA TECLA -L- PARA CARGAR LA ÚLTIMA PARTIDA GUARDADA", -5, 5);
 		ETSIDI::printxy("WenasnoCHESS", 2, 1);
 	}
 	else if (estado == JUEGO) {
@@ -52,7 +52,7 @@ void CoordinadorAjedrez::dibuja() {
 		ETSIDI::printxy("PULSE LA TECLA -C- PARA CONTINUAR", -5, 7);
 		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", -5, 6);
 		ETSIDI::printxy("PULSE LA TECLA -R- PARA REINICIAR LA PARTIDA", -5, 5);
-		ETSIDI::printxy("PULSE LA TECLA -G- PARA GUARDAR", -5, 4);
+		ETSIDI::printxy("PULSE LA TECLA -G- PARA GUARDAR LA PARTIDA", -5, 4);
 		ETSIDI::printxy("WenasnoCHESS", 2, 1);
 	}
 	else if (estado == FIN) {										//Pantalla de fin
