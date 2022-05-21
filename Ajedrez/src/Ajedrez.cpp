@@ -15,35 +15,32 @@ void Ajedrez::inicializa() {
 	tablero.setMovInit();
 }
 
-int Ajedrez::jugada(int button, int state, int x, int y) {
-	//Get Origen si el origen no está guardado ya, se dan valores por defecto de -10 para origen y destino
-	if (origen.f == HOME && origen.c == HOME) {
+int Ajedrez::jugada(int button, int state, int x, int y) { //Implementación de una jugada
+	
+	if (origen.f == HOME && origen.c == HOME) { //Si no hay origen seleccionado, se slecciona uno
 
 		origen = getCasilla(x, y);
 
-		if (!validarTurno(tablero.getColor(origen))) { //Si no es el turno o se pulsa una casilla vacía
+		if (!validarTurno(tablero.getColor(origen))) { //Si no es el turno o se pulsa una casilla vacía se borra el origen
 			
-			cout << "Casilla no valida!" << endl;
 			origen.f = origen.c = HOME;
 			return 0;
 		}
-		tablero.posiblesMov(origen);
-		cout <<"Origen " << origen.f << " " << origen.c << endl;//Test
-	}
-	else if (origen.f != HOME && origen.c != HOME && destino.f == HOME && destino.c == HOME) {//Si ya está guarado el origen
+		tablero.posiblesMov(origen); //Muestra los posibles movimiento de la pieza seleccionada
 		
+	}
+	else if (origen.f != HOME && origen.c != HOME && destino.f == HOME && destino.c == HOME) {	//Si ya está guarado el origen
+																								//slecciona el destino
 		destino = getCasilla(x, y);
 		
-		if (destino == origen) {
+		if (destino == origen) { //Si el origen es igual al destino, se borra el origen y el destino
 			
-			origen.f = origen.c = destino.f = destino.c = HOME; //Borra el origen si se pulsa la misma casilla
-			tablero.setMovInit(); //Resetea la matriz de posibles movimientos
-			cout << "Origen borrado" << endl;//Test
+			origen.f = origen.c = destino.f = destino.c = HOME; 
+			tablero.setMovInit(); //Borra la matriz de ayuda el movimeinto
 			return 0;
 
 		}else if (!tablero.validarMov(origen, destino)) {//Si el movimiento no es válido borra el destino
 			
-			cout << "Destino no valido!" << endl;
 			destino.f = destino.c = HOME;
 			return 0;
 
@@ -60,20 +57,19 @@ int Ajedrez::jugada(int button, int state, int x, int y) {
 				tablero.actualiza(origen, { origen.f, origen.c + 2 });
 				tablero.actualiza(destino, { destino.f, destino.c - 2 });
 			}
-			turno++;
-			origen.f = origen.c = destino.f = destino.c = HOME;
+			turno++; //Se completa el movimiento y se aumenta el turno
+			origen.f = origen.c = destino.f = destino.c = HOME; //Se borran origen y destino
 			tablero.setMovInit();
-			ETSIDI::play("sonidos/piezas1");
+			ETSIDI::play("sonidos/piezas1.wav");
 			return 0;
 
 		}
-		else {
+		else { //Se valida el movimiento y no es enroque
 
-			cout << "Destino " << destino.f << " " << destino.c << endl;//Test
-			tablero.actualiza(origen, destino);
-			turno++;
-			origen.f = origen.c = destino.f = destino.c = HOME;
-			tablero.setMovInit();
+			tablero.actualiza(origen, destino);						//Atualiza la matriz del tablero
+			turno++;												//Aumenta el turno
+			origen.f = origen.c = destino.f = destino.c = HOME;		//Resetea las casillas de origen y destino
+			tablero.setMovInit();									//Resetea la matriz de ayuda al movimiento
 
 			//Sonidos de movimiento
 			int r = rand() % 4;
@@ -93,24 +89,22 @@ int Ajedrez::jugada(int button, int state, int x, int y) {
 			}
 
 		}
-		//Poner las casillas origen y destino a -10 una vez finalizada la jugada
-		
 	}
 	return 0;
 }
 
 bool Ajedrez::validarTurno(int color){
 	
-	if (turno % 2 == 0 && color == 0) { return true; }
-	else if (turno % 2 != 0 && color == 1) { return true; }
+	if (turno % 2 == 0 && color == 0) { return true; }		//Turno par -> piezas blancas
+	else if (turno % 2 != 0 && color == 1) { return true; }	//Turno impar -> piezas negras
 	else { return false; }
 	
 }
 
 Casilla Ajedrez::getCasilla(int x, int y) { //Devuelve la casilla en función de las coordenadas x,y del ratón
 	Casilla casilla;
-	casilla.c = floor((x - 125) / 69);
-	casilla.f = 7 - floor((y - 25) / 69);
+	casilla.c = floor((x - 125) / 69);		//Obtenido experimentalmente para el tamaño de ventana del juego
+	casilla.f = 7 - floor((y - 25) / 69);	//Si se cambia el tamaño de ventana, esto no vale
 	return casilla;
 }
 
