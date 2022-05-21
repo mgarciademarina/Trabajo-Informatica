@@ -7,19 +7,21 @@
 class Ajedrez {						//Primer coordinador de la estructura
 private:
 	Tablero tablero;
-	Casilla origen{ HOME, HOME };	//Casilla de origen para la implementaci髇 del movimeinto por rat髇
-	Casilla destino{ HOME, HOME };	//Casilla de destsino para la implementaci髇 del movimiento por rat髇
-	int turno = 0;					//gesti髇 del turno
+	Casilla origen{ HOME, HOME };	//Casilla de origen para la implementaci贸n del movimeinto por rat贸n
+	Casilla destino{ HOME, HOME };	//Casilla de destsino para la implementaci贸n del movimiento por rat贸n
+	int turno = 0;					//gesti贸n del turno
 
 public:
-	//M閠odos gr醘icos
+	//M茅todos gr谩ficos
 	void dibuja();					
-	void inicializa();									//Inicializaci髇 de variables de tablero
+	void inicializa();									//Inicializaci贸n de variables de tablero
 
-	//M閠odos l骻icos
-	int jugada(int button, int state, int x, int y);	//Coordina los diferentes m閠odos de tablero para gestionar una jugada
+	//M茅todos l贸gicos
+	int jugada(int button, int state, int x, int y);	//Coordina los diferentes m茅todos de tablero para gestionar una jugada
 	Casilla getCasilla(int x, int y);					//Casilla en la que se pincha
 	bool validarTurno(int color);						//Determina si el turno es de las piezas negras o blancas
-	int jaque();										//Llamada al m閠odo jaque de tablero
+	int jaque();										//Llamada al m茅todo jaque de tablero
 	void setTurno(int v);								//Setter del turno para permitir reiniciar la partida sin errores
+	void guardar(); //Llamada al m茅todo guardar de tablero
+	void cargar(); //Llamada al m茅todo cargar de tablero
 };
